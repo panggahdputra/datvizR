@@ -1,0 +1,208 @@
+---
+title: "Data Visualization with R"
+subtitle: "This is my personal catalog of chart and how to make it in R"
+author: "Panggah D. Putra"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float:
+           collapsed: false
+    number_sections: true
+    theme: lumen
+    highlight: tango
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+
+# Preparation
+
+## Load package
+
+## Prepare a dataset
+
+```{r data prep}
+
+library(tidyverse)
+library(ggbump) # to make a bump chart
+
+set.seed(2000)
+df1 = tibble(var = 'A', val = rnorm(n = 25, mean = 5.5, sd = 1.5))
+df2 = tibble(var = 'B', val = rnorm(n = 15, mean = 4.5, sd = 1.0))
+df3 = tibble(var = 'C', val = rnorm(n = 20, mean = 5.0, sd = 1.0))
+df4 = tibble(var = 'D', val = rnorm(n = 10, mean = 4.0, sd = 0.5))
+df5 = tibble(var = 'E', val = rnorm(n = 13, mean = 5.0, sd = 1.5))
+
+data_vis <- rbind(df1, df2, df3, df4, df5) %>%
+  mutate(Variable = as_factor(var),
+         value = round(val, 2),
+         dummy_col = "oke")
+
+palette_ranking <- c("#0a3351", "#2f70a1", "#4692b0", "#72aeb6", "#abc9c8")
+
+theme_ranking <- theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 1),
+        axis.title = element_text(face = "bold"),
+        axis.text = element_text(face = "bold"),
+        axis.line.x.bottom = element_line( linetype = "solid")
+  )
+
+set.seed(2021)
+df_for_bumb = tibble(tim = c('A','B','C','D','E'),
+                          game_1 = sample(1:5),
+                          game_2 = sample(1:5),
+                          game_3 = sample(1:5),
+                          game_4 = sample(1:5),
+                          game_5 = sample(1:5))
+
+df_for_bumb_fix <- df_for_bumb %>%
+  pivot_longer(!tim, names_to = "game", values_to = "position") %>%
+  mutate(game = as.numeric(recode(game,
+                                  game_1 = 1,
+                                  game_2 = 2,
+                                  game_3 = 3,
+                                  game_4 = 4,
+                                  game_5 = 5)))
+
+```
+
+***
+
+# Ranking
+
+## Ordered Bar
+
+```{r ordered bar}
+
+ordered_bar <- data_vis %>%
+  group_by(Variable) %>%
+  summarise(number_of_data = n()) %>%
+  ggplot(aes(x = reorder(Variable, -number_of_data), y= number_of_data,
+             color = reorder(Variable, -number_of_data),
+             fill = reorder(Variable, -number_of_data))) +
+  scale_color_manual(values = palette_ranking, guide = 'none') +
+  scale_fill_manual(values = palette_ranking, guide = 'none') +
+  theme_ranking +
+  geom_col(alpha = .9, width = .6) +
+  xlab('Variable') +
+  ylab('number of data') +
+  labs(title = 'Ordered Bar',
+       subtitle = 'Ordered bar use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r ordered bar print, echo=FALSE}
+
+ordered_bar
+
+```
+
+## Ordered Column
+
+```{r ordered column}
+
+ordered_column <- data_vis %>%
+  group_by(Variable) %>%
+  summarise(number_of_data = n()) %>%
+  ggplot(aes(y = reorder(Variable, number_of_data), x= number_of_data,
+             color = reorder(Variable, -number_of_data),
+             fill = reorder(Variable, -number_of_data))) +
+  scale_color_manual(values = palette_ranking, guide = 'none') +
+  scale_fill_manual(values = palette_ranking, guide = 'none') +
+  theme_ranking +
+  geom_col(alpha = .9, width = .6) +
+  xlab('number of data') +
+  ylab('Variable') +
+  labs(title = 'Ordered Column',
+       subtitle = 'Ordered column use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r ordered column print, echo=FALSE}
+
+ordered_column
+
+```
+
+## Lollipop
+
+```{r lollipop}
+
+lollipop <- data_vis %>%
+  group_by(Variable) %>%
+  summarise(number_of_data = n()) %>%
+  ggplot(aes(x = reorder(Variable, -number_of_data), y= number_of_data,
+             color = Variable, fill = Variable)) +
+  scale_y_continuous(limits = c(0,35)) +
+  theme_ranking +
+  theme(
+    axis.text.y = element_blank()
+  ) +
+  geom_col(alpha = 1, width = .05, color = '#2f70a1', fill = '#2f70a1', show.legend = FALSE) +
+  geom_point(alpha = 1, size = 15, color = '#2f70a1', show.legend = FALSE) +
+  geom_point(alpha = .7, size = 25, color = '#2f70a1', show.legend = FALSE) +
+  geom_point(alpha = .4, size = 35, color = '#2f70a1', show.legend = FALSE) +
+  geom_point(alpha = .1, size = 45, color = '#2f70a1', show.legend = FALSE) +
+  geom_text(aes(x= Variable, y = number_of_data, label = number_of_data),
+            size=5, color = 'yellow') +
+  xlab('Variable') +
+  ylab('number of data') +
+  labs(title = 'Lollipop',
+       subtitle = 'Lollipop use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r lollipop print, echo=FALSE}
+
+lollipop
+
+```
+
+## Bump Chart
+
+```{r bump chart}
+bump <- df_for_bumb_fix %>%
+  ggplot(aes(game, position, color = tim)) +
+  geom_bump(size = 3, smooth = 20, show.legend = FALSE) +
+  geom_point(size = 7) +
+  geom_text(aes(label = position), size = 4, color = "white") +
+  geom_text(data = df_for_bumb_fix %>% filter(game == min(game)),
+            aes(x = game - .1, label = tim), size = 5, hjust = 1) +
+  geom_text(data = df_for_bumb_fix %>% filter(game == max(game)),
+            aes(x = game + .1, label = tim), size = 5, hjust = 0) +
+  theme_ranking +
+  scale_color_manual(values = palette_ranking, guide = 'none') +
+  scale_y_reverse() +
+  xlab('Game ke-') +
+  ylab('Peringkat') +
+  labs(title = 'Bump Chart',
+       subtitle = 'Bump chart use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r bump print, echo=FALSE}
+
+bump
+
+```
+
+***
+
+# Distribution
+
+Roses are <span style="color: red;">red</span>, violets are <span style="color: blue;">blue</span>.
+
+## Histogram
+## Density Plot
+## Box Plot
