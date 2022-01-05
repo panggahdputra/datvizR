@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Load packages
 
-```{r load package, message=FALSE}
+```{r, message=FALSE}
 
 library (tidyverse)
 library (ggbump) # to make a bump chart
@@ -34,7 +34,7 @@ library (ggbump) # to make a bump chart
 
 ## Prepare datasets
 
-```{r data_vis}
+```{r main df}
 
 set.seed(2000)
 df1 = tibble(var = 'A', val = rnorm(n = 25, mean = 5.5, sd = 1.5))
@@ -70,7 +70,7 @@ df_for_bump_fix <- df_for_bump %>%
 
 ```
 
-```{r palette ranking}
+```{r palette for ranking}
 
 palette_ranking <- c("#0a3351",
                      "#2f70a1",
@@ -80,7 +80,7 @@ palette_ranking <- c("#0a3351",
 
 ```
 
-```{r theme ranking}
+```{r main theme}
 
 theme_ranking <- theme_minimal() +
   theme(
@@ -89,7 +89,9 @@ theme_ranking <- theme_minimal() +
     plot.caption = element_text(hjust = 1),
     axis.title = element_text(face = "bold"),
     axis.text = element_text(face = "bold"),
-    axis.line.x.bottom = element_line( linetype = "solid")
+    axis.line.x.bottom = element_line( linetype = "solid"),
+    panel.background = element_rect(fill = "#FFFACD", color = NA),
+    plot.background = element_rect(fill = "#FFFACD", color = NA)
   )
 
 ```
