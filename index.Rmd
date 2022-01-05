@@ -91,7 +91,7 @@ theme_ranking <- theme_minimal() +
     axis.text = element_text(face = "bold"),
     axis.line.x.bottom = element_line( linetype = "solid"),
     panel.background = element_rect(fill = "#FFFACD", color = NA),
-    plot.background = element_rect(fill = "#FFFACD", color = NA)
+    plot.background = element_rect(fill = "#FFFACD")
   )
 
 ```
