@@ -43,7 +43,7 @@ df3 = tibble(var = 'C', val = rnorm(n = 20, mean = 5.0, sd = 1.0))
 df4 = tibble(var = 'D', val = rnorm(n = 10, mean = 4.0, sd = 0.5))
 df5 = tibble(var = 'E', val = rnorm(n = 13, mean = 5.0, sd = 1.5))
 
-data_vis <- rbind(df1, df2, df3, df4, df5) %>%
+main_df <- rbind(df1, df2, df3, df4, df5) %>%
   mutate(Variable = as_factor(var),
          value = round(val, 2))
 
@@ -52,15 +52,15 @@ data_vis <- rbind(df1, df2, df3, df4, df5) %>%
 ```{r df for bump}
 
 set.seed(2021)
-df_for_bump = tibble(tim = c('A','B','C','D','E'),
+df_6 = tibble(team = c('A','B','C','D','E'),
                           game_1 = sample(1:5),
                           game_2 = sample(1:5),
                           game_3 = sample(1:5),
                           game_4 = sample(1:5),
                           game_5 = sample(1:5))
 
-df_for_bump_fix <- df_for_bump %>%
-  pivot_longer(!tim, names_to = "game", values_to = "position") %>%
+df_for_bump <- df_6 %>%
+  pivot_longer(!team, names_to = "game", values_to = "position") %>%
   mutate(game = as.numeric(recode(game,
                                   game_1 = 1,
                                   game_2 = 2,
@@ -104,17 +104,17 @@ theme_ranking <- theme_minimal() +
 
 ```{r ordered bar}
 
-ordered_bar <- data_vis %>%
+ordered_bar <- main_df %>%
   group_by(Variable) %>%
   summarise(number_of_data = n()) %>%
   ggplot(aes(x = reorder(Variable, -number_of_data),
              y = number_of_data,
              color = reorder(Variable, -number_of_data),
              fill = reorder(Variable, -number_of_data))) +
+  geom_col(alpha = .9, width = .6) +
   scale_color_manual(values = palette_ranking, guide = 'none') +
   scale_fill_manual(values = palette_ranking, guide = 'none') +
   theme_ranking +
-  geom_col(alpha = .9, width = .6) +
   xlab('Variable') +
   ylab('number of data') +
   labs(title = 'Ordered Bar',
@@ -131,17 +131,17 @@ ordered_bar
 
 ```{r ordered column}
 
-ordered_column <- data_vis %>%
+ordered_column <- main_df %>%
   group_by(Variable) %>%
   summarise(number_of_data = n()) %>%
   ggplot(aes(x = number_of_data,
              y = reorder(Variable, number_of_data),
              color = reorder(Variable, -number_of_data),
              fill = reorder(Variable, -number_of_data))) +
+  geom_col(alpha = .9, width = .6) +
   scale_color_manual(values = palette_ranking, guide = 'none') +
   scale_fill_manual(values = palette_ranking, guide = 'none') +
   theme_ranking +
-  geom_col(alpha = .9, width = .6) +
   xlab('number of data') +
   ylab('Variable') +
   labs(title = 'Ordered Column',
@@ -158,16 +158,13 @@ ordered_column
 
 ```{r lollipop}
 
-lollipop <- data_vis %>%
+lollipop <- main_df %>%
   group_by(Variable) %>%
   summarise(number_of_data = n()) %>%
   ggplot(aes(x = reorder(Variable, -number_of_data),
              y = number_of_data,
              color = Variable,
              fill = Variable)) +
-  scale_y_continuous(limits = c(0,35)) +
-  theme_ranking +
-  theme(axis.text.y = element_blank()) +
   geom_col(alpha = 1, width = .05,
            color = '#2f70a1', show.legend = FALSE,
            fill = '#2f70a1', ) +
@@ -183,6 +180,9 @@ lollipop <- data_vis %>%
                 y = number_of_data,
                 label = number_of_data), 
             size = 5, color = 'yellow') +
+  scale_y_continuous(limits = c(0,35)) +
+  theme_ranking +
+  theme(axis.text.y = element_blank()) +
   xlab('Variable') +
   ylab('number of data') +
   labs(title = 'Lollipop',
@@ -198,20 +198,20 @@ lollipop
 ## Bump Chart
 
 ```{r bump chart}
-bump <- df_for_bump_fix %>%
-  ggplot(aes(game, position, color = tim)) +
+bump <- df_for_bump %>%
+  ggplot(aes(game, position, color = team)) +
   geom_bump(size = 3, smooth = 20, show.legend = FALSE) +
   geom_point(size = 7) +
   geom_text(aes(label = position), size = 4, color = "white") +
-  geom_text(data = df_for_bump_fix %>% filter(game == min(game)),
-            aes(x = game - .1, label = tim), size = 5, hjust = 1) +
-  geom_text(data = df_for_bump_fix %>% filter(game == max(game)),
-            aes(x = game + .1, label = tim), size = 5, hjust = 0) +
-  theme_ranking +
+  geom_text(data = df_for_bump %>% filter(game == min(game)),
+            aes(x = game - .1, label = team), size = 5, hjust = 1) +
+  geom_text(data = df_for_bump %>% filter(game == max(game)),
+            aes(x = game + .1, label = team), size = 5, hjust = 0) +
   scale_color_manual(values = palette_ranking, guide = 'none') +
   scale_y_reverse() +
-  xlab('Game ke-') +
-  ylab('Peringkat') +
+  theme_ranking +
+  xlab('Game-') +
+  ylab('Ranking') +
   labs(title = 'Bump Chart',
        subtitle = 'Bump chart use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
