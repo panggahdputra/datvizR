@@ -100,13 +100,21 @@ palette_distr <-c("#4e3910",
 
 theme_ranking <- theme_minimal() +
   theme(
-    plot.title = element_text(color = "#0a3351", hjust = 0.5, face = "bold"),
-    plot.subtitle = element_text(color = "#0a3351", hjust = 0.5),
-    plot.caption = element_text(color = "#0a3351", hjust = 1),
-    axis.title = element_text(color = "#0a3351", face = "bold"),
-    axis.text = element_text(color = "#0a3351", face = "bold"),
-    panel.background = element_rect(fill = "#f0ffff", color = NA),
-    plot.background = element_rect(fill = "#f0ffff", color = "lightblue")
+    plot.title = element_text(color = "#0a3351",
+                              hjust = 0.5,
+                              face = "bold"),
+    plot.subtitle = element_text(color = "#0a3351",
+                                 hjust = 0.5),
+    plot.caption = element_text(color = "#0a3351",
+                                hjust = 1),
+    axis.title = element_text(color = "#0a3351",
+                              face = "bold"),
+    axis.text = element_text(color = "#0a3351",
+                             face = "bold"),
+    panel.background = element_rect(fill = "#f0ffff",
+                                    color = NA),
+    plot.background = element_rect(fill = "#f0ffff",
+                                   color = "lightblue")
   )
 
 ```
@@ -115,13 +123,21 @@ theme_ranking <- theme_minimal() +
 
 theme_dist <- theme_minimal() +
   theme(
-    plot.title = element_text(color = "#1d1f54", hjust = 0.5, face = "bold"),
-    plot.subtitle = element_text(color = "#1d1f54", hjust = 0.5),
-    plot.caption = element_text(color = "#1d1f54", hjust = 1),
-    axis.title = element_text(color = "#1d1f54", face = "bold"),
-    axis.text = element_text(color = "#1d1f54", face = "bold"),
-    panel.background = element_rect(fill = "#FFFCDE", color = NA),
-    plot.background = element_rect(fill = "#FFFCDE", color = "lightblue")
+    plot.title = element_text(color = "#1d1f54",
+                              hjust = 0.5,
+                              face = "bold"),
+    plot.subtitle = element_text(color = "#1d1f54",
+                                 hjust = 0.5),
+    plot.caption = element_text(color = "#1d1f54",
+                                hjust = 1),
+    axis.title = element_text(color = "#1d1f54",
+                              face = "bold"),
+    axis.text = element_text(color = "#1d1f54",
+                             face = "bold"),
+    panel.background = element_rect(fill = "#FFFCDE",
+                                    color = NA),
+    plot.background = element_rect(fill = "#FFFCDE",
+                                   color = "lightblue")
   )
 
 ```
@@ -197,16 +213,21 @@ lollipop <- main_df %>%
              color = Variable,
              fill = Variable)) +
   geom_col(alpha = 1, width = .05,
-           color = '#2f70a1', show.legend = FALSE,
-           fill = '#2f70a1', ) +
+           color = '#2f70a1',
+           fill = '#2f70a1',
+           show.legend = FALSE) +
   geom_point(alpha = 1, size = 15,
-             color = '#2f70a1', show.legend = FALSE) +
+             color = '#2f70a1',
+             show.legend = FALSE) +
   geom_point(alpha = .7, size = 25,
-             color = '#2f70a1', show.legend = FALSE) +
+             color = '#2f70a1',
+             show.legend = FALSE) +
   geom_point(alpha = .4, size = 35,
-             color = '#2f70a1', show.legend = FALSE) +
+             color = '#2f70a1',
+             show.legend = FALSE) +
   geom_point(alpha = .1, size = 45,
-             color = '#2f70a1', show.legend = FALSE) +
+             color = '#2f70a1',
+             show.legend = FALSE) +
   geom_text(aes(x = Variable,
                 y = number_of_data,
                 label = number_of_data), 
@@ -230,15 +251,28 @@ lollipop
 
 ```{r bump chart}
 bump <- df_for_bump %>%
-  ggplot(aes(game, position, color = team)) +
-  ggbump::geom_bump(size = 3, smooth = 20, show.legend = FALSE) +
+  ggplot(aes(x = game,
+             y = position,
+             color = team)) +
+  ggbump::geom_bump(size = 3,
+                    smooth = 20,
+                    show.legend = FALSE) +
   geom_point(size = 7) +
-  geom_text(aes(label = position), size = 4, color = "white") +
+  geom_text(aes(label = position),
+            size = 4,
+            color = "white") +
   geom_text(data = df_for_bump %>% filter(game == min(game)),
-            aes(x = game - .1, label = team), size = 5, hjust = 1) +
+            aes(x = game - .1,
+                label = team),
+            size = 5,
+            hjust = 1) +
   geom_text(data = df_for_bump %>% filter(game == max(game)),
-            aes(x = game + .1, label = team), size = 5, hjust = 0) +
-  scale_color_manual(values = palette_ranking, guide = 'none') +
+            aes(x = game + .1,
+                label = team),
+            size = 5,
+            hjust = 0) +
+  scale_color_manual(values = palette_ranking,
+                     guide = 'none') +
   scale_y_reverse() +
   theme_ranking +
   xlab('Game-') +
@@ -266,9 +300,14 @@ bump
 
 histogram <- main_df %>%
   ggplot(aes(x = value)) +
-  geom_histogram(bins = 25, alpha = .9, fill = '#178f92', color = '#175f5d') +
-  scale_x_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
-  scale_y_continuous(limits = c(0,15), breaks = c(0,5,10,15)) +
+  geom_histogram(bins = 25,
+                 alpha = .9,
+                 fill = '#178f92',
+                 color = '#175f5d') +
+  scale_x_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0,15),
+                     breaks = c(0,5,10,15)) +
   theme_dist +
   ylab('number of data') +
   labs(title = 'Histogram',
@@ -288,25 +327,39 @@ histogram
 dot_plot <- main_df %>%
   group_by(Variable) %>%
   summarise(min = min(value), max = max(value)) %>%
-  ggplot(aes(x = min, xend = max, y = Variable,
-             color = Variable, fill = Variable), ) +
-  geom_dumbbell(alpha = 1, color = '#d8c29d',
-                       size =4, size_x=8, size_xend = 8,
-                       colour_x='#4e3910', colour_xend = '#175f5d') +
-  geom_dumbbell(alpha = .5, color = NA,
-                       size =4, size_x=12, size_xend = 12,
-                       colour_x='#4e3910', colour_xend = '#175f5d') +
-    geom_text(aes(x = min,
+  ggplot(aes(x = min,
+             xend = max,
+             y = Variable,
+             color = Variable,
+             fill = Variable), ) +
+  ggalt::geom_dumbbell(size =3,
+                       size_x = 12,
+                       size_xend = 12,
+                       color = '#d8c29d',
+                       colour_x = '#d8c29d',
+                       colour_xend = '#d8c29d') +
+  ggalt::geom_dumbbell(size = 3,
+                       size_x = 9,
+                       size_xend = 9,
+                       color = '#d8c29d',
+                       colour_x = '#4e3910',
+                       colour_xend = '#175f5d') +
+  geom_text(aes(x = min,
                 y = Variable,
                 label = round(min, 1)), 
-            size = 2.5, color = 'white') +
-    geom_text(aes(x = max,
+            size = 3,
+            color = 'white') +
+  geom_text(aes(x = max,
                 y = Variable,
                 label = round(max, 1)), 
-            size = 2.5, color = 'white') +
-  scale_color_manual(values = palette_distr, guide = 'none') +
-  scale_fill_manual(values = palette_distr, guide = 'none') +
-  scale_x_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+            size = 3,
+            color = 'white') +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_x_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
   theme_dist +
   xlab('min <<<value>>> max') +
   labs(title = 'Dot Plot (Dumbbell Plot)',
@@ -319,18 +372,22 @@ dot_plot <- main_df %>%
 dot_plot
 ```
 
-
-
 ## Dot Strip Plot
 
 ```{r dot strip plot}
 
 dot_strip_plot <- main_df %>%
-  ggplot(aes(x = Variable, y = value, color = Variable, fill = Variable)) +
-  ggdist::stat_dots(side = 'both', alpha = 1) +
-  scale_color_manual(values = palette_distr, guide = 'none') +
-  scale_fill_manual(values = palette_distr, guide = 'none') +
-  scale_y_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  ggdist::stat_dots(side = 'both') +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
   theme_dist +
   labs(title = 'Dot Strip Plot',
        subtitle = 'Dot Strip Plot use to show bla bla bla.',
@@ -347,11 +404,19 @@ dot_strip_plot
 ```{r barcode plot}
 
 barcode_plot <- main_df %>%
-  ggplot(aes(x = Variable, y = value, color = Variable, fill = Variable)) +
-  geom_point(shape = 95, size = 25, alpha = .7) +
-  scale_color_manual(values = palette_distr, guide = 'none') +
-  scale_fill_manual(values = palette_distr, guide = 'none') +
-  scale_y_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  geom_point(shape = 95,
+             size = 25,
+             alpha = .7) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
   theme_dist +
   labs(title = 'Barcode Plot',
        subtitle = 'Barcode Plot use to show bla bla bla.',
@@ -368,11 +433,19 @@ barcode_plot
 ```{r box plot}
 
 box_plot <- main_df %>%
-  ggplot(aes(x = Variable, y = value, color = Variable, fill = Variable)) +
-  geom_boxplot(alpha = .7, size = .5, outlier.size = 2) +
-  scale_color_manual(values = palette_distr, guide = 'none') +
-  scale_fill_manual(values = palette_distr, guide = 'none') +
-  scale_y_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  geom_boxplot(alpha = .7,
+               size = .5,
+               outlier.size = 2) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
   theme_dist +
   labs(title = 'Box Plot',
        subtitle = 'Box Plot use to show bla bla bla.',
@@ -389,11 +462,19 @@ box_plot
 ```{r violin plot}
 
 violin_plot <- main_df %>%
-  ggplot(aes(x = Variable, y = value, color = Variable, fill = Variable)) +
-  geom_violin(alpha = .7, size = .5, bw = .25) +
-  scale_color_manual(values = palette_distr, guide = 'none') +
-  scale_fill_manual(values = palette_distr, guide = 'none') +
-  scale_y_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  geom_violin(alpha = .7,
+              size = .5,
+              bw = .25) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
   theme_dist +
   labs(title = 'Violin Plot',
        subtitle = 'Violin Plot use to show bla bla bla.',
@@ -414,13 +495,20 @@ violin_plot
 ```{r beeswarm}
 
 beeswarm_plot <- main_df %>%
-  ggplot(aes(x = Variable, y = value, color = Variable, fill = Variable)) +
-  ggbeeswarm::geom_beeswarm(alpha = .5, size = 7, cex = 3) +
-  scale_color_manual(values = palette_distr, guide = 'none') +
-  scale_fill_manual(values = palette_distr, guide = 'none') +
-  scale_y_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  ggbeeswarm::geom_beeswarm(alpha = .5,
+                            size = 7,
+                            cex = 3) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
   theme_dist +
-
   labs(title = 'Beeswarm',
        subtitle = 'Beeswarm use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -430,5 +518,3 @@ beeswarm_plot <- main_df %>%
 ```{r beeswarm print, echo=FALSE, out.width = "100%"}
 beeswarm_plot
 ```
-
-
