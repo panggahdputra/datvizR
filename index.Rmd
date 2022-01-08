@@ -32,6 +32,7 @@ library (ggbump) # to make a bump chart
 library(ggdist) # to make a dot plot
 library(ggbeeswarm) # to make a beeswarm plot
 library(ggalt) # to make a dot plot (dumbbell plot)
+library(CGPfunctions) # to make a slope graph
 
 ```
 
@@ -71,6 +72,20 @@ df_for_bump <- df_6 %>%
                                   game_3 = 3,
                                   game_4 = 4,
                                   game_5 = 5)))
+
+```
+
+```{r df for slope}
+
+df_for_slope = tibble(var = c('A','B','C','D', 'E',
+                              'A','B','C','D', 'E',
+                              'A','B','C','D', 'E'),
+                     month = c('2010','2010','2010','2010','2010',
+                               '2015','2015','2015','2015','2015',
+                               '2020','2020','2020','2020','2020'),
+                     val = c(10,8,6,4,2,
+                             13,9,11,5,7,
+                             12,13,9,7,5))
 
 ```
 
@@ -202,6 +217,48 @@ ordered_column <- main_df %>%
 ordered_column
 ```
 
+## Slope Graph
+
+```{r slope graph}
+
+slope_graph <- newggslopegraph(
+  dataframe = df_for_slope,
+  Times = month,
+  Measurement = val,
+  Grouping = var,
+  Title = 'Slope Graph',
+  SubTitle = 'Slope Graph use to show bla bla bla.',
+  Caption = 'visualization by PanggahDPutra, 2022',
+  XTextSize = 12,
+  YTextSize = 4,
+  TitleTextSize = 14,
+  SubTitleTextSize = 10,
+  CaptionTextSize = 8,
+  TitleJustify = "center",
+  SubTitleJustify = "center",
+  CaptionJustify = "right",
+  LineThickness = 1.2,
+  LineColor = palette_ranking,
+  DataTextSize = 5,
+  DataTextColor = '#0a3351',
+  DataLabelPadding = 0.1,
+  DataLabelFillColor = '#f0ffff',
+  WiderLabels = TRUE) +
+  theme(
+    plot.title = element_text(color = '#0a3351'),
+    plot.subtitle = element_text(color = '#0a3351'),
+    plot.caption = element_text(color = '#0a3351'),
+    panel.background = element_rect(fill = '#f0ffff',
+                                    color = NA),
+    plot.background = element_rect(fill = '#f0ffff',
+                                   color = 'lightblue')) 
+
+```
+
+```{r slope graph print, echo=FALSE, out.width = "100%"}
+slope_graph
+```
+
 ## Lollipop
 
 ```{r lollipop}
@@ -295,7 +352,6 @@ bump
 
 ## ordered propt. symbol (not yet)
 ## dot strip plot (not yet)
-## slope (not yet)
 
 ***
 
