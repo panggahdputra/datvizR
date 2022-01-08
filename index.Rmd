@@ -16,7 +16,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ```
 
 ***
@@ -63,7 +63,7 @@ df_6 = tibble(team = c('A','B','C','D','E'),
                           game_5 = sample(1:5))
 
 df_for_bump <- df_6 %>%
-  pivot_longer(!team, names_to = "game", values_to = "position") %>%
+  pivot_longer(!team, names_to = 'game', values_to = 'position') %>%
   mutate(game = as.numeric(recode(game,
                                   game_1 = 1,
                                   game_2 = 2,
@@ -75,24 +75,21 @@ df_for_bump <- df_6 %>%
 
 ```{r palette for ranking}
 
-palette_ranking <- c("#134b73",
-                     "#2f70a1",
-                     "#4692b0",
-                     "#72aeb6",
-                     "#abc9c8")
+palette_ranking <- c('#134b73',
+                     '#2f70a1',
+                     '#4692b0',
+                     '#72aeb6',
+                     '#abc9c8')
 
 ```
 
 ```{r palette for distribution}
 
-palette_distr <-c("#4e3910",
-                  "#845d29",
-                  #"#d8c29d",
-                  "#4fb6ca",
-                  "#178f92",
-                  "#175f5d"
-                  #"#1d1f54"
-                  )
+palette_distr <-c('#4e3910',
+                  '#845d29',
+                  '#4fb6ca',
+                  '#178f92',
+                  '#175f5d')
 
 ```
 
@@ -100,21 +97,21 @@ palette_distr <-c("#4e3910",
 
 theme_ranking <- theme_minimal() +
   theme(
-    plot.title = element_text(color = "#0a3351",
+    plot.title = element_text(color = '#0a3351',
                               hjust = 0.5,
-                              face = "bold"),
-    plot.subtitle = element_text(color = "#0a3351",
+                              face = 'bold'),
+    plot.subtitle = element_text(color = '#0a3351',
                                  hjust = 0.5),
-    plot.caption = element_text(color = "#0a3351",
+    plot.caption = element_text(color = '#0a3351',
                                 hjust = 1),
-    axis.title = element_text(color = "#0a3351",
-                              face = "bold"),
-    axis.text = element_text(color = "#0a3351",
-                             face = "bold"),
-    panel.background = element_rect(fill = "#f0ffff",
+    axis.title = element_text(color = '#0a3351',
+                              face = 'bold'),
+    axis.text = element_text(color = '#0a3351',
+                             face = 'bold'),
+    panel.background = element_rect(fill = '#f0ffff',
                                     color = NA),
-    plot.background = element_rect(fill = "#f0ffff",
-                                   color = "lightblue")
+    plot.background = element_rect(fill = '#f0ffff',
+                                   color = 'lightblue')
   )
 
 ```
@@ -123,21 +120,21 @@ theme_ranking <- theme_minimal() +
 
 theme_dist <- theme_minimal() +
   theme(
-    plot.title = element_text(color = "#1d1f54",
+    plot.title = element_text(color = '#1d1f54',
                               hjust = 0.5,
-                              face = "bold"),
-    plot.subtitle = element_text(color = "#1d1f54",
+                              face = 'bold'),
+    plot.subtitle = element_text(color = '#1d1f54',
                                  hjust = 0.5),
-    plot.caption = element_text(color = "#1d1f54",
+    plot.caption = element_text(color = '#1d1f54',
                                 hjust = 1),
-    axis.title = element_text(color = "#1d1f54",
-                              face = "bold"),
-    axis.text = element_text(color = "#1d1f54",
-                             face = "bold"),
-    panel.background = element_rect(fill = "#FFFCDE",
+    axis.title = element_text(color = '#1d1f54',
+                              face = 'bold'),
+    axis.text = element_text(color = '#1d1f54',
+                             face = 'bold'),
+    panel.background = element_rect(fill = '#FFFCDE',
                                     color = NA),
-    plot.background = element_rect(fill = "#FFFCDE",
-                                   color = "lightblue")
+    plot.background = element_rect(fill = '#FFFCDE',
+                                   color = 'lightblue')
   )
 
 ```
@@ -296,7 +293,7 @@ bump
 # Distribution
 ## Histogram
 
-```{r histogram}
+```{r histogram, message=FALSE, warning=FALSE}
 
 histogram <- main_df %>%
   ggplot(aes(x = value)) +
