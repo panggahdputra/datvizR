@@ -48,7 +48,8 @@ df5 = tibble(var = 'E', val = rnorm(n = 13, mean = 5.0, sd = 1.5))
 
 main_df <- rbind(df1, df2, df3, df4, df5) %>%
   mutate(Variable = as_factor(var),
-         value = round(val, 2))
+         value = round(val, 2)) %>%
+  select(Variable, value)
 
 ```
 
@@ -59,7 +60,7 @@ df_6 = tibble(team = c('A','B','C','D','E'),
               game_1 = sample(1:5),
               game_2 = sample(1:5),
               game_3 = sample(1:5),
-              ame_4 = sample(1:5),
+              game_4 = sample(1:5),
               game_5 = sample(1:5))
 
 df_for_bump <- df_6 %>%
@@ -118,7 +119,7 @@ theme_ranking <- theme_minimal() +
 
 ```{r theme for distribution}
 
-theme_dist <- theme_minimal() +
+theme_distr <- theme_minimal() +
   theme(
     plot.title = element_text(color = '#1d1f54',
                               hjust = 0.5,
@@ -138,7 +139,6 @@ theme_dist <- theme_minimal() +
   )
 
 ```
-
 
 ***
 
@@ -213,20 +213,25 @@ lollipop <- main_df %>%
              y = number_of_data,
              color = Variable,
              fill = Variable)) +
-  geom_col(alpha = 1, width = .05,
+  geom_col(alpha = 1,
+           width = .05,
            color = '#2f70a1',
            fill = '#2f70a1',
            show.legend = FALSE) +
-  geom_point(alpha = 1, size = 15,
+  geom_point(alpha = 1,
+             size = 15,
              color = '#2f70a1',
              show.legend = FALSE) +
-  geom_point(alpha = .7, size = 25,
+  geom_point(alpha = .7,
+             size = 25,
              color = '#2f70a1',
              show.legend = FALSE) +
-  geom_point(alpha = .4, size = 35,
+  geom_point(alpha = .4,
+             size = 35,
              color = '#2f70a1',
              show.legend = FALSE) +
-  geom_point(alpha = .1, size = 45,
+  geom_point(alpha = .1,
+             size = 45,
              color = '#2f70a1',
              show.legend = FALSE) +
   geom_text(aes(x = Variable,
@@ -295,6 +300,7 @@ bump
 ***
 
 # Distribution
+
 ## Histogram
 
 ```{r histogram, message=FALSE, warning=FALSE}
@@ -309,7 +315,7 @@ histogram <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   scale_y_continuous(limits = c(0,15),
                      breaks = c(0,5,10,15)) +
-  theme_dist +
+  theme_distr +
   ylab('number of data') +
   labs(title = 'Histogram',
        subtitle = 'Histogram use to show bla bla bla.',
@@ -361,7 +367,7 @@ dot_plot <- main_df %>%
                     guide = 'none') +
   scale_x_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
-  theme_dist +
+  theme_distr +
   xlab('min <<<value>>> max') +
   labs(title = 'Dot Plot (Dumbbell Plot)',
        subtitle = 'Dot Plot (Dumbbell Plot) use to show bla bla bla.',
@@ -389,7 +395,7 @@ dot_strip_plot <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
-  theme_dist +
+  theme_distr +
   labs(title = 'Dot Strip Plot',
        subtitle = 'Dot Strip Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -418,7 +424,7 @@ barcode_plot <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
-  theme_dist +
+  theme_distr +
   labs(title = 'Barcode Plot',
        subtitle = 'Barcode Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -447,7 +453,7 @@ box_plot <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
-  theme_dist +
+  theme_distr +
   labs(title = 'Box Plot',
        subtitle = 'Box Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -476,7 +482,7 @@ violin_plot <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
-  theme_dist +
+  theme_distr +
   labs(title = 'Violin Plot',
        subtitle = 'Violin Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -487,10 +493,6 @@ violin_plot <- main_df %>%
 violin_plot
 ```
 
-## population pyramid (not yet)
-## cumulative curve (not yet)
-## frequency polygons (not yet)
-
 ## Beeswarm
 
 ```{r beeswarm}
@@ -499,17 +501,18 @@ beeswarm_plot <- main_df %>%
   ggplot(aes(x = Variable,
              y = value,
              color = Variable,
-             fill = Variable)) +
-  ggbeeswarm::geom_beeswarm(alpha = .5,
-                            size = 7,
-                            cex = 3) +
+             fill = Variable,
+             size = value)) +
+  ggbeeswarm::geom_beeswarm(alpha = .7,
+                            cex = 3,
+                            show.legend = FALSE) +
   scale_color_manual(values = palette_distr,
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
-  theme_dist +
+  theme_distr +
   labs(title = 'Beeswarm',
        subtitle = 'Beeswarm use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -519,3 +522,7 @@ beeswarm_plot <- main_df %>%
 ```{r beeswarm print, echo=FALSE, out.width = "100%"}
 beeswarm_plot
 ```
+
+## population pyramid (not yet)
+## cumulative curve (not yet)
+## frequency polygons (not yet)
