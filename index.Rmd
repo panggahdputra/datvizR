@@ -56,11 +56,11 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 set.seed(2021)
 df_6 = tibble(team = c('A','B','C','D','E'),
-                          game_1 = sample(1:5),
-                          game_2 = sample(1:5),
-                          game_3 = sample(1:5),
-                          game_4 = sample(1:5),
-                          game_5 = sample(1:5))
+              game_1 = sample(1:5),
+              game_2 = sample(1:5),
+              game_3 = sample(1:5),
+              ame_4 = sample(1:5),
+              game_5 = sample(1:5))
 
 df_for_bump <- df_6 %>%
   pivot_longer(!team, names_to = 'game', values_to = 'position') %>%
@@ -156,8 +156,10 @@ ordered_bar <- main_df %>%
              color = reorder(Variable, -number_of_data),
              fill = reorder(Variable, -number_of_data))) +
   geom_col(alpha = .9, width = .6) +
-  scale_color_manual(values = palette_ranking, guide = 'none') +
-  scale_fill_manual(values = palette_ranking, guide = 'none') +
+  scale_color_manual(values = palette_ranking,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_ranking,
+                    guide = 'none') +
   theme_ranking +
   xlab('Variable') +
   ylab('number of data') +
@@ -183,8 +185,10 @@ ordered_column <- main_df %>%
              color = reorder(Variable, -number_of_data),
              fill = reorder(Variable, -number_of_data))) +
   geom_col(alpha = .9, width = .6) +
-  scale_color_manual(values = palette_ranking, guide = 'none') +
-  scale_fill_manual(values = palette_ranking, guide = 'none') +
+  scale_color_manual(values = palette_ranking,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_ranking,
+                    guide = 'none') +
   theme_ranking +
   xlab('number of data') +
   ylab('Variable') +
