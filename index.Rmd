@@ -31,6 +31,7 @@ library (tidyverse)
 library (ggbump) # to make a bump chart
 library(ggdist) # to make a dot plot
 library(ggbeeswarm) # to make a beeswarm plot
+library(ggalt) # to make a dot plot (dumbbell plot)
 
 ```
 
@@ -104,8 +105,8 @@ theme_ranking <- theme_minimal() +
     plot.caption = element_text(color = "#0a3351", hjust = 1),
     axis.title = element_text(color = "#0a3351", face = "bold"),
     axis.text = element_text(color = "#0a3351", face = "bold"),
-    panel.background = element_rect(fill = "#FFFACD", color = NA),
-    plot.background = element_rect(fill = "#FFFACD", color = "lightblue")
+    panel.background = element_rect(fill = "#f0ffff", color = NA),
+    plot.background = element_rect(fill = "#f0ffff", color = "lightblue")
   )
 
 ```
@@ -209,7 +210,7 @@ lollipop <- main_df %>%
   geom_text(aes(x = Variable,
                 y = number_of_data,
                 label = number_of_data), 
-            size = 5, color = 'yellow') +
+            size = 5, color = 'white') +
   scale_y_continuous(limits = c(0,35)) +
   theme_ranking +
   theme(axis.text.y = element_blank()) +
@@ -280,25 +281,65 @@ histogram <- main_df %>%
 histogram
 ```
 
-## Dot Plot
+## Dot Plot (Dumbbell Plot)
 
 ```{r dot plot}
 
 dot_plot <- main_df %>%
-  ggplot(aes(x = Variable, y = value, color = Variable, fill = Variable)) +
-  ggdist::stat_dots(side = 'both', alpha = 1) +
+  group_by(Variable) %>%
+  summarise(min = min(value), max = max(value)) %>%
+  ggplot(aes(x = min, xend = max, y = Variable,
+             color = Variable, fill = Variable), ) +
+  geom_dumbbell(alpha = 1, color = '#d8c29d',
+                       size =4, size_x=8, size_xend = 8,
+                       colour_x='#4e3910', colour_xend = '#175f5d') +
+  geom_dumbbell(alpha = .5, color = NA,
+                       size =4, size_x=12, size_xend = 12,
+                       colour_x='#4e3910', colour_xend = '#175f5d') +
+    geom_text(aes(x = min,
+                y = Variable,
+                label = round(min, 1)), 
+            size = 2.5, color = 'white') +
+    geom_text(aes(x = max,
+                y = Variable,
+                label = round(max, 1)), 
+            size = 2.5, color = 'white') +
   scale_color_manual(values = palette_distr, guide = 'none') +
   scale_fill_manual(values = palette_distr, guide = 'none') +
-  scale_y_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+  scale_x_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
   theme_dist +
-  labs(title = 'Dot Plot',
-       subtitle = 'Dot Plot use to show bla bla bla.',
+  xlab('min <<<value>>> max') +
+  labs(title = 'Dot Plot (Dumbbell Plot)',
+       subtitle = 'Dot Plot (Dumbbell Plot) use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
 ```{r dot plot print, echo=FALSE, out.width = "100%"}
 dot_plot
+```
+
+
+
+## Dot Strip Plot
+
+```{r dot strip plot}
+
+dot_strip_plot <- main_df %>%
+  ggplot(aes(x = Variable, y = value, color = Variable, fill = Variable)) +
+  ggdist::stat_dots(side = 'both', alpha = 1) +
+  scale_color_manual(values = palette_distr, guide = 'none') +
+  scale_fill_manual(values = palette_distr, guide = 'none') +
+  scale_y_continuous(limits = c(0,10), breaks = c(0,2,4,6,8,10)) +
+  theme_dist +
+  labs(title = 'Dot Strip Plot',
+       subtitle = 'Dot Strip Plot use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r dot strip plot print, echo=FALSE, out.width = "100%"}
+dot_strip_plot
 ```
 
 ## Barcode Plot
@@ -364,7 +405,6 @@ violin_plot <- main_df %>%
 violin_plot
 ```
 
-## dot strip plot (not yet)
 ## population pyramid (not yet)
 ## cumulative curve (not yet)
 ## frequency polygons (not yet)
