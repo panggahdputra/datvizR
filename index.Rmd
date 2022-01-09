@@ -8,8 +8,8 @@ output:
     toc: true
     toc_float:
       collapsed: false
-    toc_depth: 2
-    number_sections: true
+    toc_depth: 3
+#    number_sections: true
     theme: lumen
     highlight: tango
     df_print: paged
@@ -21,9 +21,9 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 ***
 
-# Prerequisites
+# **Prerequisites**
 
-## Load packages
+### Load packages
 
 ```{r, message=FALSE}
 
@@ -36,7 +36,7 @@ library(CGPfunctions) # to make a slope graph
 
 ```
 
-## Prepare datasets
+### Prepare datasets
 
 ```{r main df}
 
@@ -91,11 +91,11 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ```{r palette for ranking}
 
-palette_ranking <- c('#134b73',
-                     '#2f70a1',
-                     '#4692b0',
-                     '#72aeb6',
-                     '#abc9c8')
+palette_ranking <- c('#3c0d03',
+                     '#8d1c06',
+                     '#e67424',
+                     '#ed9b49',
+                     '#f5c34d')
 
 ```
 
@@ -113,20 +113,20 @@ palette_distr <-c('#4e3910',
 
 theme_ranking <- theme_minimal() +
   theme(
-    plot.title = element_text(color = '#0a3351',
+    plot.title = element_text(color = '#3c0d03',
                               hjust = 0.5,
                               face = 'bold'),
-    plot.subtitle = element_text(color = '#0a3351',
+    plot.subtitle = element_text(color = '#3c0d03',
                                  hjust = 0.5),
-    plot.caption = element_text(color = '#0a3351',
+    plot.caption = element_text(color = '#3c0d03',
                                 hjust = 1),
-    axis.title = element_text(color = '#0a3351',
+    axis.title = element_text(color = '#8d1c06',
                               face = 'bold'),
-    axis.text = element_text(color = '#0a3351',
+    axis.text = element_text(color = '#8d1c06',
                              face = 'bold'),
-    panel.background = element_rect(fill = '#f0ffff',
+    panel.background = element_rect(fill = '#ffffff',
                                     color = NA),
-    plot.background = element_rect(fill = '#f0ffff',
+    plot.background = element_rect(fill = '#ffffff',
                                    color = 'lightblue')
   )
 
@@ -157,9 +157,9 @@ theme_distr <- theme_minimal() +
 
 ***
 
-# Ranking
+# **Ranking**
 
-## Ordered Bar
+### Ordered Bar
 
 ```{r ordered bar}
 
@@ -188,7 +188,7 @@ ordered_bar <- main_df %>%
 ordered_bar
 ```
 
-## Ordered Column
+### Ordered Column
 
 ```{r ordered column}
 
@@ -217,7 +217,7 @@ ordered_column <- main_df %>%
 ordered_column
 ```
 
-## Slope Graph
+### Slope Graph
 
 ```{r slope graph}
 
@@ -240,17 +240,17 @@ slope_graph <- newggslopegraph(
   LineThickness = 1.2,
   LineColor = palette_ranking,
   DataTextSize = 5,
-  DataTextColor = '#0a3351',
+  DataTextColor = '#8d1c06',
   DataLabelPadding = 0.1,
-  DataLabelFillColor = '#f0ffff',
+  DataLabelFillColor = '#ffffff',
   WiderLabels = TRUE) +
   theme(
-    plot.title = element_text(color = '#0a3351'),
-    plot.subtitle = element_text(color = '#0a3351'),
-    plot.caption = element_text(color = '#0a3351'),
-    panel.background = element_rect(fill = '#f0ffff',
+    plot.title = element_text(color = '#3c0d03'),
+    plot.subtitle = element_text(color = '#3c0d03'),
+    plot.caption = element_text(color = '#3c0d03'),
+    panel.background = element_rect(fill = '#ffffff',
                                     color = NA),
-    plot.background = element_rect(fill = '#f0ffff',
+    plot.background = element_rect(fill = '#ffffff',
                                    color = 'lightblue')) 
 
 ```
@@ -259,7 +259,7 @@ slope_graph <- newggslopegraph(
 slope_graph
 ```
 
-## Lollipop
+### Lollipop
 
 ```{r lollipop}
 
@@ -272,29 +272,29 @@ lollipop <- main_df %>%
              fill = Variable)) +
   geom_col(alpha = 1,
            width = .05,
-           color = '#2f70a1',
-           fill = '#2f70a1',
+           color = '#3c0d03',
+           fill = '#3c0d03',
            show.legend = FALSE) +
   geom_point(alpha = 1,
+             size = 24,
+             color = '#ed9b49',
+             show.legend = FALSE) +
+  geom_point(alpha = 1,
+             size = 21,
+             color = '#e67424',
+             show.legend = FALSE) +
+  geom_point(alpha = 1,
+             size = 18,
+             color = '#8d1c06',
+             show.legend = FALSE) +
+  geom_point(alpha = 1,
              size = 15,
-             color = '#2f70a1',
-             show.legend = FALSE) +
-  geom_point(alpha = .7,
-             size = 25,
-             color = '#2f70a1',
-             show.legend = FALSE) +
-  geom_point(alpha = .4,
-             size = 35,
-             color = '#2f70a1',
-             show.legend = FALSE) +
-  geom_point(alpha = .1,
-             size = 45,
-             color = '#2f70a1',
+             color = '#3c0d03',
              show.legend = FALSE) +
   geom_text(aes(x = Variable,
                 y = number_of_data,
                 label = number_of_data), 
-            size = 5, color = 'white') +
+            size = 5, color = '#f5c34d') +
   scale_y_continuous(limits = c(0,35)) +
   theme_ranking +
   theme(axis.text.y = element_blank()) +
@@ -310,7 +310,7 @@ lollipop <- main_df %>%
 lollipop
 ```
 
-## Bump Chart
+### Bump Chart
 
 ```{r bump chart}
 bump <- df_for_bump %>%
@@ -350,14 +350,14 @@ bump <- df_for_bump %>%
 bump
 ```
 
-## ordered propt. symbol (not yet)
-## dot strip plot (not yet)
+### ordered propt. symbol (not yet)
+### dot strip plot (not yet)
 
 ***
 
-# Distribution
+# **Distribution**
 
-## Histogram
+### Histogram
 
 ```{r histogram, message=FALSE, warning=FALSE}
 
@@ -383,7 +383,7 @@ histogram <- main_df %>%
 histogram
 ```
 
-## Dot Plot (Dumbbell Plot)
+### Dot Plot (Dumbbell Plot)
 
 ```{r dot plot}
 
@@ -435,7 +435,7 @@ dot_plot <- main_df %>%
 dot_plot
 ```
 
-## Dot Strip Plot
+### Dot Strip Plot
 
 ```{r dot strip plot}
 
@@ -462,7 +462,7 @@ dot_strip_plot <- main_df %>%
 dot_strip_plot
 ```
 
-## Barcode Plot
+### Barcode Plot
 
 ```{r barcode plot}
 
@@ -491,7 +491,7 @@ barcode_plot <- main_df %>%
 barcode_plot
 ```
 
-## Box Plot
+### Box Plot
 
 ```{r box plot}
 
@@ -520,7 +520,7 @@ box_plot <- main_df %>%
 box_plot
 ```
 
-## violin plot
+### Violin Plot
 
 ```{r violin plot}
 
@@ -549,7 +549,7 @@ violin_plot <- main_df %>%
 violin_plot
 ```
 
-## Beeswarm
+### Beeswarm
 
 ```{r beeswarm}
 
@@ -579,6 +579,6 @@ beeswarm_plot <- main_df %>%
 beeswarm_plot
 ```
 
-## population pyramid (not yet)
-## cumulative curve (not yet)
-## frequency polygons (not yet)
+### population pyramid (not yet)
+### cumulative curve (not yet)
+### frequency polygons (not yet)
