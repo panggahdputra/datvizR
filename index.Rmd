@@ -1,5 +1,5 @@
 ---
-title: "Data Visualization with R"
+title: "**Data Visualization with R**"
 subtitle: "This is my personal catalog of chart and how to make it in R"
 author: "Panggah D. Putra"
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -23,20 +23,22 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 # **Prerequisites**
 
-### Load packages
+### Load Packages
 
 ```{r, message=FALSE}
 
 library (tidyverse)
-library (ggbump) # to make a bump chart
-library(ggdist) # to make a dot plot
-library(ggbeeswarm) # to make a beeswarm plot
-library(ggalt) # to make a dot plot (dumbbell plot)
+library (ggbump)      # to make a bump chart
+library(ggdist)       # to make a dot plot
+library(ggbeeswarm)   # to make a beeswarm plot
+library(ggalt)        # to make a dot plot (dumbbell plot)
 library(CGPfunctions) # to make a slope graph
 
 ```
 
-### Prepare datasets
+***
+
+### Prepare Datasets
 
 ```{r main df}
 
@@ -89,6 +91,10 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ```
 
+***
+
+### Prepare Color Palettes
+
 ```{r palette for ranking}
 
 palette_ranking <- c('#3c0d03',
@@ -108,6 +114,10 @@ palette_distr <-c('#4e3910',
                   '#175f5d')
 
 ```
+
+***
+
+### Prepare Themes
 
 ```{r theme for rangking}
 
@@ -188,6 +198,8 @@ ordered_bar <- main_df %>%
 ordered_bar
 ```
 
+***
+
 ### Ordered Column
 
 ```{r ordered column}
@@ -216,6 +228,42 @@ ordered_column <- main_df %>%
 ```{r ordered column print, echo=FALSE, out.width = "100%"}
 ordered_column
 ```
+
+***
+
+### Ordered Dot Strip Plot
+in this example, we ordered dot strip plot by max value of each variable
+```{r dot strip plot ranking}
+
+dot_strip_plot_ranking <- main_df %>%
+  ggplot(aes(x = reorder(Variable, -value),
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  geom_point(alpha = .5, size = 5) +
+  scale_color_manual(values = palette_ranking,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_ranking,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  stat_summary(
+    fun = 'max',
+    geom = "text",
+    label = "max",
+    size = 5) + 
+  theme_ranking +
+  labs(title = 'Ordered Dot Strip Plot',
+       subtitle = 'Ordered Dot Strip Plot use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r dot strip plot ranking print, echo=FALSE, out.width = "100%"}
+dot_strip_plot_ranking
+```
+
+***
 
 ### Slope Graph
 
@@ -258,6 +306,8 @@ slope_graph <- newggslopegraph(
 ```{r slope graph print, echo=FALSE, out.width = "100%"}
 slope_graph
 ```
+
+***
 
 ### Lollipop
 
@@ -310,6 +360,8 @@ lollipop <- main_df %>%
 lollipop
 ```
 
+***
+
 ### Bump Chart
 
 ```{r bump chart}
@@ -350,8 +402,9 @@ bump <- df_for_bump %>%
 bump
 ```
 
+***
+
 ### ordered propt. symbol (not yet)
-### dot strip plot (not yet)
 
 ***
 
@@ -382,6 +435,8 @@ histogram <- main_df %>%
 ```{r histogram print, echo=FALSE, out.width = "100%"}
 histogram
 ```
+
+***
 
 ### Dot Plot (Dumbbell Plot)
 
@@ -435,11 +490,36 @@ dot_plot <- main_df %>%
 dot_plot
 ```
 
+***
+
 ### Dot Strip Plot
 
-```{r dot strip plot}
-
+```{r dot strip plot distr}
 dot_strip_plot <- main_df %>%
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  geom_point(alpha = .5, size = 5) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  theme_distr +
+  labs(title = 'Dot Strip Plot',
+       subtitle = 'Dot Strip Plot use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+```
+
+```{r dot strip plot distr print, echo=FALSE, out.width = "100%"}
+dot_strip_plot
+```
+
+```{r dot strip plot v2}
+
+dot_strip_plot_v2 <- main_df %>%
   ggplot(aes(x = Variable,
              y = value,
              color = Variable,
@@ -452,15 +532,17 @@ dot_strip_plot <- main_df %>%
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
-  labs(title = 'Dot Strip Plot',
-       subtitle = 'Dot Strip Plot use to show bla bla bla.',
+  labs(title = 'Dot Strip Plot v2',
+       subtitle = 'Dot Strip Plot v2 use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
-```{r dot strip plot print, echo=FALSE, out.width = "100%"}
-dot_strip_plot
+```{r dot strip plot v2 print, echo=FALSE, out.width = "100%"}
+dot_strip_plot_v2
 ```
+
+***
 
 ### Barcode Plot
 
@@ -491,6 +573,8 @@ barcode_plot <- main_df %>%
 barcode_plot
 ```
 
+***
+
 ### Box Plot
 
 ```{r box plot}
@@ -520,6 +604,8 @@ box_plot <- main_df %>%
 box_plot
 ```
 
+***
+
 ### Violin Plot
 
 ```{r violin plot}
@@ -548,6 +634,8 @@ violin_plot <- main_df %>%
 ```{r violin plot print, echo=FALSE, out.width = "100%"}
 violin_plot
 ```
+
+***
 
 ### Beeswarm
 
@@ -579,6 +667,16 @@ beeswarm_plot <- main_df %>%
 beeswarm_plot
 ```
 
+***
+
 ### population pyramid (not yet)
+
+***
+
 ### cumulative curve (not yet)
+
+***
+
 ### frequency polygons (not yet)
+
+***
