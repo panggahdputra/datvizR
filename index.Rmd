@@ -238,8 +238,8 @@ in this example, we ordered dot strip plot by max value of each variable
 ordered_dot_strip_plot <- main_df %>%
   ggplot(aes(x = reorder(Variable, -value),
              y = value,
-             color = Variable,
-             fill = Variable)) +
+             color = reorder(Variable, -value),
+             fill = reorder(Variable, -value))) +
   geom_point(alpha = .5, size = 5) +
   scale_color_manual(values = palette_ranking,
                      guide = 'none') +
@@ -252,6 +252,7 @@ ordered_dot_strip_plot <- main_df %>%
                label = "max",
                size = 5) + 
   theme_ranking +
+  xlab('Variable') +
   labs(title = 'Ordered Dot Strip Plot',
        subtitle = 'Ordered Dot Strip Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -493,8 +494,8 @@ dot_plot
 
 ### Dot Strip Plot
 
-```{r dot strip plot distr}
-dot_strip_plot <- main_df %>%
+```{r dot strip plot v1}
+dot_strip_plot_v1 <- main_df %>%
   ggplot(aes(x = Variable,
              y = value,
              color = Variable,
@@ -512,8 +513,8 @@ dot_strip_plot <- main_df %>%
        caption = 'visualization by PanggahDPutra, 2022')
 ```
 
-```{r dot strip plot distr print, echo=FALSE, out.width = "100%"}
-dot_strip_plot
+```{r dot strip plot v1 print, echo=FALSE, out.width = "100%"}
+dot_strip_plot_v1
 ```
 
 ```{r dot strip plot v2}
