@@ -1,8 +1,8 @@
 ---
 title: "**Data Visualization with R**"
-subtitle: "This is my personal catalog of chart and how to make it in R"
-author: "Panggah D. Putra"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+subtitle: "Hands-on code to create various chart with R Programming Language"
+author: "*Panggah D. Putra*"
+date: "*`r format(Sys.time(), '%d %B %Y')`*"
 output:
   html_document:
     toc: true
@@ -21,24 +21,29 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 ***
 
-# **Prerequisites**
+## **Prerequisites**
 
 ### Load Packages
 
+Before we dive deep making plots, load packages that we are needed first.
+
 ```{r, message=FALSE}
 
-library(tidyverse)
-library(ggbump)       # to make a bump chart
-library(ggdist)       # to make a dot plot
-library(ggbeeswarm)   # to make a beeswarm plot
-library(ggalt)        # to make a dot plot (dumbbell plot)
-library(CGPfunctions) # to make a slope graph
+library(tidyverse)    # for data wrangling and making plots with ggplot2
+library(ggbump)       # to makes Bump Chart
+library(ggdist)       # to makes Dot Plot
+library(ggbeeswarm)   # to makes Beeswarm Plot
+library(ggalt)        # to makes Dumbbell Plot
+library(CGPfunctions) # to makes Slope Graph
 
 ```
 
 ***
 
 ### Prepare Datasets
+
+We use various kind of datasets.
+Majority of the plots use *main_df*.
 
 ```{r main df}
 
@@ -55,6 +60,8 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
   select(Variable, value)
 
 ```
+
+To make the bump chart, we use *df_for_bump*.
 
 ```{r df for bump}
 
@@ -77,6 +84,8 @@ df_for_bump <- df_6 %>%
 
 ```
 
+To make slope graph, we use *df_for_slope*.
+
 ```{r df for slope}
 
 df_for_slope = tibble(var = c('A','B','C','D', 'E',
@@ -95,6 +104,9 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ### Prepare Color Palettes
 
+We use different color pallete for each chart type.
+To styling ranking chart type, we use *palette_rangking*.
+
 ```{r palette for ranking}
 
 palette_ranking <- c('#3c0d03',
@@ -104,6 +116,8 @@ palette_ranking <- c('#3c0d03',
                      '#f5c34d')
 
 ```
+
+To styling distribution chart type, we use *palette_distr*.
 
 ```{r palette for distribution}
 
@@ -118,6 +132,9 @@ palette_distr <-c('#4e3910',
 ***
 
 ### Prepare Themes
+
+We use different theme for each chart type.
+To styling ranking chart type, we use *theme_ranking*.
 
 ```{r theme for rangking}
 
@@ -141,6 +158,8 @@ theme_ranking <- theme_minimal() +
   )
 
 ```
+
+To styling distribution chart type, we use *theme_distr*.
 
 ```{r theme for distribution}
 
@@ -167,7 +186,9 @@ theme_distr <- theme_minimal() +
 
 ***
 
-# **Ranking**
+## **Ranking**
+
+Ranking chart type use to show ordered categorical variable by its value.
 
 ### Ordered Bar
 
@@ -232,7 +253,9 @@ ordered_column
 ***
 
 ### Ordered Dot Strip Plot
-in this example, we ordered dot strip plot by max value of each variable
+
+In this example, we ordered dot strip plot by max value of each variable.
+
 ```{r ordered dot strip plot}
 
 ordered_dot_strip_plot <- main_df %>%
@@ -309,6 +332,8 @@ slope_graph
 ***
 
 ### Lollipop
+
+Since lollipop chart is harder to interpret, we better show the data value.
 
 ```{r lollipop}
 
@@ -404,17 +429,17 @@ bump
 
 ***
 
-### ordered propt. symbol (not yet)
+### ordered propt. symbol
 
 ***
 
-# **Distribution**
+## **Distribution**
 
-### Histogram
+### Histograms
 
-```{r histogram, message=FALSE, warning=FALSE}
+```{r histograms, message=FALSE, warning=FALSE}
 
-histogram <- main_df %>%
+histograms <- main_df %>%
   ggplot(aes(x = value)) +
   geom_histogram(bins = 25,
                  alpha = .9,
@@ -427,22 +452,22 @@ histogram <- main_df %>%
   theme_distr +
   ylab('number of data') +
   labs(title = 'Histogram',
-       subtitle = 'Histogram use to show bla bla bla.',
+       subtitle = 'Histograms use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
-```{r histogram print, echo=FALSE, out.width = "100%"}
-histogram
+```{r histograms print, echo=FALSE, out.width = "100%"}
+histograms
 ```
 
 ***
 
-### Dot Plot (Dumbbell Plot)
+### Dumbbell Plot
 
-```{r dot plot}
+```{r dumbbell plot}
 
-dot_plot <- main_df %>%
+dumbbell_plot <- main_df %>%
   group_by(Variable) %>%
   summarise(min = min(value), max = max(value)) %>%
   ggplot(aes(x = min,
@@ -486,8 +511,8 @@ dot_plot <- main_df %>%
 
 ```
 
-```{r dot plot print, echo=FALSE, out.width = "100%"}
-dot_plot
+```{r dumbbell plot print, echo=FALSE, out.width = "100%"}
+dumbbell_plot
 ```
 
 ***
@@ -508,8 +533,8 @@ dot_strip_plot_v1 <- main_df %>%
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
-  labs(title = 'Dot Strip Plot',
-       subtitle = 'Dot Strip Plot use to show bla bla bla.',
+  labs(title = 'Dot Strip Plot v1',
+       subtitle = 'Dot Strip Plot v1 use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 ```
 
@@ -639,9 +664,37 @@ violin_plot
 
 ### Beeswarm
 
-```{r beeswarm}
+```{r beeswarm v1}
 
-beeswarm_plot <- main_df %>%
+beeswarm_plot_v1 <- main_df %>%
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  ggbeeswarm::geom_beeswarm(alpha = .7,
+                            size = 5,
+                            cex = 3,
+                            show.legend = FALSE) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  theme_distr +
+  labs(title = 'Beeswarm v1',
+       subtitle = 'Beeswarm v1 use to show bla bla bla.',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r beeswarm v1 print, echo=FALSE, out.width = "100%"}
+beeswarm_plot_v1
+```
+
+```{r beeswarm v2}
+
+beeswarm_plot_v2 <- main_df %>%
   ggplot(aes(x = Variable,
              y = value,
              color = Variable,
@@ -657,26 +710,26 @@ beeswarm_plot <- main_df %>%
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
-  labs(title = 'Beeswarm',
-       subtitle = 'Beeswarm use to show bla bla bla.',
+  labs(title = 'Beeswarm v2',
+       subtitle = 'Beeswarm v2 use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
-```{r beeswarm print, echo=FALSE, out.width = "100%"}
-beeswarm_plot
+```{r beeswarm v2 print, echo=FALSE, out.width = "100%"}
+beeswarm_plot_v2
 ```
 
 ***
 
-### population pyramid (not yet)
+### population pyramid 
 
 ***
 
-### cumulative curve (not yet)
+### cumulative curve 
 
 ***
 
-### frequency polygons (not yet)
+### frequency polygons 
 
 ***
