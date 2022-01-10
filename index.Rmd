@@ -27,8 +27,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 ```{r, message=FALSE}
 
-library (tidyverse)
-library (ggbump)      # to make a bump chart
+library(tidyverse)
+library(ggbump)       # to make a bump chart
 library(ggdist)       # to make a dot plot
 library(ggbeeswarm)   # to make a beeswarm plot
 library(ggalt)        # to make a dot plot (dumbbell plot)
@@ -233,9 +233,9 @@ ordered_column
 
 ### Ordered Dot Strip Plot
 in this example, we ordered dot strip plot by max value of each variable
-```{r dot strip plot ranking}
+```{r ordered dot strip plot}
 
-dot_strip_plot_ranking <- main_df %>%
+ordered_dot_strip_plot <- main_df %>%
   ggplot(aes(x = reorder(Variable, -value),
              y = value,
              color = Variable,
@@ -247,11 +247,10 @@ dot_strip_plot_ranking <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
-  stat_summary(
-    fun = 'max',
-    geom = "text",
-    label = "max",
-    size = 5) + 
+  stat_summary(fun = 'max',
+               geom = "text",
+               label = "max",
+               size = 5) + 
   theme_ranking +
   labs(title = 'Ordered Dot Strip Plot',
        subtitle = 'Ordered Dot Strip Plot use to show bla bla bla.',
@@ -259,8 +258,8 @@ dot_strip_plot_ranking <- main_df %>%
 
 ```
 
-```{r dot strip plot ranking print, echo=FALSE, out.width = "100%"}
-dot_strip_plot_ranking
+```{r ordered dot strip plotg print, echo=FALSE, out.width = "100%"}
+ordered_dot_strip_plot
 ```
 
 ***
@@ -292,14 +291,13 @@ slope_graph <- newggslopegraph(
   DataLabelPadding = 0.1,
   DataLabelFillColor = '#ffffff',
   WiderLabels = TRUE) +
-  theme(
-    plot.title = element_text(color = '#3c0d03'),
-    plot.subtitle = element_text(color = '#3c0d03'),
-    plot.caption = element_text(color = '#3c0d03'),
-    panel.background = element_rect(fill = '#ffffff',
-                                    color = NA),
-    plot.background = element_rect(fill = '#ffffff',
-                                   color = 'lightblue')) 
+  theme(plot.title = element_text(color = '#3c0d03'),
+        plot.subtitle = element_text(color = '#3c0d03'),
+        plot.caption = element_text(color = '#3c0d03'),
+        panel.background = element_rect(fill = '#ffffff',
+                                        color = NA),
+        plot.background = element_rect(fill = '#ffffff',
+                                       color = 'lightblue')) 
 
 ```
 
@@ -344,7 +342,8 @@ lollipop <- main_df %>%
   geom_text(aes(x = Variable,
                 y = number_of_data,
                 label = number_of_data), 
-            size = 5, color = '#f5c34d') +
+            size = 5,
+            color = '#f5c34d') +
   scale_y_continuous(limits = c(0,35)) +
   theme_ranking +
   theme(axis.text.y = element_blank()) +
