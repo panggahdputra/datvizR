@@ -11,7 +11,7 @@
 
 <meta name="author" content="Panggah D. Putra" />
 
-<meta name="date" content="2022-01-10" />
+<meta name="date" content="2022-01-12" />
 
 <title>Data Visualization with R</title>
 
@@ -2873,9 +2873,9 @@ div.tocify {
 
 
 <h1 class="title toc-ignore"><strong>Data Visualization with R</strong></h1>
-<h3 class="subtitle">Hands-on code to create various chart with R Programming Language</h3>
+<h3 class="subtitle">Hands-on code to create various chart <br> with R Programming Language</h3>
 <h4 class="author"><em>Panggah D. Putra</em></h4>
-<h4 class="date"><em>10 January 2022</em></h4>
+<h4 class="date"><em>12 January 2022</em></h4>
 
 </div>
 
@@ -2925,7 +2925,7 @@ div.tocify {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">game_3 =</span> <span class="dv">3</span>,</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">game_4 =</span> <span class="dv">4</span>,</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">game_5 =</span> <span class="dv">5</span>)))</span></code></pre></div>
-<p>To make slope graph, we use <em>df_for_slope</em>.</p>
+<p>To make the slope graph, we use <em>df_for_slope</em>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_for_slope <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">var =</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>, <span class="st">&#39;E&#39;</span>,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>, <span class="st">&#39;E&#39;</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>, <span class="st">&#39;E&#39;</span>),</span>
@@ -2939,7 +2939,7 @@ div.tocify {
 </div>
 <div id="prepare-color-palettes" class="section level3">
 <h3>Prepare Color Palettes</h3>
-<p>We use different color pallete for each chart type. To styling ranking chart type, we use <em>palette_rangking</em>.</p>
+<p>We use different color palette for each chart type. <br> To styling ranking chart type, we use <em>palette_rangking</em>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>palette_ranking <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#3c0d03&#39;</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#8d1c06&#39;</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#e67424&#39;</span>,</span>

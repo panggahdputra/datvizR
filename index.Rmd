@@ -1,6 +1,6 @@
 ---
 title: "**Data Visualization with R**"
-subtitle: "Hands-on code to create various chart with R Programming Language"
+subtitle: "Hands-on code to create various chart <br> with R Programming Language"
 author: "*Panggah D. Putra*"
 date: "*`r format(Sys.time(), '%d %B %Y')`*"
 output:
@@ -84,7 +84,7 @@ df_for_bump <- df_6 %>%
 
 ```
 
-To make slope graph, we use *df_for_slope*.
+To make the slope graph, we use *df_for_slope*.
 
 ```{r df for slope}
 
@@ -104,7 +104,7 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ### Prepare Color Palettes
 
-We use different color pallete for each chart type.
+We use different color palette for each chart type. <br>
 To styling ranking chart type, we use *palette_rangking*.
 
 ```{r palette for ranking}
