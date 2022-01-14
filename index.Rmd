@@ -20,6 +20,24 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ```
 
 ***
+## **Preface**
+
+#### Chart Classification
+
+The classification of the charts is based on the [Financial Times visual vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
+with addition of other resources.
+
+***
+
+### Color Palettes
+
+Color palettes we are use above is come from [MetBrewer](https://github.com/BlakeRMills/MetBrewer). 
+
+***
+
+### Datasets
+
+*******
 
 ## **Prerequisites**
 
@@ -733,3 +751,17 @@ beeswarm_plot_v2
 ### frequency polygons 
 
 ***
+
+## References
+
+### Visual Vocabulary
+
+https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary
+
+### Beyond Bar and Box Plots
+
+https://z3tt.github.io/beyond-bar-and-box-plots
+
+### MetBrewer
+
+https://github.com/BlakeRMills/MetBrewer
