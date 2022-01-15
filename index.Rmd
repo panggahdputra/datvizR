@@ -22,9 +22,13 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ***
 ## **Preface**
 
-#### Chart Classification
+This website is not done yet.
 
-The classification of the charts is based on the [Financial Times visual vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
+***
+
+### Chart Classification
+
+The classification of the charts in this website is based on the [Financial Times visual vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
 with addition of other resources.
 
 ***
@@ -36,6 +40,8 @@ Color palettes we are use above is come from [MetBrewer](https://github.com/Blak
 ***
 
 ### Datasets
+
+Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.io/vt2ny/)
 
 *******
 
