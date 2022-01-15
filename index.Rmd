@@ -26,22 +26,22 @@ This website is not done yet.
 
 ***
 
-### Chart Classification
+##### Chart Classification
 
 The classification of the charts in this website is based on the [Financial Times visual vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
 with addition of other resources.
 
 ***
 
-### Color Palettes
+##### Color Palettes
 
 Color palettes we are use above is come from [MetBrewer](https://github.com/BlakeRMills/MetBrewer). 
 
 ***
 
-### Datasets
+##### Datasets
 
-Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.io/vt2ny/)
+Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.io/vt2ny/).
 
 *******
 
@@ -455,6 +455,8 @@ bump
 
 ### ordered propt. symbol
 
+Not done yet.
+
 ***
 
 ## **Distribution**
@@ -746,28 +748,28 @@ beeswarm_plot_v2
 
 ***
 
-### population pyramid 
+### population pyramid
+
+Not done yet.
 
 ***
 
 ### cumulative curve 
 
+Not done yet.
+
 ***
 
 ### frequency polygons 
 
+Not done yet.
+
 ***
 
-## References
+## **References**
 
-### Visual Vocabulary
+[Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
 
-https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary
+[Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots)
 
-### Beyond Bar and Box Plots
-
-https://z3tt.github.io/beyond-bar-and-box-plots
-
-### MetBrewer
-
-https://github.com/BlakeRMills/MetBrewer
+[MetBrewer](https://github.com/BlakeRMills/MetBrewer)
