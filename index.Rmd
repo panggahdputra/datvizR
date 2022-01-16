@@ -766,6 +766,64 @@ Not done yet.
 
 ***
 
+## **Part to Whole**
+
+### Stacked Column/Bar
+
+Not done yet.
+
+***
+
+### Marimekko
+
+Not done yet.
+
+***
+
+### Pie
+
+Not done yet.
+
+***
+
+### Donut
+
+Not done yet.
+
+***
+
+### Treemap
+
+Not done yet.
+
+***
+
+### Voronoi
+
+Not done yet.
+
+***
+
+### Arc
+
+Not done yet.
+
+***
+
+### Grid Plot
+
+Not done yet.
+
+***
+
+### Venn Diagram
+
+Not done yet.
+
+***
+
+### Waterfall
+
 ## **References**
 
 [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
