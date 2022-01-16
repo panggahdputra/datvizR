@@ -766,6 +766,38 @@ Not done yet.
 
 ***
 
+## **Correllation**
+
+### Scatterplot
+
+Not done yet.
+
+***
+
+### Column + Line Timeline
+
+Not done yet.
+
+***
+
+### Connected Scatterplot
+
+Not done yet.
+
+***
+
+### Bubble
+
+Not done yet.
+
+***
+
+### XY Heatmap
+
+Not done yet.
+
+***
+
 ## **Part to Whole**
 
 ### Stacked Column/Bar
