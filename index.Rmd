@@ -453,7 +453,7 @@ bump
 
 ***
 
-### ordered propt. symbol
+### Ordered Proportional Symbol
 
 Not done yet.
 
@@ -748,19 +748,19 @@ beeswarm_plot_v2
 
 ***
 
-### population pyramid
+### Population Pyramid
 
 Not done yet.
 
 ***
 
-### cumulative curve 
+### Cumulative curve 
 
 Not done yet.
 
 ***
 
-### frequency polygons 
+### Frequency Polygons 
 
 Not done yet.
 
