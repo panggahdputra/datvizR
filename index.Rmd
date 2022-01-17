@@ -6,8 +6,8 @@ date: "*`r format(Sys.time(), '%d %B %Y')`*"
 output:
   html_document:
     toc: true
-    toc_float:
-      collapsed: false
+    toc_float: true
+#      collapsed: false
     toc_depth: 3
 #    number_sections: true
     theme: lumen
