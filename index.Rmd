@@ -129,7 +129,7 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 ### Prepare Color Palettes
 
 We use different color palette for each chart type. <br>
-To styling ranking chart type, we use *palette_rangking*.
+To styling ranking chart type, we use *palette_ranking*.
 
 ```{r palette for ranking}
 
