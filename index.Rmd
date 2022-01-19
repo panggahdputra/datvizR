@@ -225,7 +225,7 @@ ordered_bar <- main_df %>%
              y = number_of_data,
              color = reorder(Variable, -number_of_data),
              fill = reorder(Variable, -number_of_data))) +
-  geom_col(alpha = .9, width = .6) +
+  geom_col(width = .6) +
   scale_color_manual(values = palette_ranking,
                      guide = 'none') +
   scale_fill_manual(values = palette_ranking,
@@ -234,7 +234,6 @@ ordered_bar <- main_df %>%
   xlab('Variable') +
   ylab('number of data') +
   labs(title = 'Ordered Bar',
-       subtitle = 'Ordered bar use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -256,7 +255,7 @@ ordered_column <- main_df %>%
              y = reorder(Variable, number_of_data),
              color = reorder(Variable, -number_of_data),
              fill = reorder(Variable, -number_of_data))) +
-  geom_col(alpha = .9, width = .6) +
+  geom_col(width = .6) +
   scale_color_manual(values = palette_ranking,
                      guide = 'none') +
   scale_fill_manual(values = palette_ranking,
@@ -265,7 +264,6 @@ ordered_column <- main_df %>%
   xlab('number of data') +
   ylab('Variable') +
   labs(title = 'Ordered Column',
-       subtitle = 'Ordered column use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -297,11 +295,11 @@ ordered_dot_strip_plot <- main_df %>%
   stat_summary(fun = 'max',
                geom = "text",
                label = "max",
-               size = 5) + 
+               size = 5,
+               vjust = -1) + 
   theme_ranking +
   xlab('Variable') +
   labs(title = 'Ordered Dot Strip Plot',
-       subtitle = 'Ordered Dot Strip Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -322,7 +320,7 @@ slope_graph <- newggslopegraph(
   Measurement = val,
   Grouping = var,
   Title = 'Slope Graph',
-  SubTitle = 'Slope Graph use to show bla bla bla.',
+  SubTitle = '2010 - 2015 - 2020',
   Caption = 'visualization by PanggahDPutra, 2022',
   XTextSize = 12,
   YTextSize = 4,
@@ -400,7 +398,6 @@ lollipop <- main_df %>%
   xlab('Variable') +
   ylab('number of data') +
   labs(title = 'Lollipop',
-       subtitle = 'Lollipop use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -442,7 +439,6 @@ bump <- df_for_bump %>%
   xlab('Game-') +
   ylab('Ranking') +
   labs(title = 'Bump Chart',
-       subtitle = 'Bump chart use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
