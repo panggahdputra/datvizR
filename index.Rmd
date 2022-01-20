@@ -474,7 +474,6 @@ histograms <- main_df %>%
   theme_distr +
   ylab('number of data') +
   labs(title = 'Histogram',
-       subtitle = 'Histograms use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -528,7 +527,6 @@ dumbbell_plot <- main_df %>%
   theme_distr +
   xlab('min <<<value>>> max') +
   labs(title = 'Dot Plot (Dumbbell Plot)',
-       subtitle = 'Dot Plot (Dumbbell Plot) use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -556,7 +554,6 @@ dot_strip_plot_v1 <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Dot Strip Plot v1',
-       subtitle = 'Dot Strip Plot v1 use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 ```
 
@@ -580,7 +577,6 @@ dot_strip_plot_v2 <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Dot Strip Plot v2',
-       subtitle = 'Dot Strip Plot v2 use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -611,7 +607,6 @@ barcode_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Barcode Plot',
-       subtitle = 'Barcode Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -642,7 +637,6 @@ box_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Box Plot',
-       subtitle = 'Box Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -673,7 +667,6 @@ violin_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Violin Plot',
-       subtitle = 'Violin Plot use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -705,7 +698,6 @@ beeswarm_plot_v1 <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Beeswarm v1',
-       subtitle = 'Beeswarm v1 use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -733,7 +725,6 @@ beeswarm_plot_v2 <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Beeswarm v2',
-       subtitle = 'Beeswarm v2 use to show bla bla bla.',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
