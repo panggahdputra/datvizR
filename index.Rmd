@@ -1,8 +1,8 @@
 ---
 title: "**Data Visualization with R**"
-subtitle: "Hands-on code to create various chart <br> with R Programming Language"
-author: "*Panggah D. Putra*"
-date: "*`r format(Sys.time(), '%d %B %Y')`*"
+subtitle: "Hands-on code to create various charts <br> with R Programming Language"
+author: "*Author : Panggah D. Putra*"
+date: "*Last update : `r format(Sys.time(), '%d %B %Y')`*"
 output:
   html_document:
     toc: true
@@ -22,26 +22,25 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ***
 ## **Preface**
 
-This website is not done yet.
+This website is under development.
 
 ***
 
 ##### Chart Classification
 
-The classification of the charts in this website is based on the [Financial Times visual vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
-with addition of other resources.
+Classification of the charts in this website is based on the [Financial Times visual vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary) with addition of other resources.
 
 ***
 
 ##### Color Palettes
 
-Color palettes we are use above is come from [MetBrewer](https://github.com/BlakeRMills/MetBrewer). 
+Color palettes we used above is come from [MetBrewer](https://github.com/BlakeRMills/MetBrewer). 
 
 ***
 
 ##### Datasets
 
-Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.io/vt2ny/).
+Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.io/vt2ny/) that mentioned by Cédric Scherer on his [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots).
 
 *******
 
@@ -49,19 +48,16 @@ Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.
 
 ### Load Packages
 
-Before we dive deep making plots, load packages that we are needed first.
+Before we dive into plotting, load the packages we need first.
 
 ```{r, message=FALSE}
 
 library(tidyverse)    # for data wrangling and making plots with ggplot2
-library(ggbump)       # to makes Bump Chart
-library(ggdist)       # to makes Dot Plot
-library(ggbeeswarm)   # to makes Beeswarm Plot
-library(ggalt)        # to makes Dumbbell Plot
 library(CGPfunctions) # to makes Slope Graph
-# install.packages("devtools")
-# devtools::install_github("jcheng5/bubbles")
-library(bubbles)      # to makes Ordered Proportional Symbols
+library(ggbump)       # to makes Bump Chart
+library(ggalt)        # to makes Dumbbell Plot
+library(ggdist)       # to makes Stat Dot Plot
+library(ggbeeswarm)   # to makes Beeswarm Plot
 
 ```
 
@@ -131,8 +127,7 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ### Prepare Color Palettes
 
-We use different color palette for each chart type. <br>
-To styling ranking chart type, we use *palette_ranking*.
+We use different color palette for each chart type. To styling ranking chart type, we use *palette_ranking*. I copy the hex color code manually form *Greek Palette* on [MetBrewer](https://github.com/BlakeRMills/MetBrewer).
 
 ```{r palette for ranking}
 
@@ -144,7 +139,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-To styling distribution chart type, we use *palette_distr*.
+To styling distribution chart type, we use *palette_distr*. I copy the hex color code manually form *Isfahan1 Palette* on [MetBrewer](https://github.com/BlakeRMills/MetBrewer).
 
 ```{r palette for distribution}
 
@@ -352,7 +347,7 @@ ordered_dot_strip_plot
 
 ```{r slope graph}
 
-slope_graph <- newggslopegraph(
+slope_graph <- CGPfunctions::newggslopegraph(
   dataframe = df_for_slope,
   Times = month,
   Measurement = val,
@@ -488,11 +483,11 @@ bump
 
 ## **Distribution**
 
-### Histograms
+### Histogram
 
-```{r histograms, message=FALSE, warning=FALSE}
+```{r histogram, message=FALSE, warning=FALSE}
 
-histograms <- main_df %>%
+histogram <- main_df %>%
   ggplot(aes(x = value)) +
   geom_histogram(bins = 25,
                  alpha = .9,
@@ -510,7 +505,7 @@ histograms <- main_df %>%
 ```
 
 ```{r histograms print, echo=FALSE, out.width = "100%"}
-histograms
+histogram
 ```
 
 ***
@@ -570,8 +565,8 @@ dumbbell_plot
 
 ### Dot Strip Plot
 
-```{r dot strip plot v1}
-dot_strip_plot_v1 <- main_df %>%
+```{r dot strip plot}
+dot_strip_plot <- main_df %>%
   ggplot(aes(x = Variable,
              y = value,
              color = Variable,
@@ -584,22 +579,26 @@ dot_strip_plot_v1 <- main_df %>%
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
-  labs(title = 'Dot Strip Plot v1',
+  labs(title = 'Dot Strip Plot',
        caption = 'visualization by PanggahDPutra, 2022')
 ```
 
-```{r dot strip plot v1 print, echo=FALSE, out.width = "100%"}
-dot_strip_plot_v1
+```{r dot strip plot print, echo=FALSE, out.width = "100%"}
+dot_strip_plot
 ```
 
-```{r dot strip plot v2}
+***
 
-dot_strip_plot_v2 <- main_df %>%
+### Stat Dot Plot
+
+```{r stat dot plot}
+
+stat_dot_plot <- main_df %>%
   ggplot(aes(x = Variable,
              y = value,
              color = Variable,
              fill = Variable)) +
-  ggdist::stat_dots(side = 'both') +
+  ggdist::stat_dots(side = 'right') +
   scale_color_manual(values = palette_distr,
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
@@ -607,13 +606,13 @@ dot_strip_plot_v2 <- main_df %>%
   scale_y_continuous(limits = c(0,10),
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
-  labs(title = 'Dot Strip Plot v2',
+  labs(title = 'Stat Dot Plot',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
-```{r dot strip plot v2 print, echo=FALSE, out.width = "100%"}
-dot_strip_plot_v2
+```{r stat dot plot print, echo=FALSE, out.width = "100%"}
+stat_dot_plot
 ```
 
 ***
@@ -687,8 +686,7 @@ violin_plot <- main_df %>%
              y = value,
              color = Variable,
              fill = Variable)) +
-  geom_violin(alpha = .7,
-              size = .5,
+  geom_violin(size = .5,
               bw = .25) +
   scale_color_manual(values = palette_distr,
                      guide = 'none') +
@@ -708,64 +706,6 @@ violin_plot
 
 ***
 
-### Beeswarm
-
-```{r beeswarm v1}
-
-beeswarm_plot_v1 <- main_df %>%
-  ggplot(aes(x = Variable,
-             y = value,
-             color = Variable,
-             fill = Variable)) +
-  ggbeeswarm::geom_beeswarm(alpha = .7,
-                            size = 5,
-                            cex = 3,
-                            show.legend = FALSE) +
-  scale_color_manual(values = palette_distr,
-                     guide = 'none') +
-  scale_fill_manual(values = palette_distr,
-                    guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
-  theme_distr +
-  labs(title = 'Beeswarm v1',
-       caption = 'visualization by PanggahDPutra, 2022')
-
-```
-
-```{r beeswarm v1 print, echo=FALSE, out.width = "100%"}
-beeswarm_plot_v1
-```
-
-```{r beeswarm v2}
-
-beeswarm_plot_v2 <- main_df %>%
-  ggplot(aes(x = Variable,
-             y = value,
-             color = Variable,
-             fill = Variable,
-             size = value)) +
-  ggbeeswarm::geom_beeswarm(alpha = .7,
-                            cex = 3,
-                            show.legend = FALSE) +
-  scale_color_manual(values = palette_distr,
-                     guide = 'none') +
-  scale_fill_manual(values = palette_distr,
-                    guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
-  theme_distr +
-  labs(title = 'Beeswarm v2',
-       caption = 'visualization by PanggahDPutra, 2022')
-
-```
-
-```{r beeswarm v2 print, echo=FALSE, out.width = "100%"}
-beeswarm_plot_v2
-```
-
-***
-
 ### Population Pyramid
 
 Not done yet.
@@ -781,6 +721,37 @@ Not done yet.
 ### Frequency Polygons 
 
 Not done yet.
+
+***
+
+### Beeswarm
+
+```{r beeswarm}
+
+beeswarm <- main_df %>%
+  ggplot(aes(x = Variable,
+             y = value,
+             color = Variable,
+             fill = Variable)) +
+  ggbeeswarm::geom_beeswarm(alpha = .7,
+                            size = 8,
+                            cex = 3.5,
+                            show.legend = FALSE) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_y_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  theme_distr +
+  labs(title = 'Beeswarm',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r beeswarm print, echo=FALSE, out.width = "100%"}
+beeswarm
+```
 
 ***
 
@@ -874,10 +845,28 @@ Not done yet.
 
 ### Waterfall
 
+Not done yet.
+
+***
+
 ## **References**
 
-*   [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
-
-*   [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots)
-
-*   [MetBrewer](https://github.com/BlakeRMills/MetBrewer)
+  * [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
+  
+  * [tidyverse](https://tidyverse.tidyverse.org/)
+  
+  * [CGPfunctions](https://github.com/ibecav/CGPfunctions)
+  
+  * [ggbump](https://github.com/davidsjoberg/ggbump)
+  
+  * [ggalt](https://github.com/hrbrmstr/ggalt)
+  
+  * [ggdist](https://github.com/mjskay/ggdist/)
+  
+  * [ggbeeswarm](https://github.com/eclarke/ggbeeswarm)
+  
+  * [MetBrewer](https://github.com/BlakeRMills/MetBrewer)
+    
+  * [flipbook_script.R](https://osf.io/vt2ny/)
+  
+  * [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots)
