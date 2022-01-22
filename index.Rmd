@@ -40,7 +40,7 @@ Color palettes we used above is come from [MetBrewer](https://github.com/BlakeRM
 
 ##### Datasets
 
-Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} that mentioned by Cédric Scherer on his [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots){target="blank"}.
+Inspiration of the *main_df* above is come from [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} that mentioned by Cédric Scherer on his [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
 
 *******
 
@@ -127,7 +127,7 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ### Prepare Color Palettes
 
-We use different color palette for each chart type. To styling ranking chart type, we use *palette_ranking*. I copy the hex color code manually form *Greek Palette* on [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}.
+We use different color palette for each chart type. To styling ranking chart type, we use *palette_ranking*. I copy the hex color code manually form *Greek Palette* on [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}.
 
 ```{r palette for ranking}
 
@@ -139,7 +139,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-To styling distribution chart type, we use *palette_distr*. I copy the hex color code manually form *Isfahan1 Palette* on [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}.
+To styling distribution chart type, we use *palette_distr*. I copy the hex color code manually form *Isfahan1 Palette* on [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
 
 ```{r palette for distribution}
 
