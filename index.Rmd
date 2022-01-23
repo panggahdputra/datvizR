@@ -986,7 +986,7 @@ density_plot
 
 ### Stat Density Ridges Plot
 
-Unlike density plot, stat density ridges Plot shows density of each variable. It also can show quantile value of each variable.
+Unlike density plot, stat density ridges plot shows density of each variable. It also can shows quantile value of each variable.
 
 ```{r density ridges plot}
 
