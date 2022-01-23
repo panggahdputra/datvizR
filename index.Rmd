@@ -126,32 +126,51 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ***
 
-To make the slope graph, we use *df_for_pop_pyramid*.
+To make the population pyramid, we use *df_for_pop_pyramid*.
 
 ```{r df for pop pyramid}
 
 set.seed(2000)
-df1 = tibble(gender = 'Male', age = '15-20', value = sample((5:10), size = 1))
-df2 = tibble(gender = 'Male', age = '21-25', value = sample((10:15), size = 1))
-df3 = tibble(gender = 'Male', age = '26-30', value = sample((15:20), size = 1))
-df4 = tibble(gender = 'Male', age = '31-35', value = sample((20:25), size = 1))
-df5 = tibble(gender = 'Male', age = '36-40', value = sample((25:30), size = 1))
-df6 = tibble(gender = 'Male', age = '41-45', value = sample((30:35), size = 1))
-df7 = tibble(gender = 'Male', age = '46-50', value = sample((35:40), size = 1))
-df8 = tibble(gender = 'Male', age = '51-55', value = sample((40:45), size = 1))
-df9 = tibble(gender = 'Male', age = '56-60', value = sample((45:50), size = 1))
-df10 = tibble(gender = 'Female', age = '15-20', value = sample((5:10), size = 1))
-df11 = tibble(gender = 'Female', age = '21-25', value = sample((10:15), size = 1))
-df12 = tibble(gender = 'Female', age = '26-30', value = sample((15:20), size = 1))
-df13 = tibble(gender = 'Female', age = '31-35', value = sample((20:25), size = 1))
-df14 = tibble(gender = 'Female', age = '36-40', value = sample((25:30), size = 1))
-df15 = tibble(gender = 'Female', age = '41-45', value = sample((30:35), size = 1))
-df16 = tibble(gender = 'Female', age = '46-50', value = sample((35:40), size = 1))
-df17 = tibble(gender = 'Female', age = '51-55', value = sample((40:45), size = 1))
-df18 = tibble(gender = 'Female', age = '56-60', value = sample((45:50), size = 1))
+df1 = tibble(gender = 'Male', age = '15-20',
+             value = sample((5:10), size = 1))
+df2 = tibble(gender = 'Male', age = '21-25',
+             value = sample((10:15), size = 1))
+df3 = tibble(gender = 'Male', age = '26-30',
+             value = sample((15:20), size = 1))
+df4 = tibble(gender = 'Male', age = '31-35',
+             value = sample((20:25), size = 1))
+df5 = tibble(gender = 'Male', age = '36-40',
+             value = sample((25:30), size = 1))
+df6 = tibble(gender = 'Male', age = '41-45',
+             value = sample((30:35), size = 1))
+df7 = tibble(gender = 'Male', age = '46-50',
+             value = sample((35:40), size = 1))
+df8 = tibble(gender = 'Male', age = '51-55',
+             value = sample((40:45), size = 1))
+df9 = tibble(gender = 'Male', age = '56-60',
+             value = sample((45:50), size = 1))
+df10 = tibble(gender = 'Female', age = '15-20',
+              value = sample((5:10), size = 1))
+df11 = tibble(gender = 'Female', age = '21-25',
+              value = sample((10:15), size = 1))
+df12 = tibble(gender = 'Female', age = '26-30',
+              value = sample((15:20), size = 1))
+df13 = tibble(gender = 'Female', age = '31-35',
+              value = sample((20:25), size = 1))
+df14 = tibble(gender = 'Female', age = '36-40',
+              value = sample((25:30), size = 1))
+df15 = tibble(gender = 'Female', age = '41-45',
+              value = sample((30:35), size = 1))
+df16 = tibble(gender = 'Female', age = '46-50',
+              value = sample((35:40), size = 1))
+df17 = tibble(gender = 'Female', age = '51-55',
+              value = sample((40:45), size = 1))
+df18 = tibble(gender = 'Female', age = '56-60',
+              value = sample((45:50), size = 1))
 
-df_for_pop_pyramid <- rbind(df1, df2, df3, df4, df5, df6, df7,df8, df9, df10,
-                            df11, df12, df13, df14, df15, df16, df17, df18) %>%
+df_for_pop_pyramid <- rbind(df1, df2, df3, df4, df5, df6,
+                            df7,df8, df9, df10, df11, df12,
+                            df13, df14, df15, df16, df17, df18) %>%
   mutate(age = as.factor(age))
 
 ```
