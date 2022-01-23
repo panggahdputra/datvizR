@@ -115,7 +115,7 @@ To make the slope graph, we use *df_for_slope*.
 df_for_slope = tibble(var = c('A','B','C','D', 'E',
                               'A','B','C','D', 'E',
                               'A','B','C','D', 'E'),
-                     month = c('2010','2010','2010','2010','2010',
+                     year = c('2010','2010','2010','2010','2010',
                                '2015','2015','2015','2015','2015',
                                '2020','2020','2020','2020','2020'),
                      val = c(10,8,6,4,2,
@@ -172,6 +172,29 @@ df_for_pop_pyramid <- rbind(df1, df2, df3, df4, df5, df6,
                             df7,df8, df9, df10, df11, df12,
                             df13, df14, df15, df16, df17, df18) %>%
   mutate(age = as.factor(age))
+
+```
+
+***
+
+```{r}
+
+set.seed(123)
+df_for_cum_curve = tibble(
+  var = c('A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
+          'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B'),
+  year = c('2015', '2016', '2017', '2018',
+           '2019', '2020', '2021', '2022',
+           '2015', '2016', '2017', '2018',
+           '2019', '2020', '2021', '2022'),
+  val = c(sample(10:50, size = 4, replace = TRUE),
+          sample(50:100, size = 4, replace = TRUE),
+          sample(10:50, size = 4, replace = TRUE),
+          sample(50:100, size = 4, replace = TRUE)))
+
+df_for_cum_curve <- df_for_cum_curve %>%
+  group_by(var) %>%
+  mutate(cumulative_val = cumsum(val))
 
 ```
 
@@ -401,7 +424,7 @@ ordered_dot_strip_plot
 
 slope_graph <- CGPfunctions::newggslopegraph(
   dataframe = df_for_slope,
-  Times = month,
+  Times = year,
   Measurement = val,
   Grouping = var,
   Title = 'Slope Graph',
@@ -847,9 +870,33 @@ pop_pyramid
 
 ***
 
-### Cumulative curve 
+### Cumulative Curve 
 
-Not done yet.
+```{r cum curve}
+
+cumulative_curve <- df_for_cum_curve %>%
+  ggplot(aes(x = year,
+             y = cumulative_val,
+             group = var,
+             color = var)) +
+  geom_smooth(size = 1.5,
+              se = FALSE) +
+  geom_text(data = subset(df_for_cum_curve,year == '2022'),
+            aes(label = var),
+            hjust = -1) +
+  scale_color_manual(values = c('#178f92', '#845d29'),
+                     guide = 'none') +
+  scale_y_continuous(limits = c(0,500)) +
+  theme_distr +
+  ylab('cumulative value') +
+  labs(title = 'Cumulative Curve',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r cum curve print, echo=FALSE, message=FALSE, out.width = "100%"}
+cumulative_curve
+```
 
 ***
 
