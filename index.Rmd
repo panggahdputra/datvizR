@@ -641,6 +641,7 @@ dumbbell_plot
 ### Dot Strip Plot
 
 ```{r dot strip plot}
+
 dot_strip_plot <- main_df %>%
   ggplot(aes(x = Variable,
              y = value,
@@ -656,6 +657,7 @@ dot_strip_plot <- main_df %>%
   theme_distr +
   labs(title = 'Dot Strip Plot',
        caption = 'visualization by PanggahDPutra, 2022')
+
 ```
 
 ```{r dot strip plot print, echo=FALSE, out.width = "100%"}
@@ -902,7 +904,27 @@ cumulative_curve
 
 ### Frequency Polygons 
 
-Not done yet.
+```{r freq poly}
+
+freq_polygons <- main_df %>%
+  ggplot(aes(x = value)) +
+  geom_freqpoly(bins = 25,
+                size = 1.5,
+                color = '#4fb6ca') +
+  scale_x_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0,15),
+                     breaks = c(0,5,10,15)) +
+  theme_distr +
+  ylab('frequency') +
+  labs(title = 'Frequency Polygons',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r freq poly print, echo=FALSE, out.width = "100%"}
+freq_polygons
+```
 
 ***
 
@@ -1033,24 +1055,24 @@ Not done yet.
 
 ## **References**
 
-  * [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"}
+* [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"}
   
-  * [tidyverse](https://tidyverse.tidyverse.org/){target="blank"}
+* [tidyverse](https://tidyverse.tidyverse.org/){target="blank"}
   
-  * [CGPfunctions](https://github.com/ibecav/CGPfunctions){target="blank"}
+* [CGPfunctions](https://github.com/ibecav/CGPfunctions){target="blank"}
   
-  * [ggbump](https://github.com/davidsjoberg/ggbump){target="blank"}
+* [ggbump](https://github.com/davidsjoberg/ggbump){target="blank"}
   
-  * [ggalt](https://github.com/hrbrmstr/ggalt){target="blank"}
+* [ggalt](https://github.com/hrbrmstr/ggalt){target="blank"}
   
-  * [ggdist](https://github.com/mjskay/ggdist/){target="blank"}
+* [ggdist](https://github.com/mjskay/ggdist/){target="blank"}
   
-  * [ggbeeswarm](https://github.com/eclarke/ggbeeswarm){target="blank"}
+* [ggbeeswarm](https://github.com/eclarke/ggbeeswarm){target="blank"}
   
-  * [patchwork](https://github.com/thomasp85/patchwork){target="blank"}
+* [patchwork](https://github.com/thomasp85/patchwork){target="blank"}
   
-  * [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}
+* [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}
     
-  * [flipbook_script.R](https://osf.io/vt2ny/){target="blank"}
+* [flipbook_script.R](https://osf.io/vt2ny/){target="blank"}
   
-  * [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots){target="blank"}
+* [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots){target="blank"}
