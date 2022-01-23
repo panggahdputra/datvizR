@@ -884,7 +884,7 @@ cumulative_curve <- df_for_cum_curve %>%
   geom_text(data = subset(df_for_cum_curve,year == '2022'),
             aes(label = var),
             hjust = -1) +
-  scale_color_manual(values = c('#178f92', '#845d29'),
+  scale_color_manual(values = c('#d8c29d', '#4fb6ca'),
                      guide = 'none') +
   scale_y_continuous(limits = c(0,500)) +
   theme_distr +
