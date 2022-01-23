@@ -1,7 +1,7 @@
 ---
 title: "**Data Visualization with R**"
 subtitle: "Hands-on code to create various charts <br> with R Programming Language"
-author: "*Author : Panggah D. Putra*"
+author: "*Created by : Panggah D. Putra*"
 date: "*Last update : `r format(Sys.time(), '%d %B %Y')`*"
 output:
   html_document:
@@ -28,7 +28,7 @@ This website is under development.
 
 ##### Chart Classification
 
-Classification of the charts in this website is based on the [Financial Times visual vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} with addition of other resources.
+Classification of the charts in this website is based on the [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} with addition of other resources.
 
 ***
 
@@ -59,6 +59,7 @@ library(ggalt)        # to makes Dumbbell Plot
 library(ggdist)       # to makes Stat Dot Plot
 library(ggbeeswarm)   # to makes Beeswarm Plot
 library(patchwork)    # to makes annotation on Population Pyramid
+library(ggridges)     # to makes Stat Density Ridges Plot
 
 ```
 
@@ -124,8 +125,6 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ```
 
-***
-
 To make the population pyramid, we use *df_for_pop_pyramid*.
 
 ```{r df for pop pyramid}
@@ -175,9 +174,9 @@ df_for_pop_pyramid <- rbind(df1, df2, df3, df4, df5, df6,
 
 ```
 
-***
+To make the cumulative curve, we use *df_for_cum_curve*.
 
-```{r}
+```{r df for cum curve}
 
 set.seed(123)
 df_for_cum_curve = tibble(
@@ -585,7 +584,7 @@ histogram
 
 ***
 
-### Dumbbell Plot
+### Dot Plot (Dumbbell Plot)
 
 ```{r dumbbell plot}
 
@@ -667,6 +666,8 @@ dot_strip_plot
 ***
 
 ### Stat Dot Plot
+
+In dot strip plot, it can be a problem when to many dots have the same value. To solve this, we can use stat dot plot. The stat dot plot easily show multiple dots having the same value.
 
 ```{r stat dot plot}
 
@@ -959,6 +960,63 @@ beeswarm
 
 ***
 
+### Density Plot
+
+```{r density plot}
+
+density_plot <- main_df %>%
+  ggplot(aes(x = value)) +
+  geom_density(alpha = 0.9,
+               fill = '#845d29',
+               color = '#4e3910') +
+  scale_x_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  theme_distr +
+  ylab('density') +
+  labs(title = 'Density Plot',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r density plot print, echo=FALSE, out.width = "100%"}
+density_plot
+```
+
+***
+
+### Stat Density Ridges Plot
+
+Unlike density plot, stat density ridges Plot shows density of each variable. It also can show quantile value of each variable.
+
+```{r density ridges plot}
+
+density_ridges_plot <- main_df %>%
+  ggplot(aes(x = value,
+             y = Variable,
+             fill = Variable,
+             color = Variable)) +
+  ggridges::stat_density_ridges(quantile_lines = TRUE,
+                                quantiles = 2,
+                                alpha = .5,
+                                size = .8,
+                                rel_min_height = 0.01) +
+  scale_color_manual(values = palette_distr,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_distr,
+                    guide = 'none') +
+  scale_x_continuous(limits = c(0,10),
+                     breaks = c(0,2,4,6,8,10)) +
+  theme_distr +
+  labs(title = 'Stat Density Ridges Plot',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r density ridges plot print, echo=FALSE, message=FALSE, out.width = "100%"}
+density_ridges_plot
+```
+
+
 ## **Correllation**
 
 ### Scatterplot
@@ -1070,6 +1128,8 @@ Not done yet.
 * [ggbeeswarm](https://github.com/eclarke/ggbeeswarm){target="blank"}
   
 * [patchwork](https://github.com/thomasp85/patchwork){target="blank"}
+
+* [ggridges](https://wilkelab.org/ggridges/){target="blank"}
   
 * [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}
     
