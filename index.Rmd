@@ -988,9 +988,9 @@ density_plot
 
 Unlike density plot, stat density ridges plot shows density of each variable. It also can shows quantile value of each variable.
 
-```{r density ridges plot}
+```{r stat density ridges plot}
 
-density_ridges_plot <- main_df %>%
+stat_density_ridges_plot <- main_df %>%
   ggplot(aes(x = value,
              y = Variable,
              fill = Variable,
@@ -1012,8 +1012,8 @@ density_ridges_plot <- main_df %>%
 
 ```
 
-```{r density ridges plot print, echo=FALSE, message=FALSE, out.width = "100%"}
-density_ridges_plot
+```{r stat density ridges plot print, echo=FALSE, message=FALSE, out.width = "100%"}
+stat_density_ridges_plot
 ```
 
 
