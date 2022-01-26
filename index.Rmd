@@ -28,7 +28,7 @@ This website is under development.
 
 ##### Chart Classification
 
-Classification of the charts in this website is based on the [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} with addition of other resources.
+Classification of the charts in this website is based on the [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} with addition from other resources.
 
 ***
 
