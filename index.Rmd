@@ -7,9 +7,7 @@ output:
   html_document:
     toc: true
     toc_float: true
-#      collapsed: false
     toc_depth: 3
-#    number_sections: true
     theme: lumen
     highlight: tango
     df_print: paged
@@ -1015,99 +1013,6 @@ stat_density_ridges_plot <- main_df %>%
 ```{r stat density ridges plot print, echo=FALSE, message=FALSE, out.width = "100%"}
 stat_density_ridges_plot
 ```
-
-
-## **Correllation**
-
-### Scatterplot
-
-Not done yet.
-
-***
-
-### Column + Line Timeline
-
-Not done yet.
-
-***
-
-### Connected Scatterplot
-
-Not done yet.
-
-***
-
-### Bubble
-
-Not done yet.
-
-***
-
-### XY Heatmap
-
-Not done yet.
-
-***
-
-## **Part to Whole**
-
-### Stacked Column/Bar
-
-Not done yet.
-
-***
-
-### Marimekko
-
-Not done yet.
-
-***
-
-### Pie
-
-Not done yet.
-
-***
-
-### Donut
-
-Not done yet.
-
-***
-
-### Treemap
-
-Not done yet.
-
-***
-
-### Voronoi
-
-Not done yet.
-
-***
-
-### Arc
-
-Not done yet.
-
-***
-
-### Grid Plot
-
-Not done yet.
-
-***
-
-### Venn Diagram
-
-Not done yet.
-
-***
-
-### Waterfall
-
-Not done yet.
 
 ***
 
