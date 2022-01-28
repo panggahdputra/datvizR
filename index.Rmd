@@ -84,6 +84,28 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 ```
 
+To make the dot strip plot, we use *df_for_dotstrip*.
+
+```{r df for dotstrip}
+
+set.seed(2000)
+dfa = tibble(var = LETTERS[seq( from = 1, to = 20 )],
+             val = sample(1:100, 20), year = '2018')
+dfb = tibble(var = LETTERS[seq( from = 1, to = 20 )],
+             val = sample(1:100, 20), year = '2019')
+dfc = tibble(var = LETTERS[seq( from = 1, to = 20 )],
+             val = sample(1:100, 20), year = '2020')
+dfd = tibble(var = LETTERS[seq( from = 1, to = 20 )],
+             val = sample(1:100, 20), year = '2021')
+dfe = tibble(var = LETTERS[seq( from = 1, to = 20 )],
+             val = sample(1:100, 20), year = '2022')
+
+df_for_dotstrip <- rbind(dfa, dfb, dfc, dfd, dfe) %>%
+  rename(Variable = var,
+         value = val)
+
+```
+
 To make the bump chart, we use *df_for_bump*.
 
 ```{r df for bump}
@@ -379,9 +401,42 @@ ordered_prop_symbol
 
 ***
 
+### Dot Strip Plot
+
+```{r ranking dot strip plot}
+
+dot_strip_plot <- df_for_dotstrip %>%
+  ggplot(aes(x = value,
+             y = year,
+             color = year,
+             fill = year)) +
+  geom_point(size = 7) +
+  geom_text(aes(label = Variable),
+            size = 3,
+            color = 'white') +
+  stat_summary(fun = "median", size = 10, geom = "point", shape = 124) + 
+  scale_color_manual(values = palette_ranking,
+                     guide = 'none') +
+  scale_fill_manual(values = palette_ranking,
+                    guide = 'none') +
+  theme_ranking +
+  theme(
+    axis.title.y = element_blank()
+    ) +
+  labs(title = 'Dot Strip Plot',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r ranking dot strip plot print, echo=FALSE, out.width = "100%"}
+dot_strip_plot
+```
+
+***
+
 ### Ordered Dot Strip Plot
 
-In this example, we ordered dot strip plot by max value of each variable.
+We also can ordered dot strip plot by certain value. In this example, we ordered dot strip plot by max value of each variable.
 
 ```{r ordered dot strip plot}
 
@@ -409,7 +464,7 @@ ordered_dot_strip_plot <- main_df %>%
 
 ```
 
-```{r ordered dot strip plotg print, echo=FALSE, out.width = "100%"}
+```{r ordered dot strip plot print, echo=FALSE, out.width = "100%"}
 ordered_dot_strip_plot
 ```
 
