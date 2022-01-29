@@ -21,15 +21,13 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 ## **Prakata**
 
-Website ini saya susun dalam rangka belajar visualisasi data menggunakan bahasa pemrograman R sekaligus belajar R Markdown, serta belajar lain-lain, panjang untuk disebutkan.
-
-Tentu saja, website ini masih dalam proses penyelesaian! 
+Website ini saya susun dalam rangka belajar visualisasi data menggunakan bahasa pemrograman R sekaligus belajar R Markdown, serta belajar lain-lain, panjang untuk disebutkan. Tentu saja, website ini masih dalam proses penyelesaian! 
 
 ***
 
 ## **Pendahuluan**
 
-Sebelum melangkah lebih jauh, saya asumsikan pembaca sudah cukup paham bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
+Sebelum melangkah lebih jauh, saya asumsikan anda sudah cukup paham bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
 
 ***
 
@@ -37,29 +35,34 @@ Sebelum melangkah lebih jauh, saya asumsikan pembaca sudah cukup paham bahasa pe
 
 Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} dengan tambahan dari berbagai sumber.
 
+Berdasarkan *Financial Times Visual Vocabulary*, grafik dibagi ke dalam beberapa tipe antara lain:
+
+* Peringkat <br>
+* Distribusi
+
 ***
 
 ##### Palet Warna
 
-Palet warna yang akan kita gunakan berasal dari [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}. 
+Kita menggunakan palet warna yang berasal dari [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}. 
 
 ***
 
 ##### Dataset
 
-Insiprasi dari *main_df* yang akan kita gunakan berasal dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
+Kita menggunakan beberapa dataset buatan. Sebagian besar grafik dibuat dengan menggunakan dataset *main_df*, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
 
 *******
 
 ## **Prasarat**
 
-Seperti yang sudah saya sebutkan sebelumnya, saya asumsikan pembaca sudah cukup paham bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
+Seperti yang sudah saya sebutkan sebelumnya, saya asumsikan anda sudah cukup paham bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
 
 ***
 
 ### *Install Packages*
 
-Pertama, kita harus instal terlebih dahulu (jika belum pernah diinstall sebelumnya pada perangkat anda ) *package-package* yang akan kita gunakan dalam membuat grafik.
+Pertama, kita harus instal terlebih dahulu (jika belum pernah diinstal sebelumnya pada perangkat anda ) *package-package* yang akan kita gunakan dalam membuat grafik.
 
 install.packages('tidyverse')      
 install.packages('CGPfunctions')      
@@ -84,7 +87,7 @@ library(ggbump)       # untuk membuat Bump Chart
 library(ggalt)        # untuk membuat Dumbbell Plot
 library(ggdist)       # untuk membuat Stat Dot Plot
 library(ggbeeswarm)   # untuk membuat Beeswarm Plot
-library(patchwork)    # untuk membuat annotation on Population Pyramid
+library(patchwork)    # untuk membuat Population Pyramid
 library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
 ```
@@ -93,7 +96,7 @@ library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
 ### Penyiapan Dataset
 
-Kita akan menggunakan beberapa dataset. Sebagian besar grafik menggunakan dataset *main_df*. 
+Sebagian besar grafik dibuat dengan menggunakan dataset *main_df*. 
 
 ```{r main df}
 
@@ -111,7 +114,7 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 ```
 
-Untuk membuat dot strip plot (klasifikasi: peringkat), kita menggunakan dataset *df_for_rank_dotstrip*.
+Untuk membuat dot strip plot pada tipe grafik-peringkat, kita menggunakan dataset *df_for_rank_dotstrip*.
 
 ```{r df for rank dotstrip}
 
@@ -221,7 +224,7 @@ df_for_pop_pyramid <- rbind(df1, df2, df3, df4, df5, df6,
 
 ```
 
-Untuk membuat cumulative curve, kita menggunakan *df_for_cum_curve*.
+Untuk membuat cumulative curve, kita menggunakan dataset *df_for_cum_curve*.
 
 ```{r df for cum curve}
 
@@ -248,7 +251,7 @@ df_for_cum_curve <- df_for_cum_curve %>%
 
 ### Penyiapan Palet Warna
 
-Kita menggunakan palet warna berbeda untuk tiap klasifikasi grafik. Untuk mempercantik klasifikasi grafik:peringkat, kita menggunakan palet *palette_ranking*. Untuk mempersempit fokus latihan, saya menyalin kode hex secara manual dari *Greek Palette* di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"} tanpa harus menyalin code hex secara manual.
+Kita menggunakan palet warna berbeda untuk tiap tipe grafik. Untuk mempercantik tipe grafik-peringkat, kita menggunakan palet *palette_ranking*. Untuk mempersempit fokus latihan, saya menyalin kode hex secara manual dari *Greek Palette* di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"} tanpa harus menyalin code hex secara manual.
 
 ```{r palette for ranking}
 
@@ -260,7 +263,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-Untuk mempercantik klasifikasi grafik:distribusi, kita menggunakan palet *palette_distr*. Saya menyalin kode hex secara manual dari *Isfahan1 Palette* di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
+Untuk mempercantik tipe grafik-distribusi, kita menggunakan palet *palette_distr*. Saya menyalin kode hex secara manual dari *Isfahan1 Palette* di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
 
 ```{r palette for distribution}
 
@@ -276,8 +279,8 @@ palette_distr <-c('#4e3910',
 
 ### Penyiapan Tema Grafik
 
-Kita menggunakan tema berbeda untuk tiap klasifikasi grafik.
-Untuk mempercantik klasifikasi grafik:peringkat, kita menggunakan tema *theme_ranking*.
+Kita menggunakan tema berbeda untuk tiap tipe grafik.
+Untuk mempercantik tipe grafik-peringkat, kita menggunakan tema *theme_ranking*.
 
 ```{r theme for rangking}
 
@@ -302,7 +305,7 @@ theme_ranking <- theme_minimal() +
 
 ```
 
-Untuk mempercantik klasifikasi grafik:distribusi, kita menggunakan tema *theme_distr*.
+Untuk mempercantik tipe grafik-distribusi, kita menggunakan tema *theme_distr*.
 
 ```{r theme for distribution}
 
@@ -331,7 +334,7 @@ theme_distr <- theme_minimal() +
 
 ## **Peringkat**
 
-Klasifikasi grafik:peringkat digunakan untuk menunjukkan peringkat dari variabel-kategori berdasarkan nilai tertentu yang dimiliki masing-masing variabel-kategori.
+Tipe grafik-peringkat digunakan untuk mengurutkan variabel berdasarkan nilai tertentu yang dimiliki masing-masing variabel.
 
 ### Ordered Bar
 
@@ -437,7 +440,8 @@ rank_dot_strip_plot <- df_for_rank_dotstrip %>%
              y = year,
              color = year,
              fill = year)) +
-  geom_point(size = 7) +
+  geom_point(alpha = .7,
+             size = 7) +
   geom_text(aes(label = Variable),
             size = 3,
             color = 'white') +
@@ -463,7 +467,7 @@ rank_dot_strip_plot
 
 ### Ordered Dot Strip Plot
 
-Kita juga dapat mengurutkan dot strip plot sesuai dengan nilai tertentu. Dalam contoh dibawah, kita mengurutkan dot strip plot berdasarkan nilai maksimal dari masing-masing variabel-kategori.
+Kita juga dapat mengurutkan variabel pada dot strip plot sesuai dengan nilai tertentu. Pada contoh dibawah, kita mengurutkan variabel berdasarkan nilai maksimal dari masing-masing variabel.
 
 ```{r ordered dot strip plot}
 
@@ -542,7 +546,7 @@ slope_graph
 
 ### Lollipop
 
-Pada lollipop, kita akan cukup kesusahan melihat perbedaan jika selisih nilai tiap variabel-kategori sangat tipis. Untuk itu, kita lebih baik menampilkan nilai data di dalam lingkaran lollipop seperti dibawah ini.
+Pada grafik lollipop, kita akan cukup kesusahan melihat perbedaan antar variabel jika selisih nilai tiap variabel sangat tipis. Untuk itu, kita lebih baik menampilkan nilai data di dalam lingkaran lollipop seperti di bawah ini.
 
 ```{r lollipop}
 
@@ -637,7 +641,7 @@ bump
 
 ## **Distribusi**
 
-Klasifikasi grafik:distribusi digunakan untuk menunjukkan distribusi data dari suatu dataset atau dari tiap variabel-kategori.
+Tipe grafik-distribusi digunakan untuk menunjukkan distribusi data dari suatu dataset atau dari tiap variabel.
 
 ### Histogram
 
@@ -749,7 +753,7 @@ dot_strip_plot
 
 ### Stat Dot Plot
 
-Pada dot strip plot diatas, kita cukup kesulitan mengetahui distribusi dari data yang memiliki nilai sama/ hampir sama. Untuk mempermudah interpretasi, kita dapat membuat stat dot plot  seperti di bawah ini.
+Pada dot strip plot di atas, kita cukup kesulitan mengetahui distribusi dari data yang memiliki nilai sama/ hampir sama. Untuk mempermudah interpretasi, kita dapat membuat stat dot plot  seperti di bawah ini.
 
 ```{r stat dot plot}
 
@@ -1068,7 +1072,7 @@ density_plot
 
 ### Stat Density Ridges Plot
 
-Tidak seperti density plot, stat density plot menampilkan density dari tiap variabel-kategori. Stat density plot juga dapat menampilkan nilai kuantil dari tiap variabel-kategori.
+Tidak seperti density plot, stat density plot menampilkan *density* dari tiap variabel. Stat density plot juga dapat menampilkan nilai kuantil dari tiap variabel.
 
 ```{r stat density ridges plot}
 
