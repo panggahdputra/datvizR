@@ -166,12 +166,12 @@ Untuk membuat slope graph, kita menggunakan dataset *df_for_slope*.
 df_for_slope = tibble(var = c('A','B','C','D', 'E',
                               'A','B','C','D', 'E',
                               'A','B','C','D', 'E'),
-                     year = c('2010','2010','2010','2010','2010',
+                      year = c('2010','2010','2010','2010','2010',
                                '2015','2015','2015','2015','2015',
                                '2020','2020','2020','2020','2020'),
-                     val = c(10,8,6,4,2,
-                             13,9,11,5,7,
-                             12,13,9,7,5))
+                      val = c(10,8,6,4,2,
+                              13,9,11,5,7,
+                              12,13,9,7,5))
 
 ```
 
@@ -218,7 +218,7 @@ df18 = tibble(gender = 'Female', age = '56-60',
               value = sample((45:50), size = 1))
 
 df_for_pop_pyramid <- rbind(df1, df2, df3, df4, df5, df6,
-                            df7,df8, df9, df10, df11, df12,
+                            df7, df8, df9, df10, df11, df12,
                             df13, df14, df15, df16, df17, df18) %>%
   mutate(age = as.factor(age))
 
@@ -279,8 +279,7 @@ palette_distr <-c('#4e3910',
 
 ### Penyiapan Tema Grafik
 
-Kita menggunakan tema berbeda untuk tiap tipe grafik.
-Untuk mempercantik tipe grafik-peringkat, kita menggunakan tema *theme_ranking*.
+Kita menggunakan tema berbeda untuk tiap tipe grafik. Untuk mempercantik tipe grafik-peringkat, kita menggunakan tema *theme_ranking*.
 
 ```{r theme for rangking}
 
@@ -335,6 +334,8 @@ theme_distr <- theme_minimal() +
 ## **Peringkat**
 
 Tipe grafik-peringkat digunakan untuk mengurutkan variabel berdasarkan nilai tertentu yang dimiliki masing-masing variabel.
+
+***
 
 ### Ordered Bar
 
@@ -445,7 +446,10 @@ rank_dot_strip_plot <- df_for_rank_dotstrip %>%
   geom_text(aes(label = Variable),
             size = 3,
             color = 'white') +
-  stat_summary(fun = "median", size = 10, geom = "point", shape = 124) + 
+  stat_summary(fun = "median",
+               geom = "point",
+               shape = 124,
+               size = 10, ) + 
   scale_color_manual(values = palette_ranking,
                      guide = 'none') +
   scale_fill_manual(values = palette_ranking,
@@ -642,6 +646,8 @@ bump
 ## **Distribusi**
 
 Tipe grafik-distribusi digunakan untuk menunjukkan distribusi data dari suatu dataset atau dari tiap variabel.
+
+***
 
 ### Histogram
 
