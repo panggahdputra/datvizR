@@ -67,14 +67,14 @@ Seperti yang sudah disebutkan sebelumnya, saya asumsikan anda sudah cukup memaha
 
 Pertama, instal terlebih dahulu (jika belum pernah diinstal sebelumnya) *package-package* yang akan digunakan dalam membuat grafik.
 
-install.packages('tidyverse')      
-install.packages('CGPfunctions')      
-install.packages('ggbump')             
-install.packages('ggalt')            
-install.packages('ggdist')            
-install.packages('ggbeeswarm')        
-install.packages('patchwork')        
-install.packages('ggridges')      
+`install.packages('tidyverse')`      
+`install.packages('CGPfunctions')`      
+`install.packages('ggbump')`             
+`install.packages('ggalt')`            
+`install.packages('ggdist')`            
+`install.packages('ggbeeswarm')`        
+`install.packages('patchwork')`        
+`install.packages('ggridges')`      
 
 ***
 
