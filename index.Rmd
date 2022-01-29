@@ -21,7 +21,9 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 ## **Prakata**
 
-Website ini saya susun dalam rangka belajar visualisasi data menggunakan bahasa pemrograman R sekaligus belajar R Markdown, serta belajar lain-lain, panjang untuk disebutkan. Tentu saja, website ini masih dalam proses penyelesaian! 
+Website ini saya susun dalam rangka belajar visualisasi data menggunakan bahasa pemrograman R sekaligus belajar R Markdown, serta belajar lain-lain, panjang untuk disebutkan. Tentu saja, website ini masih dalam proses penyelesaian!
+
+jika anda membuka website ini dengan *handphone*, demi tampilan yang lebih nyaman, saya sarankan untuk menggunakan tampilan situs desktop.
 
 ***
 
