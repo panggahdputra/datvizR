@@ -2874,7 +2874,7 @@ div.tocify {
 <h1 class="title toc-ignore"><strong>Visualisasi Data dengan R<br></strong></h1>
 <h3 class="subtitle">Kumpulan kode untuk membuat berbagai grafik <br> menggunakan bahasa pemrograman R<br><br></h3>
 <h4 class="author"><em>Ditulis oleh : Panggah D. Putra</em></h4>
-<h4 class="date"><em>Update terakhir : 29 January 2022</em></h4>
+<h4 class="date"><em>Update terakhir : 30 January 2022</em></h4>
 
 </div>
 
@@ -2893,7 +2893,7 @@ div.tocify {
 <div id="klasifikasi-grafik" class="section level5">
 <h5>Klasifikasi Grafik</h5>
 <p>Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada <a href="https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary" target="blank">Financial Times Visual Vocabulary</a> dengan tambahan dari berbagai sumber.</p>
-<p>Berdasarkan <em>Financial Times Visual Vocabulary</em>, grafik dibagi ke dalam beberapa tipe antara lain:</p>
+<p>Berdasarkan <span style="color: darkblue;"><strong>Financial Times Visual Vocabulary</strong></span>, grafik dibagi ke dalam beberapa tipe antara lain:</p>
 <ul>
 <li>Peringkat <br></li>
 <li>Distribusi</li>
@@ -2902,7 +2902,7 @@ div.tocify {
 </div>
 <div id="dataset" class="section level5">
 <h5>Dataset</h5>
-<p>Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset buatan. Sebagian besar grafik dibuat dengan menggunakan dataset <em>main_df</em>, terinsiprasi dari <a href="https://osf.io/vt2ny/" target="blank">flipbook_script.R</a> yang disebut oleh Cédric Scherer dalam websitenya, <a href="https://z3tt.github.io/beyond-bar-and-box-plots/#import-data" target="blank">Beyond Bar and Box Plots</a>.</p>
+<p>Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset buatan. Sebagian besar grafik dibuat dengan menggunakan dataset <code>main_df</code>, terinsiprasi dari <a href="https://osf.io/vt2ny/" target="blank">flipbook_script.R</a> yang disebut oleh Cédric Scherer dalam websitenya, <a href="https://z3tt.github.io/beyond-bar-and-box-plots/#import-data" target="blank">Beyond Bar and Box Plots</a>.</p>
 <hr />
 </div>
 <div id="palet-warna" class="section level5">
@@ -2943,7 +2943,7 @@ div.tocify {
 </div>
 <div id="penyiapan-dataset" class="section level3">
 <h3>Penyiapan Dataset</h3>
-<p>Sebagian besar grafik dibuat dengan menggunakan dataset <em>main_df</em>.</p>
+<p>Sebagian besar grafik dibuat dengan menggunakan dataset <code>main_df</code> di bawah ini.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2000</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">var =</span> <span class="st">&#39;A&#39;</span>, <span class="at">val =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">25</span>, <span class="at">mean =</span> <span class="fl">5.5</span>, <span class="at">sd =</span> <span class="fl">1.5</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">var =</span> <span class="st">&#39;B&#39;</span>, <span class="at">val =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">15</span>, <span class="at">mean =</span> <span class="fl">4.5</span>, <span class="at">sd =</span> <span class="fl">1.0</span>))</span>
@@ -2955,7 +2955,7 @@ div.tocify {
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">as_factor</span>(var),</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">value =</span> <span class="fu">round</span>(val, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Variable, value)</span></code></pre></div>
-<p>Dot strip plot pada tipe grafik-peringkat dibuat dengan menggunakan dataset <em>df_for_rank_dotstrip</em>.</p>
+<p>Dot strip plot pada tipe grafik-peringkat dibuat dengan menggunakan dataset <code>df_for_rank_dotstrip</code> di bawah ini.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2000</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dfa <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">var =</span> LETTERS[<span class="fu">seq</span>( <span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">20</span> )],</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">val =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">20</span>), <span class="at">year =</span> <span class="st">&#39;2018&#39;</span>)</span>
@@ -2971,7 +2971,7 @@ div.tocify {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>df_for_rank_dotstrip <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dfa, dfb, dfc, dfd, dfe) <span class="sc">%&gt;%</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Variable =</span> var,</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">value =</span> val)</span></code></pre></div>
-<p>Bump chart dibuat dengan menggunakan dataset <em>df_for_bump</em>.</p>
+<p>Bump chart dibuat dengan menggunakan dataset <code>df_for_bump</code> di bawah ini.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_6 <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">team =</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>,<span class="st">&#39;E&#39;</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">game_1 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
@@ -2988,7 +2988,7 @@ div.tocify {
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">game_3 =</span> <span class="dv">3</span>,</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">game_4 =</span> <span class="dv">4</span>,</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">game_5 =</span> <span class="dv">5</span>)))</span></code></pre></div>
-<p>Slope graph dibuat dengan menggunakan dataset <em>df_for_slope</em>.</p>
+<p>Slope graph dibuat dengan menggunakan dataset <code>df_for_slope</code> di bawah ini.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_for_slope <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">var =</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>, <span class="st">&#39;E&#39;</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>, <span class="st">&#39;E&#39;</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>, <span class="st">&#39;E&#39;</span>),</span>
@@ -2998,7 +2998,7 @@ div.tocify {
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">val =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">2</span>,</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                              <span class="dv">13</span>,<span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">5</span>,<span class="dv">7</span>,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                              <span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">5</span>))</span></code></pre></div>
-<p>Population pyramid dibuat dengan menggunakan dataset <em>df_for_pop_pyramid</em>.</p>
+<p>Population pyramid dibuat dengan menggunakan dataset <code>df_for_pop_pyramid</code> di bawah ini.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2000</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">gender =</span> <span class="st">&#39;Male&#39;</span>, <span class="at">age =</span> <span class="st">&#39;15-20&#39;</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value =</span> <span class="fu">sample</span>((<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">size =</span> <span class="dv">1</span>))</span>
@@ -3041,7 +3041,7 @@ div.tocify {
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>                            df7, df8, df9, df10, df11, df12,</span>
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>                            df13, df14, df15, df16, df17, df18) <span class="sc">%&gt;%</span></span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">as.factor</span>(age))</span></code></pre></div>
-<p>Cumulative curve dibuat dengan menggunakan dataset <em>df_for_cum_curve</em>.</p>
+<p>Cumulative curve dibuat dengan menggunakan dataset <code>df_for_cum_curve</code> di bawah ini.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_for_cum_curve <span class="ot">=</span> <span class="fu">tibble</span>(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;A&#39;</span>, <span class="st">&#39;A&#39;</span>, <span class="st">&#39;A&#39;</span>, <span class="st">&#39;A&#39;</span>, <span class="st">&#39;A&#39;</span>, <span class="st">&#39;A&#39;</span>, <span class="st">&#39;A&#39;</span>,</span>
@@ -3062,13 +3062,13 @@ div.tocify {
 </div>
 <div id="penyiapan-palet-warna" class="section level3">
 <h3>Penyiapan Palet Warna</h3>
-<p>Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet <em>palette_ranking</em>. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <em>Greek Palette</em> di <a href="https://github.com/BlakeRMills/MetBrewer#greek" target="blank">MetBrewer</a>. Anda dapat mempelajari sendiri penggunaan palet warna pada <a href="https://github.com/BlakeRMills/MetBrewer#greek" target="blank">MetBrewer</a> tanpa harus menyalin code hex secara manual.</p>
+<p>Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet <code>palette_ranking</code>. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: darkblue;"><strong>Greek Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#greek" target="blank">MetBrewer</a>. Anda dapat mempelajari sendiri penggunaan palet warna pada <a href="https://github.com/BlakeRMills/MetBrewer#greek" target="blank">MetBrewer</a> tanpa harus menyalin code hex secara manual.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>palette_ranking <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#3c0d03&#39;</span>,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#8d1c06&#39;</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#e67424&#39;</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#ed9b49&#39;</span>,</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#f5c34d&#39;</span>)</span></code></pre></div>
-<p>Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet <em>palette_distr</em>. Kode hex disalin secara manual dari <em>Isfahan1 Palette</em> di <a href="https://github.com/BlakeRMills/MetBrewer#isfahan1" target="blank">MetBrewer</a>.</p>
+<p>Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet <code>palette_distr</code>. Kode hex disalin secara manual dari <span style="color: darkblue;"><strong>Isfahan1 Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#isfahan1" target="blank">MetBrewer</a>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>palette_distr <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;#4e3910&#39;</span>,</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;#845d29&#39;</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;#4fb6ca&#39;</span>,</span>
@@ -3078,7 +3078,7 @@ div.tocify {
 </div>
 <div id="penyiapan-tema-grafik" class="section level3">
 <h3>Penyiapan Tema Grafik</h3>
-<p>Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema <em>theme_ranking</em>.</p>
+<p>Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema <code>theme_ranking</code> di bawah ini.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>theme_ranking <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&#39;#3c0d03&#39;</span>,</span>
@@ -3097,7 +3097,7 @@ div.tocify {
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&#39;#ffffff&#39;</span>,</span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;lightblue&#39;</span>)</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p>Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema <em>theme_distr</em>.</p>
+<p>Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema <code>theme_distr</code> di bawah ini.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>theme_distr <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&#39;#1d1f54&#39;</span>,</span>

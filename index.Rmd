@@ -38,7 +38,7 @@ Sebelum melangkah lebih jauh, saya asumsikan anda sudah cukup memahami bahasa pe
 
 Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} dengan tambahan dari berbagai sumber.
 
-Berdasarkan *Financial Times Visual Vocabulary*, grafik dibagi ke dalam beberapa tipe antara lain:
+Berdasarkan <span style="color: darkblue;">**Financial Times Visual Vocabulary**</span>, grafik dibagi ke dalam beberapa tipe antara lain:
 
 * Peringkat <br>
 * Distribusi
@@ -47,7 +47,7 @@ Berdasarkan *Financial Times Visual Vocabulary*, grafik dibagi ke dalam beberapa
 
 ##### Dataset
 
-Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset buatan. Sebagian besar grafik dibuat dengan menggunakan dataset *main_df*, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
+Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset buatan. Sebagian besar grafik dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
 
 ***
 
@@ -99,7 +99,7 @@ library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
 ### Penyiapan Dataset
 
-Sebagian besar grafik dibuat dengan menggunakan dataset *main_df*. 
+Sebagian besar grafik dibuat dengan menggunakan dataset `main_df` di bawah ini. 
 
 ```{r main df}
 
@@ -117,7 +117,7 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 ```
 
-Dot strip plot pada tipe grafik-peringkat dibuat dengan menggunakan dataset *df_for_rank_dotstrip*.
+Dot strip plot pada tipe grafik-peringkat dibuat dengan menggunakan dataset `df_for_rank_dotstrip` di bawah ini.
 
 ```{r df for rank dotstrip}
 
@@ -139,7 +139,7 @@ df_for_rank_dotstrip <- rbind(dfa, dfb, dfc, dfd, dfe) %>%
 
 ```
 
-Bump chart dibuat dengan menggunakan dataset *df_for_bump*.
+Bump chart dibuat dengan menggunakan dataset `df_for_bump` di bawah ini.
 
 ```{r df for bump}
 
@@ -162,7 +162,7 @@ df_for_bump <- df_6 %>%
 
 ```
 
-Slope graph dibuat dengan menggunakan dataset *df_for_slope*.
+Slope graph dibuat dengan menggunakan dataset `df_for_slope` di bawah ini.
 
 ```{r df for slope}
 
@@ -178,7 +178,7 @@ df_for_slope = tibble(var = c('A','B','C','D', 'E',
 
 ```
 
-Population pyramid dibuat dengan menggunakan dataset *df_for_pop_pyramid*.
+Population pyramid dibuat dengan menggunakan dataset `df_for_pop_pyramid` di bawah ini.
 
 ```{r df for pop pyramid}
 
@@ -227,7 +227,7 @@ df_for_pop_pyramid <- rbind(df1, df2, df3, df4, df5, df6,
 
 ```
 
-Cumulative curve dibuat dengan menggunakan dataset *df_for_cum_curve*.
+Cumulative curve dibuat dengan menggunakan dataset `df_for_cum_curve` di bawah ini.
 
 ```{r df for cum curve}
 
@@ -254,7 +254,7 @@ df_for_cum_curve <- df_for_cum_curve %>%
 
 ### Penyiapan Palet Warna
 
-Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet *palette_ranking*. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari *Greek Palette* di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"} tanpa harus menyalin code hex secara manual.
+Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: darkblue;">**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"} tanpa harus menyalin code hex secara manual.
 
 ```{r palette for ranking}
 
@@ -266,7 +266,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet *palette_distr*. Kode hex disalin secara manual dari *Isfahan1 Palette* di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
+Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style="color: darkblue;">**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
 
 ```{r palette for distribution}
 
@@ -282,7 +282,7 @@ palette_distr <-c('#4e3910',
 
 ### Penyiapan Tema Grafik
 
-Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema *theme_ranking*.
+Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
 
 ```{r theme for rangking}
 
@@ -307,7 +307,7 @@ theme_ranking <- theme_minimal() +
 
 ```
 
-Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema *theme_distr*.
+Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema `theme_distr` di bawah ini.
 
 ```{r theme for distribution}
 
