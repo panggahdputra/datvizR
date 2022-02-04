@@ -360,6 +360,7 @@ ordered_bar <- main_df %>%
   xlab('Variable') +
   ylab('number of data') +
   labs(title = 'Ordered Bar',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -390,6 +391,7 @@ ordered_column <- main_df %>%
   xlab('number of data') +
   ylab('Variable') +
   labs(title = 'Ordered Column',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -425,6 +427,7 @@ ordered_prop_symbol <- main_df %>%
   theme(axis.title = element_blank(),
         axis.text = element_blank()) +
   labs(title = 'Ordered Proportional Symbol',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -462,6 +465,7 @@ rank_dot_strip_plot <- df_for_rank_dotstrip %>%
     axis.title.y = element_blank()
     ) +
   labs(title = 'Dot Strip Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -498,6 +502,7 @@ ordered_dot_strip_plot <- main_df %>%
   theme_ranking +
   xlab('Variable') +
   labs(title = 'Ordered Dot Strip Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -594,6 +599,7 @@ lollipop <- main_df %>%
   xlab('Variable') +
   ylab('number of data') +
   labs(title = 'Lollipop',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -636,6 +642,7 @@ bump <- df_for_bump %>%
   xlab('Game-') +
   ylab('Ranking') +
   labs(title = 'Bump Chart',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -669,6 +676,7 @@ histogram <- main_df %>%
   theme_distr +
   ylab('number of data') +
   labs(title = 'Histogram',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -722,6 +730,7 @@ dumbbell_plot <- main_df %>%
   theme_distr +
   xlab('min <<<value>>> max') +
   labs(title = 'Dot Plot (Dumbbell Plot)',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -750,6 +759,7 @@ dot_strip_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Dot Strip Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -780,6 +790,7 @@ stat_dot_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Stat Dot Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -810,6 +821,7 @@ barcode_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Barcode Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -840,6 +852,7 @@ box_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Box Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -869,6 +882,7 @@ violin_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Violin Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -988,6 +1002,7 @@ cumulative_curve <- df_for_cum_curve %>%
   theme_distr +
   ylab('cumulative value') +
   labs(title = 'Cumulative Curve',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -1014,6 +1029,7 @@ freq_polygons <- main_df %>%
   theme_distr +
   ylab('frequency') +
   labs(title = 'Frequency Polygons',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -1045,6 +1061,7 @@ beeswarm <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Beeswarm',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -1071,6 +1088,7 @@ density_plot <- main_df %>%
   theme_distr +
   ylab('density') +
   labs(title = 'Density Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
@@ -1105,6 +1123,7 @@ stat_density_ridges_plot <- main_df %>%
                      breaks = c(0,2,4,6,8,10)) +
   theme_distr +
   labs(title = 'Stat Density Ridges Plot',
+       subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
