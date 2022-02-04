@@ -40,6 +40,7 @@ Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financia
 
 Berdasarkan <span style="color: darkblue;">**Financial Times Visual Vocabulary**</span>, grafik dibagi ke dalam beberapa tipe antara lain:
 
+* Korelasi <br>
 * Peringkat <br>
 * Distribusi
 
@@ -93,6 +94,7 @@ library(ggbeeswarm)   # untuk membuat Beeswarm Plot
 library(patchwork)    # untuk membuat Population Pyramid
 library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
+
 ```
 
 ***
@@ -114,6 +116,18 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
   mutate(Variable = as_factor(var),
          value = round(val, 2)) %>%
   select(Variable, value)
+
+```
+
+Scatter Plot dan Bubble pada tipe grafik-korelasi dibuat menggunakan Iris Dataset. Sedangkan Column+Line Timeline, Connected Scatter Plot, serta XY Heatmap pada tipe grafik-korelasi menggunakan gapminder dataset
+
+```{r dr for correlation, message=FALSE}
+
+library(datasets)
+data(iris)
+
+library(gapminder)
+data(gapminder)
 
 ```
 
@@ -253,8 +267,17 @@ df_for_cum_curve <- df_for_cum_curve %>%
 ***
 
 ### Penyiapan Palet Warna
+Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: darkblue;">**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target="blank"} tanpa harus menyalin code hex secara manual.
 
-Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: darkblue;">**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"} tanpa harus menyalin code hex secara manual.
+```{r palette for correlation}
+
+palette_corr <-c('#75884b',
+                 '#1e395f',
+                 '#d8b847')
+
+```
+
+Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style="color: darkblue;">**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. 
 
 ```{r palette for ranking}
 
@@ -282,7 +305,31 @@ palette_distr <-c('#4e3910',
 
 ### Penyiapan Tema Grafik
 
-Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
+Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
+```{r}
+
+theme_corr <- theme_minimal() +
+  theme(
+    plot.title = element_text(color = '#1e5a46',
+                              hjust = 0.5,
+                              face = 'bold'),
+    plot.subtitle = element_text(color = '#1e5a46',
+                                 hjust = 0.5),
+    plot.caption = element_text(color = '#1e5a46',
+                                hjust = 1),
+    axis.title = element_text(color = '#1e5a46',
+                              face = 'bold'),
+    axis.text = element_text(color = '#1e5a46',
+                             face = 'bold'),
+    panel.background = element_rect(fill = '#FFFFFF',
+                                    color = NA),
+    plot.background = element_rect(fill = '#FFFFFF',
+                                   color = 'lightblue')
+  )
+
+```
+
+Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
 
 ```{r theme for rangking}
 
@@ -330,6 +377,203 @@ theme_distr <- theme_minimal() +
                                    color = 'lightblue')
   )
 
+```
+
+***
+
+## **Korelasi**
+
+Tipe grafik-korelasi digunakan untuk menyajikan hubungan antar variabel.
+
+***
+
+### Scatter Plot
+
+```{r scatter plot}
+
+scatter_plot <- iris %>%
+  ggplot(aes(x = Sepal.Length,
+             y = Sepal.Width,
+             color = Species)) +
+  geom_point(size = 4) +
+  scale_color_manual(values = palette_corr,
+                     guide = 'none') +
+  theme_corr +
+  xlab('Variable 1') +
+  ylab('Variable 2') +
+  labs(title = 'Scatter Plot',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r scatter plot print, echo=FALSE, out.width = "100%"}
+scatter_plot
+```
+
+***
+
+### Satter Plot with Linear Regression Line
+
+Pada scatter plot juga ditambahkan garis regresi linear dari 2 variabel yang disajikan.
+
+```{r scatter plot with linear regression line}
+
+scattet_plot_reg_line <- iris %>%
+  ggplot(aes(x = Sepal.Length,
+             y = Sepal.Width,
+             color = Species)) +
+  geom_point(size = 4) +
+  geom_smooth(method = "lm",
+              se = FALSE) +
+  scale_color_manual(values = palette_corr,
+                     guide = 'none') +
+  theme_corr +
+  xlab('Variable 1') +
+  ylab('Variable 2') +
+  labs(title = 'scatterplot with Linear Regression Line',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r scatter plot with linear regression line print, echo=FALSE, out.width = "100%"}
+scattet_plot_reg_line
+```
+
+***
+
+### Column+Line Timeline
+
+```{r column+line timeline}
+
+col_line_tl <- gapminder %>%
+  filter(country == "Indonesia") %>%
+  ggplot(aes(x = year,
+             y = gdpPercap)) +
+  geom_col(fill = '#d8b847') +
+  geom_line(aes(x = year,
+                y = lifeExp*20),
+            size = 2,
+            color = '#1e395f') +
+  geom_text(data = gapminder %>%
+              filter(country == "Indonesia",
+                     year == last(year)),
+            aes(x = year,
+                y = lifeExp*20,
+                fontface = 2,
+                label = 'Life Expectancy'),
+            color = '#1e395f',
+            vjust = -1) +
+  scale_x_continuous(limits = c(1945,2010),
+                     breaks = seq(1952,2007, by = 5)) +
+  scale_y_continuous(limits = c(0,4000),
+                     breaks = seq(0, 4000, by = 1000)) +
+  theme_corr +
+  ylab('GDP Per Capita') +
+  labs(title = 'Column + Line Timeline',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r column+line timeline print, echo=FALSE, out.width = "100%"}
+col_line_tl
+```
+
+***
+
+### Connceted Scatter Plot
+
+```{r connected scatterplot}
+
+con_scatter_plot <- gapminder %>%
+  filter(country == "Indonesia") %>%
+  ggplot(aes(x = lifeExp,
+             y = gdpPercap)) +
+  geom_path(size = 2,
+            color = '#d8b847') +
+  geom_point(size = 4,
+             color = '#75884b') +
+  geom_text(aes(label = year),
+            color = '#1e395f',
+            vjust = -1) +
+  scale_x_continuous(limits = c(35,75),
+                     breaks = seq(35,75, by = 5)) +
+  scale_y_continuous(limits = c(0,4000),
+                     breaks = seq(0, 4000, by = 1000)) +
+  theme_corr +
+  xlab('Life Expectancy') +
+  ylab('GDP Per Capita') +
+  labs(title = 'Connected Scatterplot',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r connected scatterplot print, echo=FALSE, out.width = "100%"}
+con_scatter_plot
+```
+
+***
+
+### Bubble
+
+```{r bubble corellation}
+
+bubble <- iris %>%
+  filter(Species == "setosa") %>%
+  ggplot(aes(x = Sepal.Length,
+             y = Sepal.Width,
+             color = Species,
+             size = Petal.Width)) +
+  geom_point(alpha = 0.8,
+             color = '#1e395f') +
+  scale_size_area(max_size = 25,
+                  guide = 'none') +
+  theme_corr +
+  xlab('Variable 1') +
+  ylab('Variable 2') +
+  labs(title = 'Bubble',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r bubble corellation print, echo=FALSE, out.width = "100%"}
+bubble
+```
+
+***
+
+### XY Heatmap
+
+```{r xy heatmap}
+
+xy_heatmap <- gapminder %>%
+  group_by(continent, year) %>%
+  summarize(MedlifeExp = round(median(lifeExp), 0)) %>%
+  ggplot(aes(x = year,
+             y = continent,
+             fill = MedlifeExp)) +
+  geom_tile(color = '#FFFFFF') +
+  geom_text(aes(label = MedlifeExp),
+            size = 4,
+            color = '#FFFFFF') +
+  scale_fill_gradient(name = 'Median Life Expectancy',low = '#75884b', high = '#1e5a46') +
+  theme_corr +
+  theme(legend.title = element_text(color = '#1e5a46'),
+        legend.text = element_text(color = '#1e5a46'),
+        legend.position = 'top',
+        legend.justification = 'left') +
+  labs(title = 'XY Heatmap',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r xy_heatmap print, echo=FALSE, out.width = "100%"}
+xy_heatmap
 ```
 
 ***
