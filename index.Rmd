@@ -68,7 +68,9 @@ Seperti yang sudah disebutkan sebelumnya, saya asumsikan anda sudah cukup memaha
 
 Pertama, instal terlebih dahulu (jika belum pernah diinstal sebelumnya) *package-package* yang akan digunakan dalam membuat grafik.
 
-`install.packages('tidyverse')`      
+`install.packages('tidyverse')`
+`install.packages('datasets')`
+`install.packages('gapminder')`
 `install.packages('CGPfunctions')`      
 `install.packages('ggbump')`             
 `install.packages('ggalt')`            
@@ -417,7 +419,7 @@ scatter_plot
 
 Pada scatter plot juga ditambahkan garis regresi linear dari 2 variabel yang disajikan.
 
-```{r scatter plot with linear regression line}
+```{r scatter plot with linear regression line, message=FALSE, warning=FALSE}
 
 scattet_plot_reg_line <- iris %>%
   ggplot(aes(x = Sepal.Length,
@@ -548,7 +550,7 @@ bubble
 
 ### XY Heatmap
 
-```{r xy heatmap}
+```{r xy heatmap, message=FALSE}
 
 xy_heatmap <- gapminder %>%
   group_by(continent, year) %>%
