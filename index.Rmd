@@ -42,8 +42,6 @@ Berdasarkan <span style="color: green;">**Financial Times Visual Vocabulary**</s
 
 Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
 
-##### Palet Warna
-
 Grafik di dalam website ini dibuat dengan menggunakan palet warna yang berasal dari [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}. 
 
 ***
@@ -390,6 +388,8 @@ scatter_plot <- iris %>%
   geom_point(size = 4) +
   scale_color_manual(values = palette_corr,
                      guide = 'none') +
+  scale_x_continuous(limits = c(4, 8),
+                     breaks = seq(4, 8, by = 1)) +
   theme_corr +
   xlab('Sepal Length') +
   ylab('Sepal Width') +
@@ -420,6 +420,8 @@ scatter_plot_reg_line <- iris %>%
               se = FALSE) +
   scale_color_manual(values = palette_corr,
                      guide = 'none') +
+  scale_x_continuous(limits = c(4, 8),
+                     breaks = seq(4, 8, by = 1)) +
   theme_corr +
   xlab('Sepal Length') +
   ylab('Sepal Width') +
@@ -457,9 +459,9 @@ col_line_tl <- gapminder %>%
                 label = 'Life Expectancy'),
             color = '#1e395f',
             vjust = -1) +
-  scale_x_continuous(limits = c(1945,2015),
-                     breaks = seq(1952,2007, by = 5)) +
-  scale_y_continuous(limits = c(0,4000),
+  scale_x_continuous(limits = c(1945, 2015),
+                     breaks = seq(1952, 2007, by = 5)) +
+  scale_y_continuous(limits = c(0, 4000),
                      breaks = seq(0, 4000, by = 1000)) +
   theme_corr +
   ylab('GDP Per Capita') +
@@ -490,9 +492,9 @@ con_scatter_plot <- gapminder %>%
   geom_text(aes(label = year),
             color = '#1e395f',
             vjust = -1) +
-  scale_x_continuous(limits = c(35,75),
-                     breaks = seq(35,75, by = 5)) +
-  scale_y_continuous(limits = c(0,4000),
+  scale_x_continuous(limits = c(35, 75),
+                     breaks = seq(35, 75, by = 5)) +
+  scale_y_continuous(limits = c(0, 4000),
                      breaks = seq(0, 4000, by = 1000)) +
   theme_corr +
   xlab('Life Expectancy') +
@@ -665,7 +667,7 @@ ordered_prop_symbol <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_ranking,
                     guide = 'none') +
-  scale_y_continuous(limits = c(-1,1)) +
+  scale_y_continuous(limits = c(-1, 1)) +
   theme_ranking +
   theme(axis.title = element_blank(),
         axis.text = element_blank()) +
@@ -836,7 +838,7 @@ lollipop <- main_df %>%
   geom_text(aes(label = number_of_data), 
             size = 5,
             color = '#f5c34d') +
-  scale_y_continuous(limits = c(0,35)) +
+  scale_y_continuous(limits = c(0, 35)) +
   theme_ranking +
   theme(axis.text.y = element_blank()) +
   xlab('Variable') +
