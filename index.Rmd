@@ -32,25 +32,15 @@ Jika anda membuka website ini dengan *handphone*, demi tampilan yang lebih nyama
 
 Sebelum melangkah lebih jauh, saya asumsikan anda sudah cukup memahami bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
 
-***
-
-##### Klasifikasi Grafik
-
 Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} dengan tambahan dari berbagai sumber.
 
-Berdasarkan <span style="color: darkblue;">**Financial Times Visual Vocabulary**</span>, grafik dibagi ke dalam beberapa tipe antara lain:
+Berdasarkan <span style="color: green;">**Financial Times Visual Vocabulary**</span>, grafik dibagi ke dalam beberapa tipe antara lain:
 
 * Korelasi <br>
 * Peringkat <br>
 * Distribusi
 
-***
-
-##### Dataset
-
-Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset buatan. Sebagian besar grafik dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
-
-***
+Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
 
 ##### Palet Warna
 
@@ -68,9 +58,9 @@ Seperti yang sudah disebutkan sebelumnya, saya asumsikan anda sudah cukup memaha
 
 Pertama, instal terlebih dahulu (jika belum pernah diinstal sebelumnya) *package-package* yang akan digunakan dalam membuat grafik.
 
-`install.packages('tidyverse')`
-`install.packages('datasets')`
-`install.packages('gapminder')`
+`install.packages('tidyverse')`             
+`install.packages('datasets')`             
+`install.packages('gapminder')`             
 `install.packages('CGPfunctions')`      
 `install.packages('ggbump')`             
 `install.packages('ggalt')`            
@@ -88,6 +78,8 @@ Selanjutnya, *load* package yang sebelumnya sudah diinstal.
 ```{r, message=FALSE}
 
 library(tidyverse)    # untuk manupulasi, merapikan, & visualisasi data
+library(datasets)     # untuk mengakses iris dataset
+library(gapminder)    # untuk mengakses gapminder dataset
 library(CGPfunctions) # untuk membuat Slope Graph
 library(ggbump)       # untuk membuat Bump Chart
 library(ggalt)        # untuk membuat Dumbbell Plot
@@ -95,7 +87,6 @@ library(ggdist)       # untuk membuat Stat Dot Plot
 library(ggbeeswarm)   # untuk membuat Beeswarm Plot
 library(patchwork)    # untuk membuat Population Pyramid
 library(ggridges)     # untuk membuat Stat Density Ridges Plot
-
 
 ```
 
@@ -121,14 +112,11 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 ```
 
-Scatter Plot dan Bubble pada tipe grafik-korelasi dibuat menggunakan Iris Dataset. Sedangkan Column+Line Timeline, Connected Scatter Plot, serta XY Heatmap pada tipe grafik-korelasi menggunakan gapminder dataset
+Scatter Plot dan Bubble pada tipe grafik-korelasi dibuat menggunakan `iris` Dataset. Sedangkan Column + Line Timeline, Connected Scatter Plot, serta XY Heatmap pada tipe grafik-korelasi menggunakan `gapminder` dataset.
 
 ```{r dr for correlation, message=FALSE}
 
-library(datasets)
 data(iris)
-
-library(gapminder)
 data(gapminder)
 
 ```
@@ -269,7 +257,8 @@ df_for_cum_curve <- df_for_cum_curve %>%
 ***
 
 ### Penyiapan Palet Warna
-Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: darkblue;">**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target="blank"} tanpa harus menyalin code hex secara manual.
+
+Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: green;">**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"} tanpa harus menyalin code hex secara manual.
 
 ```{r palette for correlation}
 
@@ -279,7 +268,7 @@ palette_corr <-c('#75884b',
 
 ```
 
-Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style="color: darkblue;">**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. 
+Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style="color: green;">**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. 
 
 ```{r palette for ranking}
 
@@ -291,7 +280,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style="color: darkblue;">**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
+Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style="color: green;">**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
 
 ```{r palette for distribution}
 
@@ -308,6 +297,7 @@ palette_distr <-c('#4e3910',
 ### Penyiapan Tema Grafik
 
 Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
+
 ```{r}
 
 theme_corr <- theme_minimal() +
@@ -385,7 +375,7 @@ theme_distr <- theme_minimal() +
 
 ## **Korelasi**
 
-Tipe grafik-korelasi digunakan untuk menyajikan hubungan antar variabel.
+Tipe grafik-korelasi digunakan untuk menyajikan hubungan antara dua variabel atau lebih.
 
 ***
 
@@ -401,8 +391,8 @@ scatter_plot <- iris %>%
   scale_color_manual(values = palette_corr,
                      guide = 'none') +
   theme_corr +
-  xlab('Variable 1') +
-  ylab('Variable 2') +
+  xlab('Sepal Length') +
+  ylab('Sepal Width') +
   labs(title = 'Scatter Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -415,9 +405,9 @@ scatter_plot
 
 ***
 
-### Satter Plot with Linear Regression Line
+### Scatter Plot with Regression Line
 
-Pada scatter plot juga ditambahkan garis regresi linear dari 2 variabel yang disajikan.
+Pada scatter plot juga dapat ditambahkan garis regresi linear dari 2 variabel yang disajikan.
 
 ```{r scatter plot with linear regression line, message=FALSE, warning=FALSE}
 
@@ -431,8 +421,8 @@ scattet_plot_reg_line <- iris %>%
   scale_color_manual(values = palette_corr,
                      guide = 'none') +
   theme_corr +
-  xlab('Variable 1') +
-  ylab('Variable 2') +
+  xlab('Sepal Length') +
+  ylab('Sepal Width') +
   labs(title = 'scatterplot with Linear Regression Line',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -445,7 +435,7 @@ scattet_plot_reg_line
 
 ***
 
-### Column+Line Timeline
+### Column + Line Timeline
 
 ```{r column+line timeline}
 
@@ -467,7 +457,7 @@ col_line_tl <- gapminder %>%
                 label = 'Life Expectancy'),
             color = '#1e395f',
             vjust = -1) +
-  scale_x_continuous(limits = c(1945,2010),
+  scale_x_continuous(limits = c(1945,2015),
                      breaks = seq(1952,2007, by = 5)) +
   scale_y_continuous(limits = c(0,4000),
                      breaks = seq(0, 4000, by = 1000)) +
@@ -485,9 +475,9 @@ col_line_tl
 
 ***
 
-### Connceted Scatter Plot
+### Connected Scatter Plot
 
-```{r connected scatterplot}
+```{r connected scatter plot}
 
 con_scatter_plot <- gapminder %>%
   filter(country == "Indonesia") %>%
@@ -507,13 +497,13 @@ con_scatter_plot <- gapminder %>%
   theme_corr +
   xlab('Life Expectancy') +
   ylab('GDP Per Capita') +
-  labs(title = 'Connected Scatterplot',
+  labs(title = 'Connected Scatter Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
-```{r connected scatterplot print, echo=FALSE, out.width = "100%"}
+```{r connected   print, echo=FALSE, out.width = "100%"}
 con_scatter_plot
 ```
 
@@ -529,13 +519,15 @@ bubble <- iris %>%
              y = Sepal.Width,
              color = Species,
              size = Petal.Width)) +
-  geom_point(alpha = 0.8,
+  geom_point(alpha = 0.6,
              color = '#1e395f') +
   scale_size_area(max_size = 25,
                   guide = 'none') +
+  scale_x_continuous(limits = c(1952, 2007),
+                     breaks = seq(1952, 2007, by = 5)) +
   theme_corr +
-  xlab('Variable 1') +
-  ylab('Variable 2') +
+  xlab('Sepal Length') +
+  ylab('Sepal Width') +
   labs(title = 'Bubble',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -553,6 +545,7 @@ bubble
 ```{r xy heatmap, message=FALSE}
 
 xy_heatmap <- gapminder %>%
+  mutate(year = as.factor(year)) %>%
   group_by(continent, year) %>%
   summarize(MedlifeExp = round(median(lifeExp), 0)) %>%
   ggplot(aes(x = year,
@@ -562,11 +555,13 @@ xy_heatmap <- gapminder %>%
   geom_text(aes(label = MedlifeExp),
             size = 4,
             color = '#FFFFFF') +
-  scale_fill_gradient(name = 'Median Life Expectancy',low = '#75884b', high = '#1e5a46') +
+  scale_fill_gradient(name = 'Median Life Expectancy',
+                      low = '#75884b',
+                      high = '#1e5a46') +
   theme_corr +
   theme(legend.title = element_text(color = '#1e5a46'),
         legend.text = element_text(color = '#1e5a46'),
-        legend.position = 'top',
+        legend.position = 'bottom',
         legend.justification = 'left') +
   labs(title = 'XY Heatmap',
        subtitle = '',
@@ -1237,8 +1232,7 @@ cumulative_curve <- df_for_cum_curve %>%
              y = cumulative_val,
              group = var,
              color = var)) +
-  geom_smooth(size = 1.5,
-              se = FALSE) +
+  geom_line(size = 1.5) +
   geom_text(data = subset(df_for_cum_curve,year == '2022'),
             aes(label = var),
             hjust = -1) +
