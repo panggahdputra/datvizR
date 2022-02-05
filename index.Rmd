@@ -411,7 +411,7 @@ Pada scatter plot juga dapat ditambahkan garis regresi linear dari 2 variabel ya
 
 ```{r scatter plot with linear regression line, message=FALSE, warning=FALSE}
 
-scattet_plot_reg_line <- iris %>%
+scatter_plot_reg_line <- iris %>%
   ggplot(aes(x = Sepal.Length,
              y = Sepal.Width,
              color = Species)) +
@@ -423,14 +423,14 @@ scattet_plot_reg_line <- iris %>%
   theme_corr +
   xlab('Sepal Length') +
   ylab('Sepal Width') +
-  labs(title = 'scatterplot with Linear Regression Line',
+  labs(title = 'Scatter Plot with Linear Regression Line',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
 ```{r scatter plot with linear regression line print, echo=FALSE, out.width = "100%"}
-scattet_plot_reg_line
+scatter_plot_reg_line
 ```
 
 ***
@@ -523,6 +523,8 @@ bubble <- iris %>%
              color = '#1e395f') +
   scale_size_area(max_size = 25,
                   guide = 'none') +
+  scale_x_continuous(limits = c(4, 6),
+                     breaks = seq(4, 6, by = .5)) +
   scale_y_continuous(limits = c(2, 5),
                      breaks = seq(2, 5, by = .5)) +
   theme_corr +
@@ -733,8 +735,8 @@ ordered_dot_strip_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_ranking,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   stat_summary(fun = 'max',
                geom = "text",
                label = "max",
@@ -911,9 +913,9 @@ histogram <- main_df %>%
                  fill = '#178f92',
                  color = '#175f5d') +
   scale_x_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
-  scale_y_continuous(limits = c(0,15),
-                     breaks = c(0,5,10,15)) +
+                     breaks = seq(0, 10, by = 2)) +
+  scale_y_continuous(limits = c(0, 15),
+                     breaks = seq(0, 15, by = 5)) +
   theme_distr +
   ylab('number of data') +
   labs(title = 'Histogram',
@@ -966,8 +968,8 @@ dumbbell_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_x_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_x_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   xlab('min <<<value>>> max') +
   labs(title = 'Dot Plot (Dumbbell Plot)',
@@ -996,8 +998,8 @@ dot_strip_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   labs(title = 'Dot Strip Plot',
        subtitle = '',
@@ -1027,8 +1029,8 @@ stat_dot_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   labs(title = 'Stat Dot Plot',
        subtitle = '',
@@ -1058,8 +1060,8 @@ barcode_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   labs(title = 'Barcode Plot',
        subtitle = '',
@@ -1089,8 +1091,8 @@ box_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   labs(title = 'Box Plot',
        subtitle = '',
@@ -1119,8 +1121,8 @@ violin_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   labs(title = 'Violin Plot',
        subtitle = '',
@@ -1238,7 +1240,7 @@ cumulative_curve <- df_for_cum_curve %>%
             hjust = -1) +
   scale_color_manual(values = c('#d8c29d', '#4fb6ca'),
                      guide = 'none') +
-  scale_y_continuous(limits = c(0,500)) +
+  scale_y_continuous(limits = c(0, 500)) +
   theme_distr +
   ylab('cumulative value') +
   labs(title = 'Cumulative Curve',
@@ -1262,10 +1264,10 @@ freq_polygons <- main_df %>%
   geom_freqpoly(bins = 25,
                 size = 1.5,
                 color = '#4fb6ca') +
-  scale_x_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
-  scale_y_continuous(limits = c(0,15),
-                     breaks = c(0,5,10,15)) +
+  scale_x_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
+  scale_y_continuous(limits = c(0, 15),
+                     breaks = seq(0, 15, by = 5)) +
   theme_distr +
   ylab('frequency') +
   labs(title = 'Frequency Polygons',
@@ -1297,8 +1299,8 @@ beeswarm <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   labs(title = 'Beeswarm',
        subtitle = '',
@@ -1323,8 +1325,8 @@ density_plot <- main_df %>%
   geom_density(alpha = 0.9,
                fill = '#845d29',
                color = '#4e3910') +
-  scale_x_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_x_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   ylab('density') +
   labs(title = 'Density Plot',
@@ -1359,8 +1361,8 @@ stat_density_ridges_plot <- main_df %>%
                      guide = 'none') +
   scale_fill_manual(values = palette_distr,
                     guide = 'none') +
-  scale_x_continuous(limits = c(0,10),
-                     breaks = c(0,2,4,6,8,10)) +
+  scale_x_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2)) +
   theme_distr +
   labs(title = 'Stat Density Ridges Plot',
        subtitle = '',
