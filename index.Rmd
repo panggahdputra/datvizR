@@ -523,8 +523,8 @@ bubble <- iris %>%
              color = '#1e395f') +
   scale_size_area(max_size = 25,
                   guide = 'none') +
-  scale_x_continuous(limits = c(1952, 2007),
-                     breaks = seq(1952, 2007, by = 5)) +
+  scale_y_continuous(limits = c(2, 5),
+                     breaks = seq(2, 5, by = .5)) +
   theme_corr +
   xlab('Sepal Length') +
   ylab('Sepal Width') +
@@ -1379,6 +1379,10 @@ stat_density_ridges_plot
 * [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"}
   
 * [tidyverse](https://tidyverse.tidyverse.org/){target="blank"}
+
+* [gapminder dataset](https://github.com/jennybc/gapminder){target="blank"}
+
+* [iris dataset](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html){target="blank"}
   
 * [CGPfunctions](https://github.com/ibecav/CGPfunctions){target="blank"}
   
