@@ -78,6 +78,7 @@ Selanjutnya, *load* package yang sebelumnya sudah diinstal.
 library(tidyverse)    # untuk manupulasi, merapikan, & visualisasi data
 library(datasets)     # untuk mengakses iris dataset
 library(gapminder)    # untuk mengakses gapminder dataset
+library(geomtextpath) # untuk membuat Line Text
 library(CGPfunctions) # untuk membuat Slope Graph
 library(ggbump)       # untuk membuat Bump Chart
 library(ggalt)        # untuk membuat Dumbbell Plot
@@ -110,7 +111,7 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 ```
 
-Scatter Plot dan Bubble pada tipe grafik-korelasi dibuat menggunakan `iris` Dataset. Sedangkan Column + Line Timeline, Connected Scatter Plot, serta XY Heatmap pada tipe grafik-korelasi menggunakan `gapminder` dataset.
+Scatter Plot dan Scatter Plot with Regression Line pada tipe grafik-korelasi dibuat menggunakan `iris` Dataset. Sedangkan Column + Line Timeline, Connected Scatter Plot, Bubble, serta XY Heatmap pada tipe grafik-korelasi menggunakan `gapminder` dataset.
 
 ```{r dr for correlation, message=FALSE}
 
@@ -446,20 +447,12 @@ col_line_tl <- gapminder %>%
   ggplot(aes(x = year,
              y = gdpPercap)) +
   geom_col(fill = '#d8b847') +
-  geom_line(aes(x = year,
-                y = lifeExp*20),
-            size = 2,
-            color = '#1e395f') +
-  geom_text(data = gapminder %>%
-              filter(country == "Indonesia",
-                     year == last(year)),
-            aes(x = year,
-                y = lifeExp*20,
-                fontface = 2,
-                label = 'Life Expectancy'),
-            color = '#1e395f',
-            vjust = -1) +
-  scale_x_continuous(limits = c(1945, 2015),
+  geom_textline(aes(x = year,
+                    y = lifeExp*20),
+                label = "Life Expextancy", size = 3, vjust = -0.5,
+                linewidth = 1, linecolor = "#1e395f", linetype = 2, 
+                color = "#1e395f") +
+  scale_x_continuous(limits = c(1949, 2011),
                      breaks = seq(1952, 2007, by = 5)) +
   scale_y_continuous(limits = c(0, 4000),
                      breaks = seq(0, 4000, by = 1000)) +
@@ -515,23 +508,23 @@ con_scatter_plot
 
 ```{r bubble corellation}
 
-bubble <- iris %>%
-  filter(Species == "setosa") %>%
-  ggplot(aes(x = Sepal.Length,
-             y = Sepal.Width,
-             color = Species,
-             size = Petal.Width)) +
-  geom_point(alpha = 0.6,
+bubble <- gapminder %>%
+  filter(continent == "Oceania") %>%
+  ggplot(aes(x = lifeExp,
+             y = gdpPercap,
+             color = country,
+             size = pop)) +
+  geom_point(alpha = 0.5,
              color = '#1e395f') +
   scale_size_area(max_size = 25,
                   guide = 'none') +
-  scale_x_continuous(limits = c(4, 6),
-                     breaks = seq(4, 6, by = .5)) +
-  scale_y_continuous(limits = c(2, 5),
-                     breaks = seq(2, 5, by = .5)) +
+  scale_x_continuous(limits = c(65, 85),
+                     breaks = seq(65, 85, by = 5)) +
+  scale_y_continuous(limits = c(5000, 40000),
+                     breaks = seq(10000, 40000, by = 10000)) +
   theme_corr +
-  xlab('Sepal Length') +
-  ylab('Sepal Width') +
+  xlab('Life Expectancy') +
+  ylab('GDP Per Capita') +
   labs(title = 'Bubble',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -1387,7 +1380,9 @@ stat_density_ridges_plot
 * [gapminder dataset](https://github.com/jennybc/gapminder){target="blank"}
 
 * [iris dataset](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html){target="blank"}
-  
+
+* [geomtextpath](https://github.com/AllanCameron/geomtextpath){target="blank"}
+
 * [CGPfunctions](https://github.com/ibecav/CGPfunctions){target="blank"}
   
 * [ggbump](https://github.com/davidsjoberg/ggbump){target="blank"}
