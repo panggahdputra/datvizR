@@ -1,13 +1,13 @@
 ---
 title: "**Visualisasi Data dengan R<br>**"
-subtitle: "Kumpulan kode untuk membuat berbagai grafik <br> menggunakan bahasa pemrograman R<br><br>"
+subtitle: 'Kumpulan kode untuk membuat berbagai grafik <br> menggunakan bahasa pemrograman R<br><br>'
 author: "*Ditulis oleh : Panggah D. Putra*"
 date: "*Update terakhir : `r format(Sys.time(), '%d %B %Y')`*"
 output:
   html_document:
     toc: true
     toc_float:
-      collapsed: false
+      collapsed: true
     toc_depth: 3
     theme: lumen
     highlight: tango
@@ -32,17 +32,17 @@ Jika anda membuka website ini dengan *handphone*, demi tampilan yang lebih nyama
 
 Sebelum melangkah lebih jauh, saya asumsikan anda sudah cukup memahami bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
 
-Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"} dengan tambahan dari berbagai sumber.
+Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target='blank'} dengan tambahan dari berbagai sumber.
 
-Berdasarkan <span style="color: green;">**Financial Times Visual Vocabulary**</span>, grafik dibagi ke dalam beberapa tipe antara lain:
+Berdasarkan <span style='color: green;'>**Financial Times Visual Vocabulary**</span>, grafik dibagi ke dalam beberapa tipe antara lain:
 
 * Korelasi <br>
 * Peringkat <br>
 * Distribusi
 
-Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target="blank"} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target="blank"}.
+Grafik di dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target='blank'} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target='blank'}.
 
-Grafik di dalam website ini dibuat dengan menggunakan palet warna yang berasal dari [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}. 
+Grafik di dalam website ini dibuat dengan menggunakan palet warna yang berasal dari [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'}. 
 
 ***
 
@@ -257,7 +257,7 @@ df_for_cum_curve <- df_for_cum_curve %>%
 
 ### Penyiapan Palet Warna
 
-Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: green;">**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target="blank"}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"} tanpa harus menyalin code hex secara manual.
+Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style='color: green;'>**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target='blank'}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'} tanpa harus menyalin code hex secara manual.
 
 ```{r palette for correlation}
 
@@ -267,7 +267,7 @@ palette_corr <-c('#75884b',
 
 ```
 
-Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style="color: green;">**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target="blank"}. 
+Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style='color: green;'>**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target='blank'}. 
 
 ```{r palette for ranking}
 
@@ -279,7 +279,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style="color: green;">**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target="blank"}.
+Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style='color: green;'>**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target='blank'}.
 
 ```{r palette for distribution}
 
@@ -400,7 +400,7 @@ scatter_plot <- iris %>%
 
 ```
 
-```{r scatter plot print, echo=FALSE, out.width = "100%"}
+```{r scatter plot print, echo=FALSE, out.width = '100%'}
 scatter_plot
 ```
 
@@ -417,7 +417,7 @@ scatter_plot_reg_line <- iris %>%
              y = Sepal.Width,
              color = Species)) +
   geom_point(size = 4) +
-  geom_smooth(method = "lm",
+  geom_smooth(method = 'lm',
               se = FALSE) +
   scale_color_manual(values = palette_corr,
                      guide = 'none') +
@@ -432,7 +432,7 @@ scatter_plot_reg_line <- iris %>%
 
 ```
 
-```{r scatter plot with linear regression line print, echo=FALSE, out.width = "100%"}
+```{r scatter plot with linear regression line print, echo=FALSE, out.width = '100%'}
 scatter_plot_reg_line
 ```
 
@@ -443,15 +443,15 @@ scatter_plot_reg_line
 ```{r column+line timeline}
 
 col_line_tl <- gapminder %>%
-  filter(country == "Indonesia") %>%
+  filter(country == 'Indonesia') %>%
   ggplot(aes(x = year,
              y = gdpPercap)) +
   geom_col(fill = '#d8b847') +
   geom_textline(aes(x = year,
                     y = lifeExp*20),
-                label = "Life Expextancy", size = 3, vjust = -0.5,
-                linewidth = 1, linecolor = "#1e395f", linetype = 2, 
-                color = "#1e395f") +
+                label = 'Life Expextancy', size = 3, vjust = -0.5,
+                linewidth = 1, linecolor = '#1e395f', linetype = 2, 
+                color = '#1e395f') +
   scale_x_continuous(limits = c(1949, 2011),
                      breaks = seq(1952, 2007, by = 5)) +
   scale_y_continuous(limits = c(0, 4000),
@@ -464,7 +464,7 @@ col_line_tl <- gapminder %>%
 
 ```
 
-```{r column+line timeline print, echo=FALSE, out.width = "100%"}
+```{r column+line timeline print, echo=FALSE, out.width = '100%'}
 col_line_tl
 ```
 
@@ -475,7 +475,7 @@ col_line_tl
 ```{r connected scatter plot}
 
 con_scatter_plot <- gapminder %>%
-  filter(country == "Indonesia") %>%
+  filter(country == 'Indonesia') %>%
   ggplot(aes(x = lifeExp,
              y = gdpPercap)) +
   geom_path(size = 2,
@@ -498,7 +498,7 @@ con_scatter_plot <- gapminder %>%
 
 ```
 
-```{r connected   print, echo=FALSE, out.width = "100%"}
+```{r connected   print, echo=FALSE, out.width = '100%'}
 con_scatter_plot
 ```
 
@@ -509,7 +509,7 @@ con_scatter_plot
 ```{r bubble corellation}
 
 bubble <- gapminder %>%
-  filter(continent == "Oceania") %>%
+  filter(continent == 'Oceania') %>%
   ggplot(aes(x = lifeExp,
              y = gdpPercap,
              color = country,
@@ -531,7 +531,7 @@ bubble <- gapminder %>%
 
 ```
 
-```{r bubble corellation print, echo=FALSE, out.width = "100%"}
+```{r bubble corellation print, echo=FALSE, out.width = '100%'}
 bubble
 ```
 
@@ -566,7 +566,7 @@ xy_heatmap <- gapminder %>%
 
 ```
 
-```{r xy_heatmap print, echo=FALSE, out.width = "100%"}
+```{r xy_heatmap print, echo=FALSE, out.width = '100%'}
 xy_heatmap
 ```
 
@@ -603,7 +603,7 @@ ordered_bar <- main_df %>%
 
 ```
 
-```{r ordered bar print, echo=FALSE, out.width = "100%"}
+```{r ordered bar print, echo=FALSE, out.width = '100%'}
 ordered_bar
 ```
 
@@ -634,7 +634,7 @@ ordered_column <- main_df %>%
 
 ```
 
-```{r ordered column print, echo=FALSE, out.width = "100%"}
+```{r ordered column print, echo=FALSE, out.width = '100%'}
 ordered_column
 ```
 
@@ -670,7 +670,7 @@ ordered_prop_symbol <- main_df %>%
 
 ```
 
-```{r ordered prop symbol print, echo=FALSE, out.width = "100%"}
+```{r ordered prop symbol print, echo=FALSE, out.width = '100%'}
 ordered_prop_symbol
 ```
 
@@ -690,8 +690,8 @@ rank_dot_strip_plot <- df_for_rank_dotstrip %>%
   geom_text(aes(label = Variable),
             size = 3,
             color = 'white') +
-  stat_summary(fun = "median",
-               geom = "point",
+  stat_summary(fun = 'median',
+               geom = 'point',
                shape = 124,
                size = 10, ) + 
   scale_color_manual(values = palette_ranking,
@@ -708,7 +708,7 @@ rank_dot_strip_plot <- df_for_rank_dotstrip %>%
 
 ```
 
-```{r ranking dot strip plot print, echo=FALSE, out.width = "100%"}
+```{r ranking dot strip plot print, echo=FALSE, out.width = '100%'}
 rank_dot_strip_plot
 ```
 
@@ -733,8 +733,8 @@ ordered_dot_strip_plot <- main_df %>%
   scale_y_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
   stat_summary(fun = 'max',
-               geom = "text",
-               label = "max",
+               geom = 'text',
+               label = 'max',
                size = 5,
                vjust = -1) + 
   theme_ranking +
@@ -745,7 +745,7 @@ ordered_dot_strip_plot <- main_df %>%
 
 ```
 
-```{r ordered dot strip plot print, echo=FALSE, out.width = "100%"}
+```{r ordered dot strip plot print, echo=FALSE, out.width = '100%'}
 ordered_dot_strip_plot
 ```
 
@@ -768,9 +768,9 @@ slope_graph <- CGPfunctions::newggslopegraph(
   TitleTextSize = 14,
   SubTitleTextSize = 10,
   CaptionTextSize = 8,
-  TitleJustify = "center",
-  SubTitleJustify = "center",
-  CaptionJustify = "right",
+  TitleJustify = 'center',
+  SubTitleJustify = 'center',
+  CaptionJustify = 'right',
   LineThickness = 1.2,
   LineColor = palette_ranking,
   DataTextSize = 5,
@@ -788,7 +788,7 @@ slope_graph <- CGPfunctions::newggslopegraph(
 
 ```
 
-```{r slope graph print, echo=FALSE, out.width = "100%"}
+```{r slope graph print, echo=FALSE, out.width = '100%'}
 slope_graph
 ```
 
@@ -842,7 +842,7 @@ lollipop <- main_df %>%
 
 ```
 
-```{r lollipop print, echo=FALSE, out.width = "100%"}
+```{r lollipop print, echo=FALSE, out.width = '100%'}
 lollipop
 ```
 
@@ -885,7 +885,7 @@ bump <- df_for_bump %>%
 
 ```
 
-```{r bump print, echo=FALSE, out.width = "100%"}
+```{r bump print, echo=FALSE, out.width = '100%'}
 bump
 ```
 
@@ -919,7 +919,7 @@ histogram <- main_df %>%
 
 ```
 
-```{r histograms print, echo=FALSE, out.width = "100%"}
+```{r histograms print, echo=FALSE, out.width = '100%'}
 histogram
 ```
 
@@ -973,7 +973,7 @@ dumbbell_plot <- main_df %>%
 
 ```
 
-```{r dumbbell plot print, echo=FALSE, out.width = "100%"}
+```{r dumbbell plot print, echo=FALSE, out.width = '100%'}
 dumbbell_plot
 ```
 
@@ -1002,7 +1002,7 @@ dot_strip_plot <- main_df %>%
 
 ```
 
-```{r dot strip plot print, echo=FALSE, out.width = "100%"}
+```{r dot strip plot print, echo=FALSE, out.width = '100%'}
 dot_strip_plot
 ```
 
@@ -1033,7 +1033,7 @@ stat_dot_plot <- main_df %>%
 
 ```
 
-```{r stat dot plot print, echo=FALSE, out.width = "100%"}
+```{r stat dot plot print, echo=FALSE, out.width = '100%'}
 stat_dot_plot
 ```
 
@@ -1064,7 +1064,7 @@ barcode_plot <- main_df %>%
 
 ```
 
-```{r barcode plot print, echo=FALSE, out.width = "100%"}
+```{r barcode plot print, echo=FALSE, out.width = '100%'}
 barcode_plot
 ```
 
@@ -1095,7 +1095,7 @@ box_plot <- main_df %>%
 
 ```
 
-```{r box plot print, echo=FALSE, out.width = "100%"}
+```{r box plot print, echo=FALSE, out.width = '100%'}
 box_plot
 ```
 
@@ -1125,7 +1125,7 @@ violin_plot <- main_df %>%
 
 ```
 
-```{r violin plot print, echo=FALSE, out.width = "100%"}
+```{r violin plot print, echo=FALSE, out.width = '100%'}
 violin_plot
 ```
 
@@ -1147,7 +1147,7 @@ female_side <- df_for_pop_pyramid %>%
   scale_x_continuous(limits = c(0, 50)) +
   theme_minimal() +
   theme(
-    plot.title.position = "plot",
+    plot.title.position = 'plot',
     plot.subtitle = element_text(color = '#4fb6ca',
                                  face = 'bold'),
     axis.title.x = element_text(color = '#1d1f54',
@@ -1198,7 +1198,7 @@ male_side <- df_for_pop_pyramid %>%
 
 pop_pyramid <- (male_side|female_side) +
   patchwork::plot_annotation(
-    title = "Population Pyramid",
+    title = 'Population Pyramid',
     caption = 'visualization by PanggahDPutra, 2022',
     theme = theme(
       plot.title = element_text(color = '#1d1f54',
@@ -1213,7 +1213,7 @@ pop_pyramid <- (male_side|female_side) +
 
 ```
 
-```{r pop pyramid print, echo=FALSE, out.width = "100%"}
+```{r pop pyramid print, echo=FALSE, out.width = '100%'}
 pop_pyramid
 ```
 
@@ -1244,7 +1244,7 @@ cumulative_curve <- df_for_cum_curve %>%
 
 ```
 
-```{r cum curve print, echo=FALSE, message=FALSE, out.width = "100%"}
+```{r cum curve print, echo=FALSE, message=FALSE, out.width = '100%'}
 cumulative_curve
 ```
 
@@ -1271,7 +1271,7 @@ freq_polygons <- main_df %>%
 
 ```
 
-```{r freq poly print, echo=FALSE, out.width = "100%"}
+```{r freq poly print, echo=FALSE, out.width = '100%'}
 freq_polygons
 ```
 
@@ -1303,7 +1303,7 @@ beeswarm <- main_df %>%
 
 ```
 
-```{r beeswarm print, echo=FALSE, out.width = "100%"}
+```{r beeswarm print, echo=FALSE, out.width = '100%'}
 beeswarm
 ```
 
@@ -1330,7 +1330,7 @@ density_plot <- main_df %>%
 
 ```
 
-```{r density plot print, echo=FALSE, out.width = "100%"}
+```{r density plot print, echo=FALSE, out.width = '100%'}
 density_plot
 ```
 
@@ -1365,7 +1365,7 @@ stat_density_ridges_plot <- main_df %>%
 
 ```
 
-```{r stat density ridges plot print, echo=FALSE, message=FALSE, out.width = "100%"}
+```{r stat density ridges plot print, echo=FALSE, message=FALSE, out.width = '100%'}
 stat_density_ridges_plot
 ```
 
@@ -1373,32 +1373,32 @@ stat_density_ridges_plot
 
 ## **Referensi**
 
-* [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target="blank"}
+* [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target='blank'}
   
-* [tidyverse](https://tidyverse.tidyverse.org/){target="blank"}
+* [tidyverse](https://tidyverse.tidyverse.org/){target='blank'}
 
-* [gapminder dataset](https://github.com/jennybc/gapminder){target="blank"}
+* [gapminder dataset](https://github.com/jennybc/gapminder){target='blank'}
 
-* [iris dataset](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html){target="blank"}
+* [iris dataset](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html){target='blank'}
 
-* [geomtextpath](https://github.com/AllanCameron/geomtextpath){target="blank"}
+* [geomtextpath](https://github.com/AllanCameron/geomtextpath){target='blank'}
 
-* [CGPfunctions](https://github.com/ibecav/CGPfunctions){target="blank"}
+* [CGPfunctions](https://github.com/ibecav/CGPfunctions){target='blank'}
   
-* [ggbump](https://github.com/davidsjoberg/ggbump){target="blank"}
+* [ggbump](https://github.com/davidsjoberg/ggbump){target='blank'}
   
-* [ggalt](https://github.com/hrbrmstr/ggalt){target="blank"}
+* [ggalt](https://github.com/hrbrmstr/ggalt){target='blank'}
   
-* [ggdist](https://github.com/mjskay/ggdist/){target="blank"}
+* [ggdist](https://github.com/mjskay/ggdist/){target='blank'}
   
-* [ggbeeswarm](https://github.com/eclarke/ggbeeswarm){target="blank"}
+* [ggbeeswarm](https://github.com/eclarke/ggbeeswarm){target='blank'}
   
-* [patchwork](https://github.com/thomasp85/patchwork){target="blank"}
+* [patchwork](https://github.com/thomasp85/patchwork){target='blank'}
 
-* [ggridges](https://wilkelab.org/ggridges/){target="blank"}
+* [ggridges](https://wilkelab.org/ggridges/){target='blank'}
   
-* [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target="blank"}
+* [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'}
     
-* [flipbook_script.R](https://osf.io/vt2ny/){target="blank"}
+* [flipbook_script.R](https://osf.io/vt2ny/){target='blank'}
   
-* [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots){target="blank"}
+* [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots){target='blank'}
