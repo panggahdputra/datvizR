@@ -36,6 +36,7 @@ Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financia
 
 Berdasarkan <span style='color: green;'>**Financial Times Visual Vocabulary**</span>, grafik dibagi ke dalam beberapa tipe antara lain:
 
+* Deviasi <br>
 * Korelasi <br>
 * Peringkat <br>
 * Distribusi
@@ -56,9 +57,11 @@ Seperti yang sudah disebutkan sebelumnya, saya asumsikan anda sudah cukup memaha
 
 Pertama, instal terlebih dahulu (jika belum pernah diinstal sebelumnya) *package-package* yang akan digunakan dalam membuat grafik.
 
-`install.packages('tidyverse')`             
+`install.packages('tidyverse')`   
+`install.packages('scales')`        
 `install.packages('datasets')`             
-`install.packages('gapminder')`             
+`install.packages('gapminder')`   
+`install.packages('geomtextpath')`      
 `install.packages('CGPfunctions')`      
 `install.packages('ggbump')`             
 `install.packages('ggalt')`            
@@ -76,6 +79,7 @@ Selanjutnya, *load* package yang sebelumnya sudah diinstal.
 ```{r, message=FALSE}
 
 library(tidyverse)    # untuk manupulasi, merapikan, & visualisasi data
+library(scales)       # untuk manipulasi data
 library(datasets)     # untuk mengakses iris dataset
 library(gapminder)    # untuk mengakses gapminder dataset
 library(geomtextpath) # untuk membuat Line Text
@@ -111,12 +115,67 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 ```
 
-Scatter Plot dan Scatter Plot with Regression Line pada tipe grafik-korelasi dibuat menggunakan `iris` Dataset. Sedangkan Column + Line Timeline, Connected Scatter Plot, Bubble, serta XY Heatmap pada tipe grafik-korelasi menggunakan `gapminder` dataset.
+Seluruh grafik pada tipek grafik-korelasi menggunakan `gapminder` dataset dengan beberapa proses manipulasi data. Column + Line Timeline, Connected Scatter Plot, Bubble, serta XY Heatmap pada tipe grafik-korelasi juga menggunakan `gapminder` dataset.
+
+```{r gapminder dataset, message=FALSE}
+
+data(gapminder)
+
+```
+
+```{r df for diverging bar, message=FALSE}
+
+diver_bar_df <- gapminder %>%
+  filter(continent == "Asia",
+         year == 2007) %>%
+  mutate(median_lifeExp = median(lifeExp),
+         lifeExp_gap = lifeExp - median_lifeExp) %>%
+  filter(between(lifeExp_gap, -12, 12))
+
+```
+
+```{r df for diverging stacked bar, message=FALSE}
+
+diver_stack_bar_df <- gapminder %>%
+  filter(year == 2007) %>%
+  mutate(median_lifeExp = median(lifeExp)) %>%
+  group_by(continent) %>%
+  summarize(below_med = sum(lifeExp < median_lifeExp)/n(),
+            beyond_med = sum(lifeExp >= median_lifeExp)/n()) %>%
+  pivot_longer(!continent, names_to = 'cluster', values_to = 'perc_country') %>%
+  mutate(perc_country = if_else(cluster == 'below_med', -perc_country, perc_country))
+
+```
+
+```{r df for spine, message=FALSE}
+
+spine_df <- gapminder %>%
+  filter(year == 2007) %>%
+  mutate(median_lifeExp = median(lifeExp)) %>%
+  group_by(continent) %>%
+  summarize(below_med = sum(lifeExp < median_lifeExp),
+            beyond_med = sum(lifeExp >= median_lifeExp)) %>%
+  pivot_longer(!continent, names_to = 'cluster', values_to = 'perc_country') %>%
+  mutate(perc_country = if_else(cluster == 'below_med', -perc_country, perc_country))
+
+```
+
+```{r df for surplus/deficit filled line, message=FALSE}
+
+filled_line_df <- gapminder %>%
+  filter(continent == 'Asia') %>%
+  group_by(year) %>%
+  mutate(median_gdp = median(gdpPercap)) %>%
+  mutate(gdp_gap = gdpPercap - median_gdp) %>%
+  filter(country == 'Jordan')
+
+```
+
+Scatter Plot dan Scatter Plot with Regression Line pada tipe grafik-korelasi dibuat menggunakan `iris` Dataset.
 
 ```{r dr for correlation, message=FALSE}
 
 data(iris)
-data(gapminder)
 
 ```
 
@@ -257,7 +316,9 @@ df_for_cum_curve <- df_for_cum_curve %>%
 
 ### Penyiapan Palet Warna
 
-Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style='color: green;'>**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target='blank'}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'} tanpa harus menyalin code hex secara manual.
+Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-deviasi, palet warna disalin secara manua dari <span style='color: green;'>**Tiepolo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#tieplolo){target='blank'}
+
+Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style='color: green;'>**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target='blank'}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'} tanpa harus menyalin code hex secara manual.
 
 ```{r palette for correlation}
 
@@ -295,9 +356,39 @@ palette_distr <-c('#4e3910',
 
 ### Penyiapan Tema Grafik
 
-Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
+Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-deviasi, tema yang digunakan adalah tema `theme_dev` di bawah ini.
 
-```{r}
+```{r theme for deviation}
+
+theme_dev <- theme_minimal() +
+  theme(
+    plot.title = element_text(color = '#802417',
+                              hjust = 0.5,
+                              face = 'bold'),
+    plot.subtitle = element_text(color = '#802417',
+                                 hjust = 0.5),
+    plot.caption = element_text(color = '#802417',
+                                hjust = 1),
+    axis.title = element_text(color = '#802417',
+                              face = 'bold'),
+    axis.title.y = element_blank(),
+    axis.text = element_text(color = '#802417',
+                             face = 'bold'),
+    axis.text.x = element_blank(),
+    legend.position = 'none',
+    panel.background = element_rect(fill = '#fffffe',
+                                    color = NA),
+    plot.background = element_rect(fill = '#fffffe',
+                                   color = 'lightblue')
+  )
+
+```
+
+
+
+Untuk mempercantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
+
+```{r theme for correlation}
 
 theme_corr <- theme_minimal() +
   theme(
@@ -322,7 +413,7 @@ theme_corr <- theme_minimal() +
 
 Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
 
-```{r theme for rangking}
+```{r theme for ranking}
 
 theme_ranking <- theme_minimal() +
   theme(
@@ -368,6 +459,171 @@ theme_distr <- theme_minimal() +
                                    color = 'lightblue')
   )
 
+```
+
+***
+
+## **Deviasi**
+
+Tipe grafik-deviasi digunakan untuk menekankan variasi positif/negatif dari titik referensi tertentu. Tipe grafik-deviasi juga dapat digunakan untuk menunjukkan sentimen positif/netral/negatif.
+
+***
+
+### Diverging Bar
+
+```{r diverging bar}
+
+diverging_bar <- diver_bar_df %>%
+  ggplot(aes(x = lifeExp_gap,
+             y = reorder(country, lifeExp_gap),
+             fill = lifeExp_gap)) +
+  geom_col(fill = if_else(diver_bar_df$lifeExp_gap > 0,
+                          '#2b5851',
+                          '#ce9344')) +
+  geom_text(aes(label = round(lifeExp_gap, 0),
+                hjust = ifelse(lifeExp_gap > 0, 1.1, -.1)),
+            size = 2.5,
+            fontface = 'bold',
+            color = 'white') +
+  geom_textvline(xintercept = 0,
+                 label = 'Median Life Expectancy',
+                 size = 3,
+                 vjust = -0.5,
+                 hjust = .8,
+                 linewidth = 1,
+                 linecolor = '#802417',
+                 linetype = 2, 
+                 color = '#802417') +
+  theme_dev +
+  xlab('Life Expectancy gap') +
+  labs(title = 'Diverging Bar',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r diverging bar print, echo=FALSE, out.width = '100%'}
+diverging_bar
+```
+
+***
+
+### Diverging Stacked Bar
+
+```{r diverging stacked bar}
+
+diverging_stacked_bar <- diver_stack_bar_df %>%
+  ggplot(aes(x = perc_country,
+             y = continent,
+             fill = cluster)) + 
+  geom_col(fill = if_else(diver_stack_bar_df$perc_country > 0,
+                          '#2b5851',
+                          '#ce9344')) +
+  geom_text(aes(label = scales::percent(abs(perc_country), 2),
+                hjust = ifelse(perc_country > 0, 1.1, -.1)),
+            size = 5,
+            fontface = 'bold',
+            color = 'white') +
+  geom_textvline(xintercept = 0,
+                 label = 'Median Life Expectancy',
+                 size = 3,
+                 vjust = -0.5,
+                 hjust = .1,
+                 linewidth = 1,
+                 linecolor = '#802417',
+                 linetype = 2, 
+                 color = '#802417') +
+  theme_dev +
+  xlab('Number of Country (in percent)') +
+  labs(title = 'Diverging Stacked Bar',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r diverging stacked bar print, echo=FALSE, out.width = '100%'}
+diverging_stacked_bar
+```
+
+***
+
+### Spine
+
+```{r spine}
+
+spine <- spine_df %>%
+  ggplot(aes(x = perc_country,
+             y = continent,
+             fill = cluster)) + 
+  geom_col(fill = if_else(diver_stack_bar_df$perc_country > 0,
+                          '#2b5851',
+                          '#ce9344')) +
+  geom_text(aes(label = abs(perc_country),
+                hjust = ifelse(perc_country > 0, -.1, 1.1)),
+            size = 4,
+            fontface = 'bold',
+            color = '#2b5851') +
+  geom_textvline(xintercept = 0,
+                 label = 'Median Life Expectancy',
+                 size = 3,
+                 vjust = -0.5,
+                 hjust = .2,
+                 linewidth = 1,
+                 linecolor = '#802417',
+                 linetype = 2, 
+                 color = '#802417') +
+  scale_x_continuous(limits = c(-48, 48)) +
+  theme_dev +
+  xlab('Number of Country') +
+  labs(title = 'Spine',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+```
+
+```{r spine print, echo=FALSE, out.width = '100%'}
+spine
+```
+
+***
+
+### Surplus/Deficit Filled Line
+
+```{r surplus deficit filled line}
+
+surplus_deficit_filled_line <- filled_line_df %>%
+  ggplot(aes(x = year,
+             y = gdp_gap)) +
+  geom_area(color ='#2b5851',
+            size = 1.2,
+            fill = '#ce9344') +
+  geom_texthline(yintercept = 0,
+                 label = 'Median GDP Per Capita',
+                 size = 3,
+                 vjust = 1,
+                 hjust = .1,
+                 linewidth = 1,
+                 linecolor = '#802417',
+                 linetype = 2, 
+                 color = '#802417') +
+  scale_x_continuous(limits = c(1952, 2007),
+                     breaks = seq(1952, 2007, by = 5)) +
+  theme_dev +
+  theme(
+    axis.title.y = element_text(color = '#802417',
+                              face = 'bold',
+                              angle = 90),
+    axis.text.x = element_text(color = '#802417',
+                             face = 'bold')
+  ) +
+  ylab('GDP Per Capita gap') +
+  labs(title = 'Surplus/Deficit Filled Line',
+       subtitle = '',
+       caption = 'visualization by PanggahDPutra, 2022')
+
+```
+
+```{r surplus deficit filled line print, echo=FALSE, out.width = '100%'}
+surplus_deficit_filled_line
 ```
 
 ***
