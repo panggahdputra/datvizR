@@ -119,7 +119,7 @@ Seluruh grafik pada tipek grafik-korelasi menggunakan `gapminder` dataset dengan
 
 ```{r gapminder dataset, message=FALSE}
 
-data(gapminder)
+head(gapminder, 5)
 
 ```
 
@@ -175,7 +175,7 @@ Scatter Plot dan Scatter Plot with Regression Line pada tipe grafik-korelasi dib
 
 ```{r dr for correlation, message=FALSE}
 
-data(iris)
+head(iris, 5)
 
 ```
 
@@ -516,23 +516,24 @@ diverging_stacked_bar <- diver_stack_bar_df %>%
   ggplot(aes(x = perc_country,
              y = continent,
              fill = cluster)) + 
-  geom_col(fill = if_else(diver_stack_bar_df$perc_country > 0,
+  geom_col(width = .6,
+           fill = if_else(diver_stack_bar_df$perc_country > 0,
                           '#2b5851',
                           '#ce9344')) +
-  geom_text(aes(label = scales::percent(abs(perc_country), 2),
-                hjust = ifelse(perc_country > 0, 1.1, -.1)),
-            size = 5,
-            fontface = 'bold',
-            color = 'white') +
   geom_textvline(xintercept = 0,
                  label = 'Median Life Expectancy',
                  size = 3,
                  vjust = -0.5,
-                 hjust = .1,
+                 hjust = .3,
                  linewidth = 1,
                  linecolor = '#802417',
                  linetype = 2, 
                  color = '#802417') +
+  geom_text(aes(label = scales::percent(abs(perc_country), 2),
+                hjust = ifelse(perc_country > 0, 1.1, -.1)),
+            size = 4,
+            fontface = 'bold',
+            color = 'white') +
   theme_dev +
   xlab('Number of Country (in percent)') +
   labs(title = 'Diverging Stacked Bar',
@@ -555,7 +556,8 @@ spine <- spine_df %>%
   ggplot(aes(x = perc_country,
              y = continent,
              fill = cluster)) + 
-  geom_col(fill = if_else(diver_stack_bar_df$perc_country > 0,
+  geom_col(width = .6,
+           fill = if_else(diver_stack_bar_df$perc_country > 0,
                           '#2b5851',
                           '#ce9344')) +
   geom_text(aes(label = abs(perc_country),
@@ -567,7 +569,7 @@ spine <- spine_df %>%
                  label = 'Median Life Expectancy',
                  size = 3,
                  vjust = -0.5,
-                 hjust = .2,
+                 hjust = .3,
                  linewidth = 1,
                  linecolor = '#802417',
                  linetype = 2, 
@@ -705,7 +707,7 @@ col_line_tl <- gapminder %>%
   geom_col(fill = '#d8b847') +
   geom_textline(aes(x = year,
                     y = lifeExp*20),
-                label = 'Life Expextancy', size = 3, vjust = -0.5,
+                label = 'Life Expectancy', size = 3, vjust = -0.5,
                 linewidth = 1, linecolor = '#1e395f', linetype = 2, 
                 color = '#1e395f') +
   scale_x_continuous(limits = c(1949, 2011),
