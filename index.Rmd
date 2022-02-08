@@ -142,8 +142,12 @@ diver_stack_bar_df <- gapminder %>%
   group_by(continent) %>%
   summarize(below_med = sum(lifeExp < median_lifeExp)/n(),
             beyond_med = sum(lifeExp >= median_lifeExp)/n()) %>%
-  pivot_longer(!continent, names_to = 'cluster', values_to = 'perc_country') %>%
-  mutate(perc_country = if_else(cluster == 'below_med', -perc_country, perc_country))
+  pivot_longer(!continent,
+               names_to = 'cluster',
+               values_to = 'percent_country') %>%
+  mutate(percent_country = if_else(cluster == 'below_med',
+                                -percent_country,
+                                percent_country))
 
 ```
 
@@ -155,8 +159,12 @@ spine_df <- gapminder %>%
   group_by(continent) %>%
   summarize(below_med = sum(lifeExp < median_lifeExp),
             beyond_med = sum(lifeExp >= median_lifeExp)) %>%
-  pivot_longer(!continent, names_to = 'cluster', values_to = 'perc_country') %>%
-  mutate(perc_country = if_else(cluster == 'below_med', -perc_country, perc_country))
+  pivot_longer(!continent,
+               names_to = 'cluster',
+               values_to = 'percent_country') %>%
+  mutate(percent_country = if_else(cluster == 'below_med',
+                                   -percent_country,
+                                   percent_country))
 
 ```
 
@@ -165,8 +173,8 @@ spine_df <- gapminder %>%
 filled_line_df <- gapminder %>%
   filter(continent == 'Asia') %>%
   group_by(year) %>%
-  mutate(median_gdp = median(gdpPercap)) %>%
-  mutate(gdp_gap = gdpPercap - median_gdp) %>%
+  mutate(median_gdp = median(gdpPercap),
+         gdp_gap = gdpPercap - median_gdp) %>%
   filter(country == 'Jordan')
 
 ```
@@ -214,7 +222,9 @@ df_6 = tibble(team = c('A','B','C','D','E'),
               game_5 = sample(1:5))
 
 df_for_bump <- df_6 %>%
-  pivot_longer(!team, names_to = 'game', values_to = 'position') %>%
+  pivot_longer(!team,
+               names_to = 'game',
+               values_to = 'position') %>%
   mutate(game = as.numeric(recode(game,
                                   game_1 = 1,
                                   game_2 = 2,
@@ -316,9 +326,9 @@ df_for_cum_curve <- df_for_cum_curve %>%
 
 ### Penyiapan Palet Warna
 
-Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-deviasi, palet warna disalin secara manua dari <span style='color: green;'>**Tiepolo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#tieplolo){target='blank'}
+Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercentantik tipe grafik-deviasi, palet warna disalin secara manua dari <span style='color: green;'>**Tiepolo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#tieplolo){target='blank'}
 
-Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style='color: green;'>**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target='blank'}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'} tanpa harus menyalin code hex secara manual.
+Untuk mempercentantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style='color: green;'>**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target='blank'}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'} tanpa harus menyalin code hex secara manual.
 
 ```{r palette for correlation}
 
@@ -328,7 +338,7 @@ palette_corr <-c('#75884b',
 
 ```
 
-Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style='color: green;'>**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target='blank'}. 
+Untuk mempercentantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style='color: green;'>**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target='blank'}. 
 
 ```{r palette for ranking}
 
@@ -340,7 +350,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style='color: green;'>**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target='blank'}.
+Untuk mempercentantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style='color: green;'>**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target='blank'}.
 
 ```{r palette for distribution}
 
@@ -356,7 +366,7 @@ palette_distr <-c('#4e3910',
 
 ### Penyiapan Tema Grafik
 
-Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-deviasi, tema yang digunakan adalah tema `theme_dev` di bawah ini.
+Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercentantik tipe grafik-deviasi, tema yang digunakan adalah tema `theme_dev` di bawah ini.
 
 ```{r theme for deviation}
 
@@ -386,7 +396,7 @@ theme_dev <- theme_minimal() +
 
 
 
-Untuk mempercantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
+Untuk mempercentantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
 
 ```{r theme for correlation}
 
@@ -411,7 +421,7 @@ theme_corr <- theme_minimal() +
 
 ```
 
-Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
+Untuk mempercentantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
 
 ```{r theme for ranking}
 
@@ -436,7 +446,7 @@ theme_ranking <- theme_minimal() +
 
 ```
 
-Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema `theme_distr` di bawah ini.
+Untuk mempercentantik tipe grafik-distribusi, tema yang digunakan adalah tema `theme_distr` di bawah ini.
 
 ```{r theme for distribution}
 
@@ -513,11 +523,11 @@ diverging_bar
 ```{r diverging stacked bar}
 
 diverging_stacked_bar <- diver_stack_bar_df %>%
-  ggplot(aes(x = perc_country,
+  ggplot(aes(x = percent_country,
              y = continent,
              fill = cluster)) + 
   geom_col(width = .6,
-           fill = if_else(diver_stack_bar_df$perc_country > 0,
+           fill = if_else(diver_stack_bar_df$percent_country > 0,
                           '#2b5851',
                           '#ce9344')) +
   geom_textvline(xintercept = 0,
@@ -529,13 +539,13 @@ diverging_stacked_bar <- diver_stack_bar_df %>%
                  linecolor = '#802417',
                  linetype = 2, 
                  color = '#802417') +
-  geom_text(aes(label = scales::percent(abs(perc_country), 2),
-                hjust = ifelse(perc_country > 0, 1.1, -.1)),
+  geom_text(aes(label = scales::percent(abs(percent_country), 2),
+                hjust = ifelse(percent_country > 0, 1.1, -.1)),
             size = 4,
             fontface = 'bold',
             color = 'white') +
   theme_dev +
-  xlab('Number of Country (in percent)') +
+  xlab('Number of Country (in percentent)') +
   labs(title = 'Diverging Stacked Bar',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -553,15 +563,15 @@ diverging_stacked_bar
 ```{r spine}
 
 spine <- spine_df %>%
-  ggplot(aes(x = perc_country,
+  ggplot(aes(x = percent_country,
              y = continent,
              fill = cluster)) + 
   geom_col(width = .6,
-           fill = if_else(diver_stack_bar_df$perc_country > 0,
+           fill = if_else(diver_stack_bar_df$percent_country > 0,
                           '#2b5851',
                           '#ce9344')) +
-  geom_text(aes(label = abs(perc_country),
-                hjust = ifelse(perc_country > 0, -.1, 1.1)),
+  geom_text(aes(label = abs(percent_country),
+                hjust = ifelse(percent_country > 0, -.1, 1.1)),
             size = 4,
             fontface = 'bold',
             color = '#2b5851') +
@@ -1634,6 +1644,8 @@ stat_density_ridges_plot
 * [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target='blank'}
   
 * [tidyverse](https://tidyverse.tidyverse.org/){target='blank'}
+
+* [scales](https://github.com/r-lib/scales){target='blank'}
 
 * [gapminder dataset](https://github.com/jennybc/gapminder){target='blank'}
 
