@@ -1,3 +1,5 @@
 # datvizR
-https://panggahdputra.github.io/datvizR/
+please visit:
+https://panggahdputra.github.io/datvizR/ or
+https://visualr.panggahdputra.com
  
