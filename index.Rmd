@@ -545,7 +545,7 @@ diverging_stacked_bar <- diver_stack_bar_df %>%
             fontface = 'bold',
             color = 'white') +
   theme_dev +
-  xlab('Number of Country (in percentent)') +
+  xlab('Number of Country (in percent)') +
   labs(title = 'Diverging Stacked Bar',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
