@@ -326,9 +326,9 @@ df_for_cum_curve <- df_for_cum_curve %>%
 
 ### Penyiapan Palet Warna
 
-Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercentantik tipe grafik-deviasi, palet warna disalin secara manua dari <span style='color: green;'>**Tiepolo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#tieplolo){target='blank'}
+Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-deviasi, palet warna disalin secara manual dari <span style='color: green;'>**Tiepolo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#tieplolo){target='blank'}
 
-Untuk mempercentantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style='color: green;'>**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target='blank'}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'} tanpa harus menyalin code hex secara manual.
+Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah `palette_corr`. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style='color: green;'>**Redon Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#redon){target='blank'}. Anda dapat mempelajari sendiri penggunaan palet warna pada [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'} tanpa harus menyalin code hex secara manual.
 
 ```{r palette for correlation}
 
@@ -338,7 +338,7 @@ palette_corr <-c('#75884b',
 
 ```
 
-Untuk mempercentantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style='color: green;'>**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target='blank'}. 
+Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet `palette_ranking`. Kode hex disalin secara manual dari <span style='color: green;'>**Greek Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#greek){target='blank'}. 
 
 ```{r palette for ranking}
 
@@ -350,7 +350,7 @@ palette_ranking <- c('#3c0d03',
 
 ```
 
-Untuk mempercentantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style='color: green;'>**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target='blank'}.
+Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet `palette_distr`. Kode hex disalin secara manual dari <span style='color: green;'>**Isfahan1 Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#isfahan1){target='blank'}.
 
 ```{r palette for distribution}
 
@@ -366,7 +366,7 @@ palette_distr <-c('#4e3910',
 
 ### Penyiapan Tema Grafik
 
-Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercentantik tipe grafik-deviasi, tema yang digunakan adalah tema `theme_dev` di bawah ini.
+Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-deviasi, tema yang digunakan adalah tema `theme_dev` di bawah ini.
 
 ```{r theme for deviation}
 
@@ -396,7 +396,7 @@ theme_dev <- theme_minimal() +
 
 
 
-Untuk mempercentantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
+Untuk mempercantik tipe grafik-korelasi, tema yang digunakan adalah tema `theme_corr` di bawah ini.
 
 ```{r theme for correlation}
 
@@ -421,7 +421,7 @@ theme_corr <- theme_minimal() +
 
 ```
 
-Untuk mempercentantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
+Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
 
 ```{r theme for ranking}
 
@@ -446,7 +446,7 @@ theme_ranking <- theme_minimal() +
 
 ```
 
-Untuk mempercentantik tipe grafik-distribusi, tema yang digunakan adalah tema `theme_distr` di bawah ini.
+Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema `theme_distr` di bawah ini.
 
 ```{r theme for distribution}
 

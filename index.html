@@ -2874,7 +2874,7 @@ div.tocify {
 <h1 class="title toc-ignore"><strong>Visualisasi Data dengan R<br></strong></h1>
 <h3 class="subtitle">Kumpulan kode untuk membuat berbagai grafik <br> menggunakan bahasa pemrograman R<br><br></h3>
 <h4 class="author"><em>Ditulis oleh : Panggah D. Putra</em></h4>
-<h4 class="date"><em>Update terakhir : 08 February 2022</em></h4>
+<h4 class="date"><em>Update terakhir : 20 February 2022</em></h4>
 
 </div>
 
@@ -3112,18 +3112,18 @@ div.tocify {
 </div>
 <div id="penyiapan-palet-warna" class="section level3">
 <h3>Penyiapan Palet Warna</h3>
-<p>Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercentantik tipe grafik-deviasi, palet warna disalin secara manua dari <span style="color: green;"><strong>Tiepolo Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#tieplolo" target="blank">MetBrewer</a></p>
-<p>Untuk mempercentantik tipe grafik-korelasi, palet yang digunakan adalah <code>palette_corr</code>. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: green;"><strong>Redon Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#redon" target="blank">MetBrewer</a>. Anda dapat mempelajari sendiri penggunaan palet warna pada <a href="https://github.com/BlakeRMills/MetBrewer" target="blank">MetBrewer</a> tanpa harus menyalin code hex secara manual.</p>
+<p>Tiap tipe grafik dibuat dengan menggunakan palet warna berbeda. Untuk mempercantik tipe grafik-deviasi, palet warna disalin secara manual dari <span style="color: green;"><strong>Tiepolo Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#tieplolo" target="blank">MetBrewer</a></p>
+<p>Untuk mempercantik tipe grafik-korelasi, palet yang digunakan adalah <code>palette_corr</code>. Untuk mempersempit fokus latihan, kode hex disalin secara manual dari <span style="color: green;"><strong>Redon Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#redon" target="blank">MetBrewer</a>. Anda dapat mempelajari sendiri penggunaan palet warna pada <a href="https://github.com/BlakeRMills/MetBrewer" target="blank">MetBrewer</a> tanpa harus menyalin code hex secara manual.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>palette_corr <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;#75884b&#39;</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;#1e395f&#39;</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;#d8b847&#39;</span>)</span></code></pre></div>
-<p>Untuk mempercentantik tipe grafik-peringkat, palet yang digunakan adalah palet <code>palette_ranking</code>. Kode hex disalin secara manual dari <span style="color: green;"><strong>Greek Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#greek" target="blank">MetBrewer</a>.</p>
+<p>Untuk mempercantik tipe grafik-peringkat, palet yang digunakan adalah palet <code>palette_ranking</code>. Kode hex disalin secara manual dari <span style="color: green;"><strong>Greek Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#greek" target="blank">MetBrewer</a>.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>palette_ranking <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#3c0d03&#39;</span>,</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#8d1c06&#39;</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#e67424&#39;</span>,</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#ed9b49&#39;</span>,</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;#f5c34d&#39;</span>)</span></code></pre></div>
-<p>Untuk mempercentantik tipe grafik-distribusi, palet yang digunakan adalah palet <code>palette_distr</code>. Kode hex disalin secara manual dari <span style="color: green;"><strong>Isfahan1 Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#isfahan1" target="blank">MetBrewer</a>.</p>
+<p>Untuk mempercantik tipe grafik-distribusi, palet yang digunakan adalah palet <code>palette_distr</code>. Kode hex disalin secara manual dari <span style="color: green;"><strong>Isfahan1 Palette</strong></span> di <a href="https://github.com/BlakeRMills/MetBrewer#isfahan1" target="blank">MetBrewer</a>.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>palette_distr <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;#4e3910&#39;</span>,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;#845d29&#39;</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;#4fb6ca&#39;</span>,</span>
@@ -3133,7 +3133,7 @@ div.tocify {
 </div>
 <div id="penyiapan-tema-grafik" class="section level3">
 <h3>Penyiapan Tema Grafik</h3>
-<p>Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercentantik tipe grafik-deviasi, tema yang digunakan adalah tema <code>theme_dev</code> di bawah ini.</p>
+<p>Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-deviasi, tema yang digunakan adalah tema <code>theme_dev</code> di bawah ini.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>theme_dev <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&#39;#802417&#39;</span>,</span>
@@ -3155,7 +3155,7 @@ div.tocify {
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&#39;#fffffe&#39;</span>,</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;lightblue&#39;</span>)</span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p>Untuk mempercentantik tipe grafik-korelasi, tema yang digunakan adalah tema <code>theme_corr</code> di bawah ini.</p>
+<p>Untuk mempercantik tipe grafik-korelasi, tema yang digunakan adalah tema <code>theme_corr</code> di bawah ini.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>theme_corr <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&#39;#1e5a46&#39;</span>,</span>
@@ -3174,7 +3174,7 @@ div.tocify {
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&#39;#FFFFFF&#39;</span>,</span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;lightblue&#39;</span>)</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p>Untuk mempercentantik tipe grafik-peringkat, tema yang digunakan adalah tema <code>theme_ranking</code> di bawah ini.</p>
+<p>Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema <code>theme_ranking</code> di bawah ini.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>theme_ranking <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&#39;#3c0d03&#39;</span>,</span>
@@ -3193,7 +3193,7 @@ div.tocify {
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&#39;#ffffff&#39;</span>,</span>
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;lightblue&#39;</span>)</span>
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p>Untuk mempercentantik tipe grafik-distribusi, tema yang digunakan adalah tema <code>theme_distr</code> di bawah ini.</p>
+<p>Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema <code>theme_distr</code> di bawah ini.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>theme_distr <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&#39;#1d1f54&#39;</span>,</span>
