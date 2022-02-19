@@ -3232,8 +3232,8 @@ div.tocify {
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&#39;cluster&#39;</span>,</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&#39;percent_country&#39;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent_country =</span> <span class="fu">if_else</span>(cluster <span class="sc">==</span> <span class="st">&#39;below_med&#39;</span>,</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                                <span class="sc">-</span>percent_country,</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                                percent_country))</span></code></pre></div>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="sc">-</span>percent_country,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                                   percent_country))</span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>diverging_stacked_bar <span class="ot">&lt;-</span> diverging_stacked_bar_df <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> percent_country,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> continent,</span>
@@ -3283,7 +3283,7 @@ div.tocify {
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> continent,</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> cluster)) <span class="sc">+</span> </span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> .<span class="dv">6</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">if_else</span>(diverging_stacked_bar_df<span class="sc">$</span>percent_country <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">if_else</span>(spine_df<span class="sc">$</span>percent_country <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&#39;#2b5851&#39;</span>,</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&#39;#ce9344&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">abs</span>(percent_country),</span>

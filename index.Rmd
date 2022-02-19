@@ -487,8 +487,8 @@ diverging_stacked_bar_df <- gapminder %>%
                names_to = 'cluster',
                values_to = 'percent_country') %>%
   mutate(percent_country = if_else(cluster == 'below_med',
-                                -percent_country,
-                                percent_country))
+                                   -percent_country,
+                                   percent_country))
 
 ```
 
@@ -556,7 +556,7 @@ spine <- spine_df %>%
              y = continent,
              fill = cluster)) + 
   geom_col(width = .6,
-           fill = if_else(diverging_stacked_bar_df$percent_country > 0,
+           fill = if_else(spine_df$percent_country > 0,
                           '#2b5851',
                           '#ce9344')) +
   geom_text(aes(label = abs(percent_country),
