@@ -115,67 +115,11 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
 
 ```
 
-Seluruh grafik pada tipek grafik-korelasi menggunakan `gapminder` dataset dengan beberapa proses manipulasi data. Column + Line Timeline, Connected Scatter Plot, Bubble, serta XY Heatmap pada tipe grafik-korelasi juga menggunakan `gapminder` dataset.
+Seluruh grafik pada tipek grafik-deviasi menggunakan `gapminder` dataset dengan beberapa proses manipulasi data. Column + Line Timeline, Connected Scatter Plot, Bubble, serta XY Heatmap pada tipe grafik-korelasi juga menggunakan `gapminder` dataset.
 
 ```{r gapminder dataset, message=FALSE}
 
 head(gapminder, 5)
-
-```
-
-```{r df for diverging bar, message=FALSE}
-
-diver_bar_df <- gapminder %>%
-  filter(continent == "Asia",
-         year == 2007) %>%
-  mutate(median_lifeExp = median(lifeExp),
-         lifeExp_gap = lifeExp - median_lifeExp) %>%
-  filter(between(lifeExp_gap, -12, 12))
-
-```
-
-```{r df for diverging stacked bar, message=FALSE}
-
-diver_stack_bar_df <- gapminder %>%
-  filter(year == 2007) %>%
-  mutate(median_lifeExp = median(lifeExp)) %>%
-  group_by(continent) %>%
-  summarize(below_med = sum(lifeExp < median_lifeExp)/n(),
-            beyond_med = sum(lifeExp >= median_lifeExp)/n()) %>%
-  pivot_longer(!continent,
-               names_to = 'cluster',
-               values_to = 'percent_country') %>%
-  mutate(percent_country = if_else(cluster == 'below_med',
-                                -percent_country,
-                                percent_country))
-
-```
-
-```{r df for spine, message=FALSE}
-
-spine_df <- gapminder %>%
-  filter(year == 2007) %>%
-  mutate(median_lifeExp = median(lifeExp)) %>%
-  group_by(continent) %>%
-  summarize(below_med = sum(lifeExp < median_lifeExp),
-            beyond_med = sum(lifeExp >= median_lifeExp)) %>%
-  pivot_longer(!continent,
-               names_to = 'cluster',
-               values_to = 'percent_country') %>%
-  mutate(percent_country = if_else(cluster == 'below_med',
-                                   -percent_country,
-                                   percent_country))
-
-```
-
-```{r df for surplus/deficit filled line, message=FALSE}
-
-filled_line_df <- gapminder %>%
-  filter(continent == 'Asia') %>%
-  group_by(year) %>%
-  mutate(median_gdp = median(gdpPercap),
-         gdp_gap = gdpPercap - median_gdp) %>%
-  filter(country == 'Jordan')
 
 ```
 
@@ -481,13 +425,24 @@ Tipe grafik-deviasi digunakan untuk menekankan variasi positif/negatif dari titi
 
 ### Diverging Bar
 
-```{r diverging bar}
+```{r}
 
-diverging_bar <- diver_bar_df %>%
+diverging_bar_df <- gapminder %>%
+  filter(continent == "Asia",
+         year == 2007) %>%
+  mutate(median_lifeExp = median(lifeExp),
+         lifeExp_gap = lifeExp - median_lifeExp) %>%
+  filter(between(lifeExp_gap, -12, 12))
+
+```
+
+```{r}
+
+diverging_bar <- diverging_bar_df %>%
   ggplot(aes(x = lifeExp_gap,
              y = reorder(country, lifeExp_gap),
              fill = lifeExp_gap)) +
-  geom_col(fill = if_else(diver_bar_df$lifeExp_gap > 0,
+  geom_col(fill = if_else(diverging_bar_df$lifeExp_gap > 0,
                           '#2b5851',
                           '#ce9344')) +
   geom_text(aes(label = round(lifeExp_gap, 0),
@@ -512,7 +467,7 @@ diverging_bar <- diver_bar_df %>%
 
 ```
 
-```{r diverging bar print, echo=FALSE, out.width = '100%'}
+```{r, echo=FALSE, out.width = '100%'}
 diverging_bar
 ```
 
@@ -520,14 +475,31 @@ diverging_bar
 
 ### Diverging Stacked Bar
 
-```{r diverging stacked bar}
+```{r}
 
-diverging_stacked_bar <- diver_stack_bar_df %>%
+diverging_stacked_bar_df <- gapminder %>%
+  filter(year == 2007) %>%
+  mutate(median_lifeExp = median(lifeExp)) %>%
+  group_by(continent) %>%
+  summarize(below_med = sum(lifeExp < median_lifeExp)/n(),
+            beyond_med = sum(lifeExp >= median_lifeExp)/n()) %>%
+  pivot_longer(!continent,
+               names_to = 'cluster',
+               values_to = 'percent_country') %>%
+  mutate(percent_country = if_else(cluster == 'below_med',
+                                -percent_country,
+                                percent_country))
+
+```
+
+```{r}
+
+diverging_stacked_bar <- diverging_stacked_bar_df %>%
   ggplot(aes(x = percent_country,
              y = continent,
              fill = cluster)) + 
   geom_col(width = .6,
-           fill = if_else(diver_stack_bar_df$percent_country > 0,
+           fill = if_else(diverging_stacked_bar_df$percent_country > 0,
                           '#2b5851',
                           '#ce9344')) +
   geom_textvline(xintercept = 0,
@@ -552,7 +524,7 @@ diverging_stacked_bar <- diver_stack_bar_df %>%
 
 ```
 
-```{r diverging stacked bar print, echo=FALSE, out.width = '100%'}
+```{r, echo=FALSE, out.width = '100%'}
 diverging_stacked_bar
 ```
 
@@ -560,14 +532,31 @@ diverging_stacked_bar
 
 ### Spine
 
-```{r spine}
+```{r}
+
+spine_df <- gapminder %>%
+  filter(year == 2007) %>%
+  mutate(median_lifeExp = median(lifeExp)) %>%
+  group_by(continent) %>%
+  summarize(below_med = sum(lifeExp < median_lifeExp),
+            beyond_med = sum(lifeExp >= median_lifeExp)) %>%
+  pivot_longer(!continent,
+               names_to = 'cluster',
+               values_to = 'percent_country') %>%
+  mutate(percent_country = if_else(cluster == 'below_med',
+                                   -percent_country,
+                                   percent_country))
+
+```
+
+```{r}
 
 spine <- spine_df %>%
   ggplot(aes(x = percent_country,
              y = continent,
              fill = cluster)) + 
   geom_col(width = .6,
-           fill = if_else(diver_stack_bar_df$percent_country > 0,
+           fill = if_else(diverging_stacked_bar_df$percent_country > 0,
                           '#2b5851',
                           '#ce9344')) +
   geom_text(aes(label = abs(percent_country),
@@ -592,7 +581,7 @@ spine <- spine_df %>%
        caption = 'visualization by PanggahDPutra, 2022')
 ```
 
-```{r spine print, echo=FALSE, out.width = '100%'}
+```{r, echo=FALSE, out.width = '100%'}
 spine
 ```
 
@@ -600,9 +589,20 @@ spine
 
 ### Surplus/Deficit Filled Line
 
-```{r surplus deficit filled line}
+```{r}
 
-surplus_deficit_filled_line <- filled_line_df %>%
+surplus_deficit_filled_line_df <- gapminder %>%
+  filter(continent == 'Asia') %>%
+  group_by(year) %>%
+  mutate(median_gdp = median(gdpPercap),
+         gdp_gap = gdpPercap - median_gdp) %>%
+  filter(country == 'Jordan')
+
+```
+
+```{r}
+
+surplus_deficit_filled_line <- surplus_deficit_filled_line_df %>%
   ggplot(aes(x = year,
              y = gdp_gap)) +
   geom_area(color ='#2b5851',
@@ -634,7 +634,7 @@ surplus_deficit_filled_line <- filled_line_df %>%
 
 ```
 
-```{r surplus deficit filled line print, echo=FALSE, out.width = '100%'}
+```{r, echo=FALSE, out.width = '100%'}
 surplus_deficit_filled_line
 ```
 
