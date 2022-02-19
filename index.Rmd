@@ -330,6 +330,7 @@ theme_dev <- theme_minimal() +
                              face = 'bold'),
     axis.text.x = element_blank(),
     legend.position = 'none',
+    panel.grid.minor = element_blank(),
     panel.background = element_rect(fill = '#fffffe',
                                     color = NA),
     plot.background = element_rect(fill = '#fffffe',
@@ -460,6 +461,8 @@ diverging_bar <- diverging_bar_df %>%
                  linetype = 2, 
                  color = '#802417') +
   theme_dev +
+  theme(axis.line.y = element_line(color = '#802417',
+                                   size = .5)) +
   xlab('Life Expectancy gap') +
   labs(title = 'Diverging Bar',
        subtitle = '',
@@ -517,6 +520,8 @@ diverging_stacked_bar <- diverging_stacked_bar_df %>%
             fontface = 'bold',
             color = 'white') +
   theme_dev +
+  theme(axis.line.y = element_line(color = '#802417',
+                                   size = .5)) +
   xlab('Number of Country (in percent)') +
   labs(title = 'Diverging Stacked Bar',
        subtitle = '',
@@ -575,6 +580,8 @@ spine <- spine_df %>%
                  color = '#802417') +
   scale_x_continuous(limits = c(-48, 48)) +
   theme_dev +
+  theme(axis.line.y = element_line(color = '#802417',
+                                   size = .5)) +
   xlab('Number of Country') +
   labs(title = 'Spine',
        subtitle = '',
