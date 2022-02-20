@@ -41,7 +41,9 @@ Berdasarkan <span style='color: green;'>**Financial Times Visual Vocabulary**</s
 * Peringkat <br>
 * Distribusi
 
-Grafik dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target='blank'} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target='blank'}.
+Grafik dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik dalam website ini dibuat dengan menggunakan [gapminder](https://github.com/jennybc/gapminder){target='blank'} dataset dengan beberapa proses manipulasi data.
+
+Sebagian besar grafik pada tipe grafik-distribusi dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target='blank'} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target='blank'}.
 
 Seluruh grafik dalam website ini dibuat dengan menggunakan palet warna `our_palette` dari <span style='color: green;'>**Navajo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#navajo){target='blank'}.
 
@@ -97,36 +99,11 @@ library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
 ### Penyiapan Dataset
 
-Sebagian besar grafik dalam website ini dibuat dengan menggunakan `gapminder` dataset dengan beberapa proses manipulasi data.
+Sebagian besar grafik dalam website ini dibuat dengan menggunakan [gapminder](https://github.com/jennybc/gapminder){target='blank'} dataset dengan beberapa proses manipulasi data.
 
 ```{r gapminder dataset, message=FALSE}
 
 head(gapminder, 5)
-
-```
-
-Bump Chart dibuat dengan menggunakan dataset `df_for_bump` di bawah ini.
-
-```{r df for bump}
-
-set.seed(2021)
-df_6 = tibble(team = c('A','B','C','D','E'),
-              game_1 = sample(1:5),
-              game_2 = sample(1:5),
-              game_3 = sample(1:5),
-              game_4 = sample(1:5),
-              game_5 = sample(1:5))
-
-df_for_bump <- df_6 %>%
-  pivot_longer(!team,
-               names_to = 'game',
-               values_to = 'position') %>%
-  mutate(game = as.numeric(recode(game,
-                                  game_1 = 1,
-                                  game_2 = 2,
-                                  game_3 = 3,
-                                  game_4 = 4,
-                                  game_5 = 5)))
 
 ```
 
@@ -1099,7 +1076,7 @@ slope_graph
 
 Pada grafik lollipop, perbedaan nilai antar variabel susah untuk dilihat jika selisih nilai tiap variabel sangat tipis. Untuk itu, nilai variabel lebih baik ditampilkan  di dalam lingkaran lollipop.
 
-```{r}
+```{r, message=FALSE}
 
 lollipop_df <- gapminder %>%
   group_by(continent) %>%
@@ -1107,7 +1084,7 @@ lollipop_df <- gapminder %>%
   
 ```
 
-```{r lollipop}
+```{r, message=FALSE}
 
 lollipop <-lollipop_df %>%
   ggplot(aes(x = reorder(continent, -medianlifeExp),
@@ -1148,7 +1125,7 @@ lollipop <-lollipop_df %>%
 
 ```
 
-```{r lollipop print, echo=FALSE, out.width = '100%'}
+```{r, echo=FALSE, out.width = '100%'}
 lollipop
 ```
 
@@ -1156,42 +1133,62 @@ lollipop
 
 ### Bump Chart
 
-```{r bump chart}
+```{r, message=FALSE}
 
-bump <- df_for_bump %>%
-  ggplot(aes(x = game,
-             y = position,
-             color = team)) +
+bump_df <- gapminder %>%
+  filter(year %in% c(1967,1977,1987,1997,2007)) %>%
+  group_by(continent, year) %>%
+  summarize(maxlifeExp = max(lifeExp)) %>%
+  group_by(year) %>%
+  mutate(ranking = dense_rank(desc(maxlifeExp)))
+
+```
+
+```{r, message=FALSE}
+
+bump <- bump_df %>%
+  ggplot(aes(x = year,
+             y = ranking,
+             color = continent)) +
   ggbump::geom_bump(size = 3,
                     smooth = 20,
                     show.legend = FALSE) +
   geom_point(size = 7) +
-  geom_text(aes(label = position),
+  geom_text(aes(label = ranking),
             size = 4,
+            fontface = 'bold',
             color = 'white') +
-  geom_text(data = df_for_bump %>% filter(game == min(game)),
-            aes(x = game - .1,
-                label = team),
-            size = 5,
+  geom_text(data = bump_df %>% filter(year == 1967),
+            aes(x = year - 1.1,
+                label = continent),
+            size = 4,
+            fontface = 'bold',
             hjust = 1) +
-  geom_text(data = df_for_bump %>% filter(game == max(game)),
-            aes(x = game + .1,
-                label = team),
-            size = 5,
+  geom_text(data = bump_df %>% filter(year == 2007),
+            aes(x = year + 1.1,
+                label = continent),
+            size = 4,
+            fontface = 'bold',
             hjust = 0) +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
   scale_y_reverse() +
-  theme_ranking +
-  xlab('Game-') +
-  ylab('Ranking') +
+  scale_x_continuous(limits = c(1961,2013),
+                     breaks = c(1967,1977,1987,1997,2007)) +
+  our_theme +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.line = element_blank()
+  ) +
+  ylab('ranking by max life expectancy') +
   labs(title = 'Bump Chart',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
 
 ```
 
-```{r bump print, echo=FALSE, out.width = '100%'}
+```{r, echo=FALSE, out.width = '100%'}
 bump
 ```
 
