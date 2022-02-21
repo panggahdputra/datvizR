@@ -30,7 +30,7 @@ Jika anda membuka website ini dengan *handphone*, demi tampilan yang lebih nyama
 
 ## **Pendahuluan**
 
-Sebelum melangkah lebih jauh, saya asumsikan anda sudah cukup memahami bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
+Sebelum melangkah lebih jauh, saya asumsikan anda sudah cukup memahami bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/){target='blank'} dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop){target='blank'}.
 
 Grafik dalam website ini diklasifikasikan berdasarkan klasifikasi pada [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary){target='blank'} dengan tambahan dari berbagai sumber.
 
@@ -45,13 +45,13 @@ Grafik dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian be
 
 Sebagian besar grafik pada tipe grafik-distribusi dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target='blank'} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target='blank'}.
 
-Seluruh grafik dalam website ini dibuat dengan menggunakan palet warna `our_palette` dari <span style='color: green;'>**Navajo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#navajo){target='blank'}.
+Seluruh grafik dalam website ini dibuat dengan menggunakan palet warna [Navajo Palette](https://github.com/BlakeRMills/MetBrewer#navajo){target='blank'} dari [MetBrewer](https://github.com/BlakeRMills/MetBrewer){target='blank'}.
 
 ***
 
 ## **Prasyarat**
 
-Seperti yang sudah disebutkan sebelumnya, saya asumsikan anda sudah cukup memahami bahasa pemrograman R dan sudah menginstal [R](https://cran.r-project.org/) dan [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop).
+Seperti yang sudah disebutkan sebelumnya, saya asumsikan anda sudah cukup memahami bahasa pemrograman R dan sudah menginstal R dan Rstudio.
 
 ***
 
@@ -99,7 +99,7 @@ library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
 ### Penyiapan Dataset
 
-Sebagian besar grafik dalam website ini dibuat dengan menggunakan [gapminder](https://github.com/jennybc/gapminder){target='blank'} dataset dengan beberapa proses manipulasi data.
+Sebagian besar grafik dalam website ini dibuat dengan menggunakan <span style='color: green;'>**gapminder**</span> dataset dengan beberapa proses manipulasi data.
 
 ```{r gapminder dataset, message=FALSE}
 
@@ -201,7 +201,7 @@ df_for_cum_curve <- df_for_cum_curve %>%
 
 ### Penyiapan Palet Warna
 
-Seluruh grafik dalam website ini dibuat dengan menggunakan palet warna `our_palette` dari <span style='color: green;'>**Navajo Palette**</span> di [MetBrewer](https://github.com/BlakeRMills/MetBrewer#navajo){target='blank'}. Kode hex disalin secara manual untuk mempersempit fokus latihan. Jika tidak ingin menyalin code hex secara manual, penggunaan palet warna pada MetBrewer dapat dipelajari sendiri [di sini](https://github.com/BlakeRMills/MetBrewer/tree/main#functions){target='blank'} .
+Seluruh grafik dalam website ini dibuat dengan menggunakan palet warna `our_palette` dari <span style='color: green;'>**Navajo Palette**</span> di <span style='color: green;'>**MetBrewer**</span>. Kode hex disalin secara manual untuk mempersempit fokus latihan. Jika tidak ingin menyalin code hex secara manual, penggunaan palet warna pada <span style='color: green;'>**MetBrewer**</span> dapat dipelajari sendiri [di sini](https://github.com/BlakeRMills/MetBrewer/tree/main#functions){target='blank'} .
 
 ```{r}
 
@@ -217,7 +217,7 @@ our_palette <-c('#660d20',
 
 ### Penyiapan Tema Grafik
 
-Tiap tipe grafik dibuat dengan menggunakan tema berbeda. Untuk mempercantik tipe grafik-deviasi dan tipe grafik-korelasi, tema yang digunakan adalah tema `our_theme` di bawah ini.
+Seluruh grafik dalam website ini menggunakan tema `our_theme` di bawah ini.
 
 ```{r theme for deviation}
 
@@ -241,31 +241,6 @@ our_theme <- theme_minimal() +
     panel.background = element_rect(fill = '#ffffff',
                                     color = NA),
     plot.background = element_rect(fill = '#ffffff',
-                                   color = 'lightblue')
-  )
-
-```
-
-Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema `theme_distr` di bawah ini.
-
-```{r theme for distribution}
-
-theme_distr <- theme_minimal() +
-  theme(
-    plot.title = element_text(color = '#1d1f54',
-                              hjust = 0.5,
-                              face = 'bold'),
-    plot.subtitle = element_text(color = '#1d1f54',
-                                 hjust = 0.5),
-    plot.caption = element_text(color = '#1d1f54',
-                                hjust = 1),
-    axis.title = element_text(color = '#1d1f54',
-                              face = 'bold'),
-    axis.text = element_text(color = '#1d1f54',
-                             face = 'bold'),
-    panel.background = element_rect(fill = '#FFFFFF',
-                                    color = NA),
-    plot.background = element_rect(fill = '#FFFFFF',
                                    color = 'lightblue')
   )
 
@@ -1189,7 +1164,10 @@ histogram <- main_df %>%
                      breaks = seq(0, 10, by = 2)) +
   scale_y_continuous(limits = c(0, 15),
                      breaks = seq(0, 15, by = 5)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line = element_blank()
+  ) +
   ylab('number of data') +
   labs(title = 'Histogram',
        subtitle = '',
@@ -1218,24 +1196,26 @@ dumbbell_plot <- main_df %>%
   ggalt::geom_dumbbell(size =3,
                        size_x = 12,
                        size_xend = 12,
-                       color = '#d8c29d',
-                       colour_x = '#d8c29d',
-                       colour_xend = '#d8c29d') +
+                       color = '#edce79',
+                       colour_x = '#edce79',
+                       colour_xend = '#edce79') +
   ggalt::geom_dumbbell(size = 3,
                        size_x = 9,
                        size_xend = 9,
-                       color = '#d8c29d',
-                       colour_x = '#4e3910',
-                       colour_xend = '#175f5d') +
+                       color = '#edce79',
+                       colour_x = '#660d20',
+                       colour_xend = '#094568') +
   geom_text(aes(x = min,
                 y = Variable,
                 label = round(min, 1)), 
             size = 3,
+            fontface = 'bold',
             color = 'white') +
   geom_text(aes(x = max,
                 y = Variable,
                 label = round(max, 1)), 
             size = 3,
+            fontface = 'bold',
             color = 'white') +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
@@ -1243,7 +1223,10 @@ dumbbell_plot <- main_df %>%
                     guide = 'none') +
   scale_x_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.x = element_blank()
+  ) +
   xlab('min <<<value>>> max') +
   labs(title = 'Dot Plot (Dumbbell Plot)',
        subtitle = '',
@@ -1266,14 +1249,17 @@ dot_strip_plot <- main_df %>%
              y = value,
              color = Variable,
              fill = Variable)) +
-  geom_point(alpha = .5, size = 5) +
+  geom_point(size = 7) +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
   scale_fill_manual(values = our_palette,
                     guide = 'none') +
   scale_y_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.y = element_blank()
+  ) +
   labs(title = 'Dot Strip Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -1304,7 +1290,10 @@ stat_dot_plot <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.y = element_blank()
+  ) +
   labs(title = 'Stat Dot Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -1328,14 +1317,17 @@ barcode_plot <- main_df %>%
              fill = Variable)) +
   geom_point(shape = 95,
              size = 25,
-             alpha = .7) +
+             alpha = .9) +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
   scale_fill_manual(values = our_palette,
                     guide = 'none') +
   scale_y_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.y = element_blank()
+  ) +
   labs(title = 'Barcode Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -1357,16 +1349,19 @@ box_plot <- main_df %>%
              y = value,
              color = Variable,
              fill = Variable)) +
-  geom_boxplot(alpha = .7,
+  geom_boxplot(alpha = .8,
                size = .5,
                outlier.size = 2) +
   scale_color_manual(values = our_palette,
-                     guide = 'none') +
+                    guide = 'none') +
   scale_fill_manual(values = our_palette,
                     guide = 'none') +
   scale_y_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.y = element_blank()
+  ) +
   labs(title = 'Box Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -1396,7 +1391,10 @@ violin_plot <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.y = element_blank()
+  ) +
   labs(title = 'Violin Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -1418,26 +1416,28 @@ female_side <- df_for_pop_pyramid %>%
   ggplot(aes(x = value,
              y = reorder(age, desc(age)),
              fill = gender)) +
-  geom_col(fill = '#178f92') +
+  geom_col(fill =  '#094568') +
   geom_text(aes(label = value),
             hjust = 2,
+            size = 3,
+            fontface = 'bold',
             color = 'white') +
   scale_x_continuous(limits = c(0, 50)) +
   theme_minimal() +
   theme(
     plot.title.position = 'plot',
-    plot.subtitle = element_text(color = '#4fb6ca',
+    plot.subtitle = element_text(color = '#660d20',
                                  face = 'bold'),
-    axis.title.x = element_text(color = '#1d1f54',
+    axis.title.x = element_text(color = '#660d20',
                                 face = 'bold'),
     axis.title.y = element_blank(),
     axis.text.x = element_blank(),
-    axis.text.y = element_text(color = '#4fb6ca',
+    axis.text.y = element_text(color = '#660d20',
                                face = 'bold'),
-    panel.background = element_rect(fill = '#FFFCDE',
+    panel.background = element_rect(fill = '#ffffff',
                                     color = NA),
-    plot.background = element_rect(fill = '#FFFCDE',
-                                   color = '#FFFCDE')
+    plot.background = element_rect(fill = '#ffffff',
+                                   color = '#ffffff')
   ) +
   xlab('Female') +
   labs(subtitle = 'Age')
@@ -1451,22 +1451,24 @@ male_side <- df_for_pop_pyramid %>%
   ggplot(aes(x = -value,
              y = reorder(age, desc(age)),
              fill = gender)) +
-  geom_col(fill = '#845d29') +
+  geom_col(fill = '#e59a52') +
   geom_text(aes(label = value),
             hjust = -1,
+            size = 3,
+            fontface = 'bold',
             color = 'white') +
   scale_x_continuous(limits = c(-50, 0)) +
   theme_minimal() +
   theme(
-    axis.title.x = element_text(color = '#1d1f54',
+    axis.title.x = element_text(color = '#660d20',
                                 face = 'bold'),
     axis.title.y = element_blank(),
     axis.text.x = element_blank(),
     axis.text.y = element_blank(),
-    panel.background = element_rect(fill = '#FFFCDE',
+    panel.background = element_rect(fill = '#ffffff',
                                     color = NA),
-    plot.background = element_rect(fill = '#FFFCDE',
-                                   color = '#FFFCDE')
+    plot.background = element_rect(fill = '#ffffff',
+                                   color = '#ffffff')
   ) +
   xlab('Male')
 
@@ -1479,15 +1481,15 @@ pop_pyramid <- (male_side|female_side) +
     title = 'Population Pyramid',
     caption = 'visualization by PanggahDPutra, 2022',
     theme = theme(
-      plot.title = element_text(color = '#1d1f54',
+      plot.title = element_text(color = '#660d20',
                                 hjust = 0.5,
                                 face = 'bold'),
-      plot.caption = element_text(color = '#1d1f54',
+      plot.caption = element_text(color = '#660d20',
                                   hjust = 1),
-      panel.background = element_rect(fill = '#FFFCDE',
-                                      color = NA),
-      plot.background = element_rect(fill = '#FFFCDE',
-                                     color = 'lightblue')))
+      panel.background = element_rect(fill = '#ffffff',
+                                    color = NA),
+    plot.background = element_rect(fill = '#ffffff',
+                                   color = 'lightblue')))
 
 ```
 
@@ -1511,10 +1513,13 @@ cumulative_curve <- df_for_cum_curve %>%
   geom_text(data = subset(df_for_cum_curve,year == '2022'),
             aes(label = var),
             hjust = -1) +
-  scale_color_manual(values = c('#d8c29d', '#4fb6ca'),
+  scale_color_manual(values = c('#094568', '#e59a52'),
                      guide = 'none') +
   scale_y_continuous(limits = c(0, 500)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line = element_blank()
+  ) +
   ylab('cumulative value') +
   labs(title = 'Cumulative Curve',
        subtitle = '',
@@ -1536,12 +1541,15 @@ freq_polygons <- main_df %>%
   ggplot(aes(x = value)) +
   geom_freqpoly(bins = 25,
                 size = 1.5,
-                color = '#4fb6ca') +
+                color = '#094568') +
   scale_x_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
   scale_y_continuous(limits = c(0, 15),
                      breaks = seq(0, 15, by = 5)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line = element_blank()
+  ) +
   ylab('frequency') +
   labs(title = 'Frequency Polygons',
        subtitle = '',
@@ -1564,7 +1572,7 @@ beeswarm <- main_df %>%
              y = value,
              color = Variable,
              fill = Variable)) +
-  ggbeeswarm::geom_beeswarm(alpha = .7,
+  ggbeeswarm::geom_beeswarm(alpha = .9,
                             size = 8,
                             cex = 3.5,
                             show.legend = FALSE) +
@@ -1574,7 +1582,10 @@ beeswarm <- main_df %>%
                     guide = 'none') +
   scale_y_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.y = element_blank()
+  ) +
   labs(title = 'Beeswarm',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -1596,11 +1607,14 @@ Density plot menampilkan *density* dari suatu dataset.
 density_plot <- main_df %>%
   ggplot(aes(x = value)) +
   geom_density(alpha = 0.9,
-               fill = '#845d29',
-               color = '#4e3910') +
+               color = '#094568',
+               fill = '#edce79') +
   scale_x_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line = element_blank()
+  ) +
   ylab('density') +
   labs(title = 'Density Plot',
        subtitle = '',
@@ -1627,7 +1641,7 @@ stat_density_ridges_plot <- main_df %>%
              color = Variable)) +
   ggridges::stat_density_ridges(quantile_lines = TRUE,
                                 quantiles = 2,
-                                alpha = .5,
+                                alpha = .8,
                                 size = .8,
                                 rel_min_height = 0.01) +
   scale_color_manual(values = our_palette,
@@ -1636,7 +1650,10 @@ stat_density_ridges_plot <- main_df %>%
                     guide = 'none') +
   scale_x_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
-  theme_distr +
+  our_theme +
+  theme(
+    axis.line.x = element_blank()
+  ) +
   labs(title = 'Stat Density Ridges Plot',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
