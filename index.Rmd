@@ -246,31 +246,6 @@ our_theme <- theme_minimal() +
 
 ```
 
-Untuk mempercantik tipe grafik-peringkat, tema yang digunakan adalah tema `theme_ranking` di bawah ini.
-
-```{r theme for ranking}
-
-theme_ranking <- theme_minimal() +
-  theme(
-    plot.title = element_text(color = '#3c0d03',
-                              hjust = 0.5,
-                              face = 'bold'),
-    plot.subtitle = element_text(color = '#3c0d03',
-                                 hjust = 0.5),
-    plot.caption = element_text(color = '#3c0d03',
-                                hjust = 1),
-    axis.title = element_text(color = '#8d1c06',
-                              face = 'bold'),
-    axis.text = element_text(color = '#8d1c06',
-                             face = 'bold'),
-    panel.background = element_rect(fill = '#ffffff',
-                                    color = NA),
-    plot.background = element_rect(fill = '#ffffff',
-                                   color = 'lightblue')
-  )
-
-```
-
 Untuk mempercantik tipe grafik-distribusi, tema yang digunakan adalah tema `theme_distr` di bawah ini.
 
 ```{r theme for distribution}
@@ -288,9 +263,9 @@ theme_distr <- theme_minimal() +
                               face = 'bold'),
     axis.text = element_text(color = '#1d1f54',
                              face = 'bold'),
-    panel.background = element_rect(fill = '#FFFCDE',
+    panel.background = element_rect(fill = '#FFFFFF',
                                     color = NA),
-    plot.background = element_rect(fill = '#FFFCDE',
+    plot.background = element_rect(fill = '#FFFFFF',
                                    color = 'lightblue')
   )
 
