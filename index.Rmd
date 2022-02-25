@@ -41,7 +41,7 @@ Berdasarkan <span style='color: green;'>**Financial Times Visual Vocabulary**</s
 * Peringkat <br>
 * Distribusi
 
-Grafik dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik dalam website ini dibuat dengan menggunakan [gapminder](https://github.com/jennybc/gapminder){target='blank'} dataset dengan beberapa proses manipulasi data.
+Grafik dalam website ini dibuat dengan menggunakan beberapa dataset. Seluruh grafik pada tipe grafik-deviasi dan korelasi dibuat dengan menggunakan [gapminder](https://github.com/jennybc/gapminder){target='blank'} dataset dengan beberapa proses manipulasi data.
 
 Sebagian besar grafik pada tipe grafik-distribusi dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target='blank'} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target='blank'}.
 
@@ -99,7 +99,7 @@ library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
 ### Penyiapan Dataset
 
-Sebagian besar grafik dalam website ini dibuat dengan menggunakan <span style='color: green;'>**gapminder**</span> dataset dengan beberapa proses manipulasi data.
+Seluruh grafik pada tipe grafik-deviasi dan korelasi dibuat dengan menggunakan <span style='color: green;'>**gapminder**</span> dataset dengan beberapa proses manipulasi data.
 
 ```{r gapminder dataset, message=FALSE}
 
@@ -1158,8 +1158,8 @@ histogram <- main_df %>%
   ggplot(aes(x = value)) +
   geom_histogram(bins = 25,
                  alpha = .9,
-                 fill = '#178f92',
-                 color = '#175f5d') +
+                 color = '#094568',
+                 fill = '#edce79') +
   scale_x_continuous(limits = c(0,10),
                      breaks = seq(0, 10, by = 2)) +
   scale_y_continuous(limits = c(0, 15),
