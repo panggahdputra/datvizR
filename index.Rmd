@@ -748,29 +748,29 @@ ordered_bar_df <- gapminder %>%
 ```{r}
 
 ordered_bar <- ordered_bar_df %>%
-  ggplot(aes(x = reorder(continent, -medianlifeExp),
-             y = medianlifeExp,
+  ggplot(aes(x = medianlifeExp,
+             y = reorder(continent, medianlifeExp),
              color = reorder(continent, -medianlifeExp),
              fill = reorder(continent, -medianlifeExp))) +
   geom_col(width = .6) +
   geom_text(aes(label = round(medianlifeExp, 0)),
             size = 4,
-            vjust = 1.5,
+            hjust = 1.5,
             fontface = 'bold',
             color = 'white') +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
   scale_fill_manual(values = our_palette,
                     guide = 'none') +
-  scale_y_continuous(expand = c(0,0),
+  scale_x_continuous(expand = c(0,0),
                      limits = c(0, 80)) +
-  our_theme +
+ our_theme +
   theme(
-    axis.title.x = element_blank(),
-    axis.text.y = element_blank(),
-    axis.line.y = element_blank()
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.line.x = element_blank()
   ) +
-  ylab('median life expectancy') +
+  xlab('median life expectancy') +
   labs(title = 'Ordered Bar',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
@@ -796,29 +796,29 @@ ordered_column_df <- gapminder %>%
 ```{r}
 
 ordered_column <- ordered_column_df %>%
-  ggplot(aes(x = medianlifeExp,
-             y = reorder(continent, medianlifeExp),
+  ggplot(aes(x = reorder(continent, -medianlifeExp),
+             y = medianlifeExp,
              color = reorder(continent, -medianlifeExp),
              fill = reorder(continent, -medianlifeExp))) +
   geom_col(width = .6) +
   geom_text(aes(label = round(medianlifeExp, 0)),
             size = 4,
-            hjust = 1.5,
+            vjust = 1.5,
             fontface = 'bold',
             color = 'white') +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
   scale_fill_manual(values = our_palette,
                     guide = 'none') +
-  scale_x_continuous(expand = c(0,0),
+  scale_y_continuous(expand = c(0,0),
                      limits = c(0, 80)) +
- our_theme +
+  our_theme +
   theme(
-    axis.title.y = element_blank(),
-    axis.text.x = element_blank(),
-    axis.line.x = element_blank()
+    axis.title.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.line.y = element_blank()
   ) +
-  xlab('median life expectancy') +
+  ylab('median life expectancy') +
   labs(title = 'Ordered Column',
        subtitle = '',
        caption = 'visualization by PanggahDPutra, 2022')
