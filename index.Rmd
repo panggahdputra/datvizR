@@ -41,7 +41,7 @@ Berdasarkan <span style='color: green;'>**Financial Times Visual Vocabulary**</s
 * Peringkat <br>
 * Distribusi
 
-Grafik dalam website ini dibuat dengan menggunakan beberapa dataset. Seluruh grafik pada tipe grafik-deviasi dan korelasi dibuat dengan menggunakan [gapminder](https://github.com/jennybc/gapminder){target='blank'} dataset dengan beberapa proses manipulasi data.
+Grafik dalam website ini dibuat dengan menggunakan beberapa dataset. Sebagian besar grafik pada tipe grafik-deviasi, korelasi, dan peringkat dibuat dengan menggunakan [gapminder](https://github.com/jennybc/gapminder){target='blank'} dataset dengan beberapa proses manipulasi data.
 
 Sebagian besar grafik pada tipe grafik-distribusi dibuat dengan menggunakan dataset `main_df`, terinsiprasi dari [flipbook_script.R](https://osf.io/vt2ny/){target='blank'} yang disebut oleh Cédric Scherer dalam websitenya, [Beyond Bar and Box Plots](https://z3tt.github.io/beyond-bar-and-box-plots/#import-data){target='blank'}.
 
@@ -99,7 +99,7 @@ library(ggridges)     # untuk membuat Stat Density Ridges Plot
 
 ### Penyiapan Dataset
 
-Seluruh grafik pada tipe grafik-deviasi dan korelasi dibuat dengan menggunakan <span style='color: green;'>**gapminder**</span> dataset dengan beberapa proses manipulasi data.
+Sebagian besar grafik pada tipe grafik-deviasi, korelasi, dan peringkat dibuat dengan menggunakan <span style='color: green;'>**gapminder**</span> dataset dengan beberapa proses manipulasi data.
 
 ```{r gapminder dataset, message=FALSE}
 
@@ -122,6 +122,31 @@ main_df <- rbind(df1, df2, df3, df4, df5) %>%
   mutate(Variable = as_factor(var),
          value = round(val, 2)) %>%
   select(Variable, value)
+
+```
+
+Dot Strip Plot pada tipe grafik-peringkat dibuat dengan menggunakan `rank_dot_strip_plot_df` di bawah ini.
+
+```{r}
+
+set.seed(2000)
+df1 = tibble(var1 = 'Variable 1',
+             var2 = c('A','B','C','D','E','A','B','C','D','E'),
+             val = sample(1:20, 10))
+df2 = tibble(var1 = 'Variable 2',
+             var2 = c('A','B','C','D','E','A','B','C','D','E'),
+             val = sample(1:20, 10))
+df3 = tibble(var1 = 'Variable 3',
+             var2 = c('A','B','C','D','E','A','B','C','D','E'),
+             val = sample(1:20, 10))
+df4 = tibble(var1 = 'Variable 4',
+             var2 = c('A','B','C','D','E','A','B','C','D','E'),
+             val = sample(1:20, 10))
+df5 = tibble(var1 = 'Variable 5',
+             var2 = c('A','B','C','D','E','A','B','C','D','E'),
+             val = sample(1:20, 10))
+
+rank_dot_strip_plot_df <- rbind(df1, df2, df3, df4, df5)
 
 ```
 
@@ -882,24 +907,16 @@ ordered_prop_symbol
 
 ```{r}
 
-rank_dot_strip_plot_df <- gapminder %>%
-  filter(year == 2007)
-
-```
-
-```{r}
-
 rank_dot_strip_plot <- rank_dot_strip_plot_df %>%
-  ggplot(aes(x = lifeExp,
-             y = continent,
-             color = continent,
-             fill = continent)) +
-  geom_point(size = 7) +
-  stat_summary(fun = 'median',
-               geom = 'point',
-               shape = 124,
-               size = 10,
-               color = '#4682B4') + 
+  ggplot(aes(x = val,
+             y = var1,
+             color = var2,
+             fill = var2)) +
+  geom_point(size = 10) +
+  geom_text(aes(label = var2),
+            size = 4,
+            fontface = 'bold',
+            color = 'white') +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
   scale_fill_manual(values = our_palette,
@@ -1311,18 +1328,18 @@ stat_dot_plot
 ```{r barcode plot}
 
 barcode_plot <- main_df %>%
-  ggplot(aes(x = Variable,
-             y = value,
+  ggplot(aes(x = value,
+             y = Variable,
              color = Variable,
              fill = Variable)) +
-  geom_point(shape = 95,
-             size = 25,
+  geom_point(shape = 124,
+             size = 15,
              alpha = .9) +
   scale_color_manual(values = our_palette,
                      guide = 'none') +
   scale_fill_manual(values = our_palette,
                     guide = 'none') +
-  scale_y_continuous(limits = c(0, 10),
+  scale_x_continuous(limits = c(0, 10),
                      breaks = seq(0, 10, by = 2)) +
   our_theme +
   theme(
